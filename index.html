@@ -6,20 +6,29 @@
     
     <!-- ========== GOOGLE TAG MANAGER ========== -->
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-KZW3RTWD'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KZW3RTWD');
+    (function(w,d,s,l,i){
+      var gtmId = '%VITE_GTM_ID%' || 'GTM-KZW3RTWD';
+      w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+gtmId+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer');
     </script>
 
     <!-- ========== GOOGLE ANALYTICS 4 ========== -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SC9C7W6Q4F"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-SC9C7W6Q4F');
+    (function() {
+      var gaId = '%VITE_GA_ID%' || 'G-SC9C7W6Q4F';
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+      document.head.appendChild(script);
+      
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaId);
+    })();
     </script>
 
     <!-- ========== SEO ========== -->
@@ -154,7 +163,7 @@
   <body>
     <!-- GTM noscript -->
     <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZW3RTWD"
+      <iframe src="https://www.googletagmanager.com/ns.html?id=%VITE_GTM_ID%"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     

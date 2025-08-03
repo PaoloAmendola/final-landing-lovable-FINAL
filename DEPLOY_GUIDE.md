@@ -1,199 +1,154 @@
-# 🚀 GUIA DE DEPLOY - NIVELA® LANDING PAGE
+# 🚀 Guia de Deploy - NIVELA Landing Page
 
-## 📋 PRÉ-REQUISITOS VERIFICADOS
+## ✅ Status de Produção
+O projeto está **100% pronto** para deploy na Vercel com framework Vite.
 
-✅ **Projeto Configurado**
-- Nome: final-landing-lovable-julho-69
-- Framework: React + Vite + TypeScript
-- GitHub: https://github.com/PaoloAmendola/final-landing-lovable-julho-69.git
+## 📋 Configuração Obrigatória na Vercel
 
-✅ **Integrações Ativas**
-- Supabase: xnexfhgtqlryfkyuvihq (tabelas: leads, distribuidores, analytics)
-- Lovable: Sync bidirecional funcionando
-- Analytics: GTM-KZW3RTWD configurado
+### 1. Environment Variables (OBRIGATÓRIO)
+Configure estas variáveis em `Settings > Environment Variables`:
 
----
-
-## 🎯 DEPLOY VERCEL - PASSO A PASSO
-
-### **1. PREPARAÇÃO AUTOMÁTICA**
-O projeto já está preparado com:
-- `vercel.json` configurado
-- Build otimizado para produção
-- Environment variables via Supabase
-- Cache strategy implementada
-
-### **2. DEPLOY VIA GITHUB**
 ```bash
-# 1. Conectar repositório GitHub à Vercel
-https://vercel.com/import/git
+# Supabase (OBRIGATÓRIO)
+VITE_SUPABASE_URL=https://xnexfhgtqlryfkyuvihq.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhuZXhmaGd0cWxyeWZreXV2aWhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNzA5NzAsImV4cCI6MjA2Nzc0Njk3MH0.QzBc3y6LXIeHbeOoYska42YS26l7DEpiRAM7Hrko-7w
 
-# 2. Importar: PaoloAmendola/final-landing-lovable-julho-69
-# 3. Configurações detectadas automaticamente:
-#    - Framework: Vite
-#    - Build Command: npm run build  
-#    - Output Directory: dist
-#    - Node Version: 18.x
+# Analytics (OPCIONAL)
+VITE_GTM_ID=GTM-KZW3RTWD
+VITE_GA_ID=G-SC9C7W6Q4F
 ```
 
-### **3. CONFIGURAÇÕES VERCEL**
+### 2. Build Settings
+- **Framework Preset**: Vite
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Install Command**: `npm install`
+- **Node.js Version**: 18.x
+
+## 🔧 Verificação Pre-Deploy
+
+### ✅ Estrutura de Arquivos
+```
+.
+├── package.json ✅ (scripts corretos)
+├── vite.config.ts ✅ (otimizado)
+├── index.html ✅ (na raiz)
+├── src/
+│   ├── main.tsx ✅
+│   ├── App.tsx ✅
+│   ├── config/env.ts ✅ (novo)
+│   └── ...
+├── dist/ ✅ (gerado no build)
+└── .env.example ✅ (documentação)
+```
+
+### ✅ Scripts Package.json
 ```json
 {
-  "framework": "vite",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
 }
 ```
 
-### **4. ENVIRONMENT VARIABLES**
+### ✅ Environment Variables
+- ✅ Configuradas via `import.meta.env.VITE_*`
+- ✅ Fallbacks para valores default
+- ✅ Type safety implementado
+
+### ✅ Otimizações
+- ✅ Bundle splitting configurado
+- ✅ Assets otimizados
+- ✅ Service Worker registrado
+- ✅ PWA configurado
+- ✅ SEO implementado
+- ✅ Performance otimizada
+
+## 🚀 Processo de Deploy
+
+### 1. Via Git (Recomendado)
 ```bash
-# Automático via Supabase Integration
-SUPABASE_URL=https://xnexfhgtqlryfkyuvihq.supabase.co
-SUPABASE_ANON_KEY=[Gerado automaticamente]
-
-# Analytics (Opcional - já hardcoded)
-GTM_ID=GTM-KZW3RTWD
+git add .
+git commit -m "feat: projeto pronto para produção"
+git push origin main
 ```
 
----
-
-## ⚡ OTIMIZAÇÕES PRÉ-DEPLOY
-
-### **PERFORMANCE CHECKS** ✅
-- Bundle size: < 500KB por chunk
-- Images: WebP otimizadas
-- Fonts: Montserrat preload
-- CSS: Critical CSS inline
-- JS: Code splitting ativo
-
-### **SEO READY** ✅
-- Meta tags completas
-- Open Graph configurado
-- Structured Data (Product + Organization)
-- Sitemap automático
-- Canonical URLs
-
-### **PWA CONFIGURADO** ✅
-- Service Worker ativo
-- Manifest.json otimizado
-- Install prompt implementado
-- Offline fallback
-
----
-
-## 🔧 PÓS-DEPLOY CHECKLIST
-
-### **1. VERIFICAÇÕES IMEDIATAS**
-- [ ] Site carregando: https://final-landing-lovable-julho-69.vercel.app
-- [ ] Formulários funcionando (teste lead + distribuidor)
-- [ ] Analytics tracking (GTM debugger)
-- [ ] PWA install prompt
-- [ ] Performance Lighthouse > 90
-
-### **2. CONFIGURAÇÕES AVANÇADAS**
-- [ ] Custom domain (se necessário)
-- [ ] SSL certificate (automático)
-- [ ] CDN cache verificado
-- [ ] Error monitoring ativo
-
-### **3. MONITORAMENTO CONTÍNUO**
-- [ ] Core Web Vitals dashboard
-- [ ] Supabase usage monitoring  
-- [ ] Analytics conversion tracking
-- [ ] Error alerts configurados
-
----
-
-## 🛡 SEGURANÇA & PERFORMANCE
-
-### **HEADERS DE SEGURANÇA** ✅
-```json
-{
-  "X-Content-Type-Options": "nosniff",
-  "X-Frame-Options": "DENY",
-  "X-XSS-Protection": "1; mode=block",
-  "Referrer-Policy": "strict-origin-when-cross-origin"
-}
-```
-
-### **CACHE STRATEGY** ✅
-- Static assets: 1 ano
-- Images: 30 dias + stale-while-revalidate
-- HTML: sempre fresh
-- Service Worker: no-cache
-
----
-
-## 📊 ANALYTICS & TRACKING
-
-### **EVENTOS CONFIGURADOS**
-- Page views por seção
-- Form submissions (leads/distribuidores)
-- PWA install events
-- Performance metrics (CWV)
-- Error tracking
-
-### **CONVERSÃO FUNNEL**
-1. Landing visit → Section engagement
-2. Form interaction → Form completion  
-3. Lead captured → Success message
-4. Distributor inquiry → Contact info
-
----
-
-## 🚨 TROUBLESHOOTING
-
-### **BUILD ERRORS**
+### 2. Via Vercel CLI
 ```bash
-# Se build falhar:
-npm run build
-# Verificar erros no console
-
-# Test local production:
-npm run preview
+npm install -g vercel
+vercel --prod
 ```
 
-### **SUPABASE CONNECTION**
-```bash
-# Verificar se políticas RLS estão ativas:
-# leads table: INSERT policy ativa
-# distribuidores table: INSERT policy ativa
-```
+### 3. Via Dashboard Vercel
+1. Connect Git Repository
+2. Configure Environment Variables
+3. Deploy
 
-### **PERFORMANCE ISSUES**
-```bash
-# Análise bundle:
-npm run build -- --analyze
+## 🔍 Verificação Pós-Deploy
 
-# Core Web Vitals:
-# LCP target: < 2.5s
-# FID target: < 100ms  
-# CLS target: < 0.1
-```
+### URLs para Testar
+- ✅ Homepage: `/`
+- ✅ Sections: `/#produto`, `/#tecnologia`, `/#bemtech`
+- ✅ Contact: `/#acesso`
+- ✅ PWA: Installable
+- ✅ Service Worker: Funcionando
+
+### Performance Esperada
+- ✅ Lighthouse Score: 90+
+- ✅ First Contentful Paint: < 1.5s
+- ✅ Bundle Size: < 500KB por chunk
+- ✅ Core Web Vitals: Passa
+
+## 🛠️ Troubleshooting
+
+### Problema: Environment Variables não funcionam
+**Solução**: Prefixe com `VITE_` e configure na Vercel
+
+### Problema: Build falha
+**Solução**: Verifique Node.js version (use 18.x)
+
+### Problema: 404 em routes
+**Solução**: vercel.json configurado com rewrites
+
+### Problema: Assets não carregam
+**Solução**: Headers configurados no vercel.json
+
+## 📊 Monitoramento
+
+### Analytics
+- ✅ Google Tag Manager configurado
+- ✅ Google Analytics 4 ativo
+- ✅ Custom events implementados
+
+### Performance
+- ✅ Core Web Vitals tracking
+- ✅ Error boundary configurado
+- ✅ Service Worker logs
+
+## 🔐 Segurança
+
+### Headers de Segurança
+- ✅ X-Frame-Options: DENY
+- ✅ X-Content-Type-Options: nosniff
+- ✅ X-XSS-Protection: 1; mode=block
+- ✅ Referrer-Policy configurado
+- ✅ Permissions-Policy configurado
+
+### Environment
+- ✅ API keys via environment variables
+- ✅ Supabase RLS configurado
+- ✅ CORS configurado
 
 ---
 
-## ✅ DEPLOY STATUS
+## 🎉 Projeto Pronto!
 
-**PROJETO:** 🚀 **PRONTO PARA PRODUÇÃO**
+O projeto NIVELA está **100% pronto** para deploy na Vercel. Todas as configurações foram implementadas seguindo as melhores práticas para produção.
 
-- **Código:** Otimizado e testado
-- **Integrações:** Supabase + Analytics funcionando
-- **Performance:** A+ score (96/100)
-- **SEO:** Schema markup completo
-- **PWA:** Instalável e offline-ready
-- **Security:** Headers implementados
-
-**DEPLOY COMMAND:**
-```bash
-# Via Vercel Dashboard:
-# 1. Import Git Repository
-# 2. Deploy (configuração automática)
-# 3. Verificar URL de produção
-```
-
----
-
-**🎯 RESULTADO ESPERADO:** Landing page premium, otimizada e pronta para conversões máximas com experiência técnica impecável.
+**Next Steps:**
+1. Configure as environment variables na Vercel
+2. Faça o deploy
+3. Teste todas as funcionalidades
+4. Monitor performance e analytics
