@@ -1,0 +1,35 @@
+{
+  "name": "NIVELA® - Bem Beauty Professional",
+  "short_name": "NIVELA®",
+  "description": "A evolução da escova progressiva profissional. Tecnologia patenteada, sem formol, com ativos da Amazônia.",
+  "theme_color": "#9D4916",
+  "background_color": "#0D181C",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "categories": ["business", "beauty", "professional"],
+  "lang": "pt-BR",
+  "screenshots": [
+    {
+      "src": "/lovable-uploads/dbbfcd31-18b0-4148-a60a-6e0d96ab5004.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
