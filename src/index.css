@@ -268,7 +268,7 @@ All colors MUST be HSL.
     }
   }
 
-  /* Reduced motion support */
+  /* Reduced motion support - Enhanced */
   @media (prefers-reduced-motion: reduce) {
     *, 
     *::before, 
@@ -277,6 +277,12 @@ All colors MUST be HSL.
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transform: none !important;
+    }
+    
+    .parallax-container,
+    .motion-container {
+      transform: none !important;
     }
   }
 
@@ -293,28 +299,45 @@ All colors MUST be HSL.
     animation: shimmer 2s infinite;
   }
 
+  /* Touch targets for mobile accessibility */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Enhanced focus visibility */
+  .focus-visible-enhanced {
+    @apply focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:outline-none;
+  }
+
   /* Stagger animation delays for performance */
   .animation-delay-100 { animation-delay: 100ms; }
   .animation-delay-200 { animation-delay: 200ms; }
   .animation-delay-300 { animation-delay: 300ms; }
   .animation-delay-400 { animation-delay: 400ms; }
 
-  /* Skip to content link */
+  /* Skip to content link - Enhanced */
   .skip-to-content {
-    position: absolute;
+    position: fixed;
     top: -40px;
-    left: 6px;
+    left: 16px;
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
-    padding: 8px 16px;
+    padding: 12px 20px;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 8px;
     z-index: 1000;
-    transition: top 0.3s;
+    transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.3);
   }
 
   .skip-to-content:focus {
-    top: 6px;
+    top: 16px;
   }
 
   /* Touch targets - Minimum 44px for accessibility */

@@ -24,7 +24,8 @@ import { usePerformance } from "@/hooks/use-performance";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { usePerformanceOptimization } from "@/hooks/use-performance-optimization";
 import { useEnhancedSEO, generateProductSchema, generateOrganizationSchema } from "@/components/ui/enhanced-seo";
-import { useAccessibilityEnhancements, SkipLink, announceToScreenReader } from "@/components/ui/enhanced-accessibility";
+import { useAccessibilityEnhancements, announceToScreenReader } from "@/components/ui/enhanced-accessibility";
+import { SkipToContent } from "@/components/ui/skip-to-content";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
 import { AdvancedPerformanceMonitor } from "@/components/ui/advanced-performance-monitor";
 import { preloadCriticalResources } from "@/utils/preloader";
@@ -211,9 +212,7 @@ const Index = memo(() => {
   return (
     <div className={`min-h-screen bg-background font-montserrat scroll-smooth text-optimized contain-layout ${reducedMotion ? 'reduce-motion' : ''}`}>
       {/* Enhanced Skip to main content for accessibility */}
-      <SkipLink href="#main-content">
-        Pular para o conteúdo principal
-      </SkipLink>
+      <SkipToContent targetId="main-content" />
       
       <ScrollIndicator />
       <main id="main-content" tabIndex={-1}>

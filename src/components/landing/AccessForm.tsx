@@ -358,7 +358,7 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
               variant="premium"
               size="xl"
               disabled={isLoading || !formData.nome.trim() || !formData.email.trim() || !formData.telefone.trim() || !formData.tipo_estabelecimento.trim()}
-              className="w-full text-lg lg:text-xl rounded-xl lg:rounded-2xl disabled:scale-100 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 hover:shadow-glow active:scale-95 transition-elegant focus-visible-enhanced touch-target"
+              className="w-full text-lg lg:text-xl rounded-xl lg:rounded-2xl disabled:scale-100 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 hover:shadow-glow active:scale-95 transition-elegant focus-visible-enhanced touch-target min-h-[56px] min-w-[44px]"
               aria-label="Enviar solicitação de acesso ao NIVELA"
             >
               {isLoading ? (

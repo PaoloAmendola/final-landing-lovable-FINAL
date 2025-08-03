@@ -50,7 +50,7 @@ const VideoLoader = ({ src, thumbnail, title, className = "" }: VideoLoaderProps
           </p>
           <button
             onClick={handleRetry}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors touch-target focus-visible-enhanced"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors touch-target focus-visible-enhanced min-h-[44px] min-w-[44px]"
             aria-label="Tentar carregar o vídeo novamente"
           >
             Tentar novamente
@@ -63,7 +63,7 @@ const VideoLoader = ({ src, thumbnail, title, className = "" }: VideoLoaderProps
   if (!isPlaying) {
     return (
       <div 
-        className={`${className} relative group cursor-pointer bg-gradient-to-br from-brand-deep/20 to-brand-caramel/10 border border-primary/10 rounded-3xl overflow-hidden touch-target focus-visible-enhanced`}
+        className={`${className} relative group cursor-pointer bg-gradient-to-br from-brand-deep/20 to-brand-caramel/10 border border-primary/10 rounded-3xl overflow-hidden touch-target focus-visible-enhanced min-h-[44px]`}
         onClick={handlePlay}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -121,17 +121,19 @@ const VideoLoader = ({ src, thumbnail, title, className = "" }: VideoLoaderProps
         muted
         loop
         playsInline
+        controls={false}
         preload="metadata"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover touch-target"
         onLoadedData={handleLoadedData}
         onError={handleError}
         onLoadStart={() => setIsLoading(true)}
-        aria-label={title}
+        aria-label={`Vídeo demonstrativo: ${title}`}
         title={title}
+        tabIndex={0}
       >
         <track kind="descriptions" src="" label={`Descrição do vídeo: ${title}`} />
-        <track kind="captions" />
-        Seu navegador não suporta o elemento de vídeo.
+        <track kind="captions" src="" label="Legendas disponíveis" />
+        Seu navegador não suporta reprodução de vídeos HTML5.
       </video>
     </div>
   );

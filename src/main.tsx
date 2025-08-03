@@ -3,31 +3,42 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-// Register advanced service worker - with duplicate prevention
-if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+// Register advanced service worker - Enhanced duplicate prevention
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      // Check if SW is already registered
-      const existing = await navigator.serviceWorker.getRegistration('/');
+      // Enhanced check for existing registrations
+      const existingRegistrations = await navigator.serviceWorker.getRegistrations();
+      const hasActiveRegistration = existingRegistrations.some(reg => 
+        reg.active && reg.scope === window.location.origin + '/'
+      );
       
-      if (existing) {
+      if (hasActiveRegistration || navigator.serviceWorker.controller) {
         return;
       }
       
       // Register new advanced service worker
       const registration = await navigator.serviceWorker.register('/sw-advanced.js', {
-        scope: '/'
+        scope: '/',
+        updateViaCache: 'none'
       });
       
-      // Listen for updates
+      // Enhanced update handling
       registration.addEventListener('updatefound', () => {
-        // Service worker update detected
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New content available, consider showing update notification
+            }
+          });
+        }
       });
       
     } catch (error) {
       // Only log SW errors in development
       if (import.meta.env.DEV) {
-        console.error('[SW] Service Worker registration failed:', error);
+        console.warn('[SW] Service Worker registration failed:', error);
       }
     }
   });
