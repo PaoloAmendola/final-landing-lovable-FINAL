@@ -33,7 +33,9 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-popover',
             '@radix-ui/react-select',
             '@radix-ui/react-tabs',
-            '@radix-ui/react-toast'
+            '@radix-ui/react-toast',
+            '@radix-ui/react-label',
+            '@radix-ui/react-slot'
           ],
           
           // Animation and utilities chunk
@@ -53,10 +55,10 @@ export default defineConfig(({ mode }) => ({
     cssMinify: 'esbuild',
     
     // Generate source maps for production debugging
-    sourcemap: false,
+    sourcemap: mode === 'development',
     
     // Optimize chunk size warnings
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 1000,
     
     // Asset optimization
     assetsInlineLimit: 4096

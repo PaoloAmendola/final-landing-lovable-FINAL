@@ -11,9 +11,6 @@ if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
       const existing = await navigator.serviceWorker.getRegistration('/');
       
       if (existing) {
-        if (import.meta.env.DEV) {
-          console.log('[SW] Service Worker already registered');
-        }
         return;
       }
       
@@ -22,19 +19,16 @@ if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
         scope: '/'
       });
       
-      if (import.meta.env.DEV) {
-        console.log('[SW] Advanced Service Worker registered successfully', registration);
-      }
-      
       // Listen for updates
       registration.addEventListener('updatefound', () => {
-        if (import.meta.env.DEV) {
-          console.log('[SW] New service worker version found');
-        }
+        // Service worker update detected
       });
       
     } catch (error) {
-      console.error('[SW] Service Worker registration failed:', error);
+      // Only log SW errors in development
+      if (import.meta.env.DEV) {
+        console.error('[SW] Service Worker registration failed:', error);
+      }
     }
   });
 }

@@ -30,8 +30,6 @@ const CTAButton = memo(({
 }: CTAButtonProps) => {
   
   const handleClick = (e: React.MouseEvent) => {
-    console.log('🎯 CTA Button clicked!', { variant, onClick, href, openModal: !!openModal });
-    
     // Track CTA click
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'cta_click', {
@@ -53,7 +51,6 @@ const CTAButton = memo(({
 
     // PRIORITY 1: Modal opener handler (for hero CTA)
     if (openModal) {
-      console.log('🟢 Opening modal via openModal prop...');
       e.preventDefault();
       openModal();
       return;
@@ -61,7 +58,6 @@ const CTAButton = memo(({
 
     // PRIORITY 2: Custom onClick handler
     if (onClick) {
-      console.log('🟡 Executing custom onClick...');
       e.preventDefault();
       onClick(e);
       return;
@@ -93,24 +89,19 @@ const CTAButton = memo(({
 
     // Default behavior - scroll to access form
     e.preventDefault();
-    console.log('🔍 Searching for element with ID: acesso');
     const formSection = document.getElementById('acesso');
-    console.log('📋 Form section found:', formSection);
     
     if (formSection) {
-      console.log('📜 Scrolling to form section...');
       formSection.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       });
     } else {
-      console.error('❌ Element with ID "acesso" not found!');
       // Fallback: try to find any form or contact section
       const alternateSelectors = ['form', '[id*="form"]', '[id*="contato"]', '[id*="acesso"]'];
       for (const selector of alternateSelectors) {
         const element = document.querySelector(selector);
         if (element) {
-          console.log('🔄 Found alternate element:', selector);
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
           break;
         }

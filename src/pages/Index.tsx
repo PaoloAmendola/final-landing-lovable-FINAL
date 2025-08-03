@@ -125,25 +125,13 @@ const Index = memo(() => {
         try {
           const report = await accessibilityAuditor.audit({ includeNonCritical: false });
           if (report.issues.length > 0) {
-            console.group('🔍 Accessibility Audit Results');
-            console.log(`Score: ${report.score}/100`);
-            console.log(`WCAG AA Compliance: ${report.compliance.levelAA ? '✅' : '❌'}`);
-            console.log(`Critical Issues: ${report.summary.critical}`);
-            console.log(`Serious Issues: ${report.summary.serious}`);
-            report.issues.forEach(issue => {
-              console.warn(`${issue.impact.toUpperCase()}: ${issue.message}`, issue.element);
-            });
-            console.groupEnd();
-            
             // Announce critical accessibility issues
             if (report.summary.critical > 0) {
-              announceToScreenReader(`${report.summary.critical} problemas críticos de acessibilidade detectados. Verifique o console para detalhes.`, 'assertive');
+              announceToScreenReader(`${report.summary.critical} problemas críticos de acessibilidade detectados.`, 'assertive');
             }
-          } else {
-            console.log('✅ No accessibility issues found');
           }
         } catch (error) {
-          console.warn('Accessibility audit failed:', error);
+          // Only log in development
         }
       }, 2000);
     }
@@ -162,9 +150,8 @@ const Index = memo(() => {
       
       trackPerformance(performanceData);
       
-      // Alert for performance issues
+      // Track performance issues
       if (metrics.lcp && metrics.lcp > 2500) {
-        console.warn('⚠️ Poor LCP detected:', metrics.lcp);
         trackConversion({
           type: 'error',
           section: 'lcp_warning',
@@ -173,7 +160,6 @@ const Index = memo(() => {
       }
       
       if (metrics.cls && metrics.cls > 0.1) {
-        console.warn('⚠️ Poor CLS detected:', metrics.cls);
         trackConversion({
           type: 'error',
           section: 'cls_warning', 
@@ -289,8 +275,13 @@ const Index = memo(() => {
         enableAlerts={import.meta.env.DEV}
         sampleRate={0.1}
         onAlert={(alert) => {
+          // Track performance alerts
           if (alert.type === 'error') {
-            console.error('Performance Alert:', alert);
+            trackConversion({
+              type: 'error',
+              section: 'performance_alert',
+              metadata: alert
+            });
           }
         }}
       />

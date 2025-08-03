@@ -30,9 +30,6 @@ const AppContent = () => {
   const { trackError } = useAnalytics();
 
   const handleError = (error: Error, errorInfo: React.ErrorInfo) => {
-    if (import.meta.env.DEV) {
-      console.error('AppContent: Error caught:', error);
-    }
     trackError(error, errorInfo.componentStack);
   };
 

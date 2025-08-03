@@ -92,14 +92,12 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
         });
 
       if (error) {
-        console.error('Erro ao enviar formulário:', error);
         toast.error('Erro ao enviar solicitação. Tente novamente.');
       } else {
         setIsSubmitted(true);
         toast.success('Solicitação enviada com sucesso!');
       }
     } catch (error) {
-      console.error('Erro inesperado:', error);
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);
