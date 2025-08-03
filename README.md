@@ -10,7 +10,7 @@
 - **Live URL:** [Em configuração]
 - **Lovable Project:** https://lovable.dev/projects/5e1da86f-688f-4351-9165-29fdf082ac7d  
 - **Supabase Project:** xnexfhgtqlryfkyuvihq  
-- **GitHub Repository:** https://github.com/PaoloAmendola/final-landing-lovable-julho.git  
+- **GitHub Repository:** https://github.com/PaoloAmendola/final-landing-lovable-julho-69.git  
 - **Status:** ✅ Integrado com Supabase e GitHub
 
 ### 🛠 Tech Stack
@@ -60,10 +60,10 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/PaoloAmendola/final-landing-lovable-julho.git
+git clone https://github.com/PaoloAmendola/final-landing-lovable-julho-69.git
 
 # Navigate to project directory
-cd final-landing-lovable-julho
+cd final-landing-lovable-julho-69
 
 # Install dependencies
 npm install
