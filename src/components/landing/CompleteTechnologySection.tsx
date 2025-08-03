@@ -71,10 +71,15 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
         <div className="lg:hidden">
           <AnimatedSection animation="scale" className="mb-12">
             <div className="relative aspect-[4/3] max-w-md mx-auto rounded-xl overflow-hidden shadow-elegant">
-              <img 
-                src="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png" 
-                alt="Tecnologia ASTRO QUAT V3®" 
+              <VideoLazy
+                src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
+                autoPlay
+                muted
+                loop
                 className="w-full h-full object-cover"
+                threshold={0.3}
+                onError={handleVideoError}
               />
             </div>
           </AnimatedSection>
@@ -124,17 +129,16 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
           <div className="hidden lg:block">
             <AnimatedSection animation="scale" delay={0.3}>
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-elegant">
-                <video 
+                <VideoLazy
+                  src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                  poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
                   autoPlay
                   muted
                   loop
-                  playsInline
                   className="w-full h-full object-cover"
+                  threshold={0.3}
                   onError={handleVideoError}
-                >
-                  <source src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4" type="video/mp4" />
-                  Seu navegador não suporta o elemento de vídeo.
-                </video>
+                />
               </div>
             </AnimatedSection>
           </div>
