@@ -126,9 +126,7 @@ class ResourcePreloader {
     const section = CRITICAL_SECTIONS[sectionId];
     if (!section) return;
 
-    if (import.meta.env.DEV) {
-      console.log(`[Preloader] Loading section: ${sectionId}`);
-    }
+    // Section preloading started
 
     // Preload images
     section.images.forEach(url => {
@@ -244,12 +242,12 @@ class ResourcePreloader {
 
       link.onload = () => {
         this.preloadedUrls.add(url);
-        console.log(`[Preloader] ✅ Loaded: ${url}`);
+        // Resource preloaded successfully
         resolve();
       };
 
       link.onerror = () => {
-        console.warn(`[Preloader] ❌ Failed: ${url}`);
+        // Resource preload failed - handled silently
         reject(new Error(`Failed to preload: ${url}`));
       };
 
@@ -271,12 +269,12 @@ class ResourcePreloader {
     
     video.addEventListener('loadedmetadata', () => {
       this.preloadedUrls.add(url);
-      console.log(`[Preloader] ✅ Video metadata loaded: ${url}`);
+      // Video metadata preloaded successfully
       document.body.removeChild(video);
     });
 
     video.addEventListener('error', () => {
-      console.warn(`[Preloader] ❌ Video failed: ${url}`);
+      // Video preload failed - handled silently
       if (document.body.contains(video)) {
         document.body.removeChild(video);
       }
@@ -297,7 +295,7 @@ class ResourcePreloader {
     
     link.onload = () => {
       this.preloadedUrls.add(url);
-      console.log(`[Preloader] ⚡ Prefetched: ${url}`);
+      // Resource prefetched successfully
     };
 
     document.head.appendChild(link);

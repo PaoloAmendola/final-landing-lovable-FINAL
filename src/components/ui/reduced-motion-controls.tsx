@@ -30,7 +30,7 @@ export function ReducedMotionControls() {
       try {
         setPreferences(JSON.parse(stored));
       } catch (error) {
-        console.warn('Failed to load accessibility preferences:', error);
+        // Accessibility preferences error handled silently
       }
     }
   }, []);

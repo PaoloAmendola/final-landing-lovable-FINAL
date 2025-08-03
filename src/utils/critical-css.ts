@@ -73,9 +73,7 @@ class CriticalCSSExtractor {
       criticalRules: number;
     };
   }> {
-    if (import.meta.env.DEV) {
-      console.log('[Critical CSS] Starting extraction...');
-    }
+    // Critical CSS extraction started
 
     try {
       // Get all stylesheets
@@ -95,13 +93,11 @@ class CriticalCSSExtractor {
         criticalRules: this.criticalRules.length
       };
 
-      if (import.meta.env.DEV) {
-        console.log('[Critical CSS] Extraction complete:', stats);
-      }
+      // Critical CSS extraction completed
 
       return { critical, deferred, stats };
     } catch (error) {
-      console.error('[Critical CSS] Extraction failed:', error);
+      // Critical CSS extraction failed - handled silently
       return {
         critical: '',
         deferred: '',
@@ -117,7 +113,7 @@ class CriticalCSSExtractor {
     try {
       // Skip external stylesheets that might have CORS issues
       if (stylesheet.href && !this.isSameOrigin(stylesheet.href)) {
-        console.warn('[Critical CSS] Skipping external stylesheet:', stylesheet.href);
+        // External stylesheet skipped
         return;
       }
 
@@ -127,7 +123,7 @@ class CriticalCSSExtractor {
         this.processRule(rule);
       }
     } catch (error) {
-      console.warn('[Critical CSS] Error processing stylesheet:', error);
+      // Stylesheet processing error handled silently
     }
   }
 
@@ -307,16 +303,14 @@ class CriticalCSSExtractor {
  * Inline critical CSS and defer non-critical styles
  */
 export async function optimizeCriticalCSS(config?: Partial<CriticalCSSConfig>) {
-  if (import.meta.env.DEV) {
-    console.log('[Critical CSS] Starting optimization...');
-  }
+  // Critical CSS optimization started
 
   const extractor = new CriticalCSSExtractor(config);
   const { critical, deferred, stats } = await extractor.extractCritical();
 
   // Check if critical CSS is within budget
   if (stats.criticalSize > (config?.inlineThreshold || DEFAULT_CONFIG.inlineThreshold)) {
-    console.warn(`[Critical CSS] Critical CSS size (${stats.criticalSize}b) exceeds budget`);
+    // Critical CSS size exceeds budget - handled silently
   }
 
   // Inline critical CSS
@@ -342,9 +336,7 @@ export async function optimizeCriticalCSS(config?: Partial<CriticalCSSConfig>) {
     document.head.appendChild(deferredStyleElement);
   }
 
-  if (import.meta.env.DEV) {
-    console.log('[Critical CSS] Optimization complete:', stats);
-  }
+  // Critical CSS optimization completed
   return stats;
 }
 

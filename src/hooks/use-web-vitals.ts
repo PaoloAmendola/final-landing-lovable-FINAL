@@ -106,7 +106,7 @@ export const useWebVitals = (options: UseWebVitalsOptions = {}) => {
         observeCLS();
         measureTTFB();
       } catch (error) {
-        console.warn('Error initializing web vitals:', error);
+        // Web vitals initialization error handled silently
       }
 
       // Cleanup function

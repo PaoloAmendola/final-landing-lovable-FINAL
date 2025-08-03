@@ -95,20 +95,14 @@ const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
         });
 
       if (error) {
-        // Log error for debugging only in development
-        if (import.meta.env.DEV) {
-          console.error('Erro ao enviar formulário:', error);
-        }
+        // Error handled silently in production
         toast.error('Erro ao enviar solicitação. Tente novamente.');
       } else {
         setIsSubmitted(true);
         toast.success('Solicitação enviada com sucesso!');
       }
     } catch (error) {
-      // Log error for debugging only in development
-      if (import.meta.env.DEV) {
-        console.error('Erro inesperado:', error);
-      }
+      // Error handled silently in production
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);

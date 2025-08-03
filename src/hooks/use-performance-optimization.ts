@@ -41,11 +41,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
       const renderTime = performance.now() - renderStartRef.current;
       metricsRef.current.renderTime = renderTime;
       
-      // Check against performance budget
-      if (config.performanceBudget?.maxRenderTime && 
-          renderTime > config.performanceBudget.maxRenderTime) {
-        console.warn(`⚠️ Render time exceeded budget: ${renderTime.toFixed(2)}ms`);
-      }
+      // Performance budget check - handled silently in production
       
       renderStartRef.current = 0;
     }
@@ -62,9 +58,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
           const contentLength = response.headers.get('content-length');
           if (contentLength) {
             const size = parseInt(contentLength, 10);
-            if (size > config.performanceBudget!.maxImageSize) {
-              console.warn(`⚠️ Image size exceeded budget: ${src} (${size} bytes)`);
-            }
+            // Image size budget check - handled silently in production
           }
         })
         .catch(() => {
@@ -83,9 +77,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
     new PerformanceObserver((entryList) => {
       for (const entry of entryList.getEntries()) {
         const lcp = entry.startTime;
-        if (lcp > 2500) {
-          console.warn(`⚠️ Poor LCP: ${lcp.toFixed(2)}ms`);
-        }
+        // LCP performance check - handled silently in production
       }
     }).observe({ entryTypes: ['largest-contentful-paint'] });
 
@@ -93,9 +85,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
     new PerformanceObserver((entryList) => {
       for (const entry of entryList.getEntries()) {
         const fid = (entry as any).processingStart - entry.startTime;
-        if (fid > 100) {
-          console.warn(`⚠️ Poor FID: ${fid.toFixed(2)}ms`);
-        }
+        // FID performance check - handled silently in production
       }
     }).observe({ entryTypes: ['first-input'] });
 
@@ -107,9 +97,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
           clsValue += (entry as any).value;
         }
       }
-      if (clsValue > 0.1) {
-        console.warn(`⚠️ Poor CLS: ${clsValue.toFixed(3)}`);
-      }
+      // CLS performance check - handled silently in production
     }).observe({ entryTypes: ['layout-shift'] });
   }, []);
 
@@ -176,11 +164,7 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
       const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
       if (navigation) {
         const pageLoadTime = navigation.loadEventEnd - navigation.fetchStart;
-        console.log(`📊 Page Load Time: ${pageLoadTime.toFixed(2)}ms`);
-        
-        if (pageLoadTime > 3000) {
-          console.warn('⚠️ Slow page load detected');
-        }
+        // Page load performance metrics - handled silently in production
       }
     };
 

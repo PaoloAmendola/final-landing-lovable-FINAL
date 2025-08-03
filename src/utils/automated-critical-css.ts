@@ -64,9 +64,7 @@ class AutomatedCriticalCSS {
    * Main extraction function - automatically detects and extracts critical CSS
    */
   async extractCriticalCSS(): Promise<CriticalCSSResult> {
-    if (import.meta.env.DEV) {
-      console.log('[Critical CSS] Starting automated extraction...');
-    }
+    // Critical CSS extraction started
 
     const startTime = performance.now();
 
@@ -87,9 +85,7 @@ class AutomatedCriticalCSS {
       const stats = this.generateStats(criticalCSS, nonCriticalCSS, startTime);
       const recommendations = this.generateRecommendations(stats);
 
-      if (import.meta.env.DEV) {
-        console.log('[Critical CSS] Extraction complete:', stats);
-      }
+      // Critical CSS extraction completed
 
       return {
         criticalCSS,
@@ -99,7 +95,7 @@ class AutomatedCriticalCSS {
       };
 
     } catch (error) {
-      console.error('[Critical CSS] Extraction failed:', error);
+      // Critical CSS extraction failed - handled silently
       throw error;
     }
   }
@@ -226,9 +222,7 @@ class AutomatedCriticalCSS {
       const rules = stylesheet.cssRules || stylesheet.rules;
       return true;
     } catch (error) {
-      if (import.meta.env.DEV) {
-        console.warn('[Critical CSS] Skipping cross-origin stylesheet:', stylesheet.href);
-      }
+      // Cross-origin stylesheet skipped
       return false;
     }
   }
@@ -241,7 +235,7 @@ class AutomatedCriticalCSS {
       try {
         await this.processStylesheet(stylesheet, visibleElements);
       } catch (error) {
-        console.warn('[Critical CSS] Error processing stylesheet:', error);
+        // Stylesheet processing error handled silently
       }
     }
   }
@@ -263,7 +257,7 @@ class AutomatedCriticalCSS {
         await this.processRule(rule, visibleElements);
       }
     } catch (error) {
-      console.warn('[Critical CSS] Error processing stylesheet rules:', error);
+      // Stylesheet rules processing error handled silently
     }
   }
 
@@ -487,9 +481,7 @@ class AutomatedCriticalCSS {
  * Automatically optimize critical CSS for the current page
  */
 export async function optimizeCriticalCSS(config?: Partial<CriticalCSSConfig>): Promise<CriticalCSSResult> {
-  if (import.meta.env.DEV) {
-    console.log('[Critical CSS] Starting optimization...');
-  }
+  // Critical CSS optimization started
 
   const optimizer = new AutomatedCriticalCSS(config);
   const result = await optimizer.extractCriticalCSS();
@@ -500,9 +492,7 @@ export async function optimizeCriticalCSS(config?: Partial<CriticalCSSConfig>): 
   }
 
   if (result.stats.performance.improvement > 0) {
-    if (import.meta.env.DEV) {
-      console.log('[Critical CSS] Optimization complete:', result.stats);
-    }
+    // Critical CSS optimization completed
   }
 
   return result;
@@ -543,7 +533,7 @@ async function applyOptimizations(result: CriticalCSSResult): Promise<void> {
     document.head.appendChild(noscript);
 
   } catch (error) {
-    console.error('[Critical CSS] Failed to apply optimizations:', error);
+    // Critical CSS optimization application failed - handled silently
   }
 }
 
