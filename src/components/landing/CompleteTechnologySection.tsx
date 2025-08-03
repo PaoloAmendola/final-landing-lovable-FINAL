@@ -43,7 +43,10 @@ const processSteps = [
 
 const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) => {
   const handleVideoError = () => {
-    console.warn("Erro ao carregar vídeo da tecnologia ASTRO QUAT V3®");
+    // Log error for debugging only in development
+    if (import.meta.env.DEV) {
+      console.warn("Erro ao carregar vídeo da tecnologia ASTRO QUAT V3®");
+    }
   };
 
   return (

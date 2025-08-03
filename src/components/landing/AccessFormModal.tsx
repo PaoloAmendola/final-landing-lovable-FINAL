@@ -14,7 +14,7 @@ interface AccessFormModalProps {
 }
 
 const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
-  console.log('🔴 AccessFormModal render:', { isOpen });
+  // Debug removido para produção
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -95,14 +95,20 @@ const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
         });
 
       if (error) {
-        console.error('Erro ao enviar formulário:', error);
+        // Log error for debugging only in development
+        if (import.meta.env.DEV) {
+          console.error('Erro ao enviar formulário:', error);
+        }
         toast.error('Erro ao enviar solicitação. Tente novamente.');
       } else {
         setIsSubmitted(true);
         toast.success('Solicitação enviada com sucesso!');
       }
     } catch (error) {
-      console.error('Erro inesperado:', error);
+      // Log error for debugging only in development
+      if (import.meta.env.DEV) {
+        console.error('Erro inesperado:', error);
+      }
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);

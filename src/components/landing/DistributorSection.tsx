@@ -58,14 +58,20 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
         });
 
       if (error) {
-        console.error('Erro ao enviar formulário de distribuidor:', error);
+        // Log error for debugging only in development
+        if (import.meta.env.DEV) {
+          console.error('Erro ao enviar formulário de distribuidor:', error);
+        }
         toast.error('Erro ao enviar solicitação. Tente novamente.');
       } else {
         setIsSubmitted(true);
         toast.success('Solicitação enviada com sucesso!');
       }
     } catch (error) {
-      console.error('Erro inesperado:', error);
+      // Log error for debugging only in development
+      if (import.meta.env.DEV) {
+        console.error('Erro inesperado:', error);
+      }
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);

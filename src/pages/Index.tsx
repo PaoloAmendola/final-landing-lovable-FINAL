@@ -54,13 +54,13 @@ const Index = memo(() => {
     }
   });
 
-  // Enhanced SEO
+  // Enhanced SEO - Otimizado
   useEnhancedSEO({
-    title: 'NIVELA® - Revolução em Beauty Tech | Antienvelhecimento Avançado',
-    description: 'Descubra NIVELA®, a revolução em tecnologia de beleza. Tratamento antienvelhecimento com ingredientes da Amazônia e tecnologia BemTech patenteada.',
+    title: 'NIVELA® - Revolução Beauty Tech | Escova Progressiva Sem Formol',
+    description: 'NIVELA® - Escova progressiva revolucionária com tecnologia ASTRO QUAT V3®. Sem formol, com ativos da Amazônia e 30% mais rendimento.',
     keywords: [
-      'nivela', 'beauty tech', 'antienvelhecimento', 'skincare', 'cosmética', 
-      'tecnologia', 'amazônia', 'bemtech', 'beleza', 'anti-aging', 'escova progressiva'
+      'nivela', 'escova progressiva', 'sem formol', 'tecnologia capilar', 
+      'astro quat', 'amazônia', 'bem beauty', 'progressive brush'
     ],
     canonical: window.location.href,
     ogImage: 'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp',
