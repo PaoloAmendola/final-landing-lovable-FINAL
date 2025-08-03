@@ -6,12 +6,12 @@
 
 ### 📋 Project Info
 
-- **Project Name:** final-landing-lovable-julho  
-- **Live URL:** [Em configuração]
+- **Project Name:** final-landing-lovable-julho-69  
+- **Live URL:** https://final-landing-lovable-julho-69.vercel.app
 - **Lovable Project:** https://lovable.dev/projects/5e1da86f-688f-4351-9165-29fdf082ac7d  
 - **Supabase Project:** xnexfhgtqlryfkyuvihq  
 - **GitHub Repository:** https://github.com/PaoloAmendola/final-landing-lovable-julho-69.git  
-- **Status:** ✅ Integrado com Supabase e GitHub
+- **Status:** 🚀 PRONTO PARA PRODUÇÃO - Deploy Vercel Configurado
 
 ### 🛠 Tech Stack
 
@@ -83,13 +83,23 @@ npm run type-check   # TypeScript checking
 
 ## 🚀 Deployment
 
-### Via Lovable (Recommended)
+### Via Vercel (Recommended)
+O projeto está configurado para deploy automático na Vercel com configurações otimizadas:
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Framework:** Vite
+- **Node Version:** 18.x
+
+### Via Lovable
 1. Open [Lovable Project](https://lovable.dev/projects/5e1da86f-688f-4351-9165-29fdf082ac7d)
 2. Click Share → Publish
 3. Configure custom domain if needed
 
-### Manual Deployment
-The project is configured for Vercel deployment with optimal settings.
+### Deploy Manual
+```bash
+npm run build
+npm run preview  # Test production build locally
+```
 
 ## 📊 Analytics & Monitoring
 
@@ -131,4 +141,15 @@ src/
 
 ## 🔐 Environment Variables
 
-All configurations are handled through Supabase integration - no additional environment variables needed.
+Para desenvolvimento local, copie `.env.template` para `.env.local`:
+
+```bash
+# Supabase (Já configurado via integração Lovable)
+SUPABASE_URL=https://xnexfhgtqlryfkyuvihq.supabase.co
+SUPABASE_ANON_KEY=[Configurado automaticamente]
+
+# Google Analytics
+GTM_ID=GTM-KZW3RTWD
+```
+
+Para produção na Vercel, as variáveis são configuradas automaticamente via integração Supabase.
