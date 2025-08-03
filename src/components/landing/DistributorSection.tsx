@@ -46,13 +46,12 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
         .from('distribuidores')
         .insert({
           nome: formData.nome.trim(),
-          telefone: formData.telefone.trim(),
+          telefone: formData.telefone.trim() || null,
           email: formData.email.trim(),
-          cidade: formData.cidade.trim(),
-          empresa: formData.empresa.trim() || null,
+          cidade: formData.cidade.trim() || null,
+          empresa: formData.empresa.trim() || 'Não informado',
           mensagem: formData.apresentacao.trim() || null,
           experiencia_distribuicao: formData.ja_distribui || null,
-          // Campos não usados mas obrigatórios na tabela
           estado: null,
           volume_vendas_mensal: null,
           cargo: null
