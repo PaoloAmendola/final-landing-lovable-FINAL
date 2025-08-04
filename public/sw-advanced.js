@@ -42,7 +42,7 @@ const CACHE_STRATEGIES = {
     patterns: [
       /\.(mp4|webm|avi|mov)$/,
       /\/videos\//,
-      /supabase\.co.*\/videos\//
+      /\/lovable-uploads\/.*\.(mp4|webm|avi|mov)$/
     ],
     strategy: 'NetworkFirst',
     maxAge: 24 * 60 * 60 * 1000, // 1 day
@@ -53,7 +53,6 @@ const CACHE_STRATEGIES = {
   api: {
     patterns: [
       /\/api\//,
-      /supabase\.co\/rest\//,
       /\.json$/
     ],
     strategy: 'NetworkFirst',

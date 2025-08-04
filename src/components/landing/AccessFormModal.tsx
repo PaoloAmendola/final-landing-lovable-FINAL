@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { LoadingState } from "@/components/ui/loading-state";
-import { supabase } from "@/integrations/supabase/client";
+// Removed Supabase import - using placeholder
 import { toast } from "sonner";
 
 interface AccessFormModalProps {
@@ -85,24 +85,12 @@ const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
     setIsLoading(true);
     
     try {
-      const { error } = await supabase
-        .from('leads')
-        .insert({
-          nome: formData.nome.trim(),
-          email: formData.email.trim(),
-          telefone: formData.telefone,
-          tipo_estabelecimento: formData.tipo_estabelecimento
-        });
-
-      if (error) {
-        // Error handled silently in production
-        toast.error('Erro ao enviar solicitação. Tente novamente.');
-      } else {
-        setIsSubmitted(true);
-        toast.success('Solicitação enviada com sucesso!');
-      }
+      // Placeholder: Database integration will be configured later
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      
+      setIsSubmitted(true);
+      toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
-      // Error handled silently in production
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);

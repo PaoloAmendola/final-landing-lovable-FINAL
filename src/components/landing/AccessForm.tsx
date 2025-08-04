@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { LoadingState } from "@/components/ui/loading-state";
-import { supabase } from "@/integrations/supabase/client";
+// Removed Supabase import - using placeholder
 import { toast } from "sonner";
 
 interface AccessFormProps {
@@ -82,21 +82,11 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
     setIsLoading(true);
     
     try {
-      const { error } = await supabase
-        .from('leads')
-        .insert({
-          nome: formData.nome.trim(),
-          email: formData.email.trim(),
-          telefone: formData.telefone,
-          tipo_estabelecimento: formData.tipo_estabelecimento
-        });
-
-      if (error) {
-        toast.error('Erro ao enviar solicitação. Tente novamente.');
-      } else {
-        setIsSubmitted(true);
-        toast.success('Solicitação enviada com sucesso!');
-      }
+      // Placeholder: Database integration will be configured later
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      
+      setIsSubmitted(true);
+      toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
       toast.error('Erro inesperado. Tente novamente.');
     } finally {

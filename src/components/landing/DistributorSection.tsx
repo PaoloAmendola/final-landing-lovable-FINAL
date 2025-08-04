@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+// Removed Supabase import - using placeholder
 import { toast } from "sonner";
 import { 
   Store, 
@@ -42,30 +42,12 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
     setIsLoading(true);
     
     try {
-      const { error } = await supabase
-        .from('distribuidores')
-        .insert({
-          nome: formData.nome.trim(),
-          telefone: formData.telefone.trim() || null,
-          email: formData.email.trim(),
-          cidade: formData.cidade.trim() || null,
-          empresa: formData.empresa.trim() || 'Não informado',
-          mensagem: formData.apresentacao.trim() || null,
-          experiencia_distribuicao: formData.ja_distribui || null,
-          estado: null,
-          volume_vendas_mensal: null,
-          cargo: null
-        });
-
-      if (error) {
-        // Error handled silently in production
-        toast.error('Erro ao enviar solicitação. Tente novamente.');
-      } else {
-        setIsSubmitted(true);
-        toast.success('Solicitação enviada com sucesso!');
-      }
+      // Placeholder: Database integration will be configured later
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      
+      setIsSubmitted(true);
+      toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
-      // Error handled silently in production
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);
