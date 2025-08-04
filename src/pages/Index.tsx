@@ -11,9 +11,9 @@ import { EnhancedErrorBoundary } from "@/components/ui/enhanced-error-boundary";
 import { EnhancedLoadingState } from "@/components/ui/enhanced-loading-state";
 
 // Lazy load heavy components that are below-the-fold
-const CompleteTechnologySection = lazy(() => import("@/components/landing/CompleteTechnologySection").then(module => ({ default: module.default })));
-const AmazonIngredientsSection = lazy(() => import("@/components/landing/AmazonIngredientsSection").then(module => ({ default: module.default })));
-const SynergyCallout = lazy(() => import("@/components/landing/SynergyCallout").then(module => ({ default: module.default })));
+const CompleteTechnologySection = lazy(() => import("@/components/landing/CompleteTechnologySection"));
+const AmazonIngredientsSection = lazy(() => import("@/components/landing/AmazonIngredientsSection"));
+const SynergyCallout = lazy(() => import("@/components/landing/SynergyCallout"));
 const BemTechSection = lazy(() => import("@/components/landing/BemTechSection"));
 const DistributorSection = lazy(() => import("@/components/landing/DistributorSection"));
 const FAQSection = lazy(() => import("@/components/landing/FAQSection"));
