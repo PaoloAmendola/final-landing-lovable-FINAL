@@ -27,22 +27,14 @@ import { useEnhancedSEO, generateProductSchema, generateOrganizationSchema } fro
 import { useAccessibilityEnhancements, announceToScreenReader } from "@/components/ui/enhanced-accessibility";
 import { SkipToContent } from "@/components/ui/skip-to-content";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
-import { AdvancedPerformanceMonitor } from "@/components/ui/advanced-performance-monitor";
 import { preloadCriticalResources } from "@/utils/preloader";
 import { optimizeCriticalCSS } from "@/utils/automated-critical-css";
 import { preloadCriticalImages } from "@/utils/image-cache";
-import { RealTimeMetrics } from "@/components/ui/real-time-metrics";
-import { ResponsiveTestingPanel } from "@/components/ui/responsive-testing-panel";
-import { PerformanceOptimizationPanel } from "@/components/ui/performance-optimization-panel";
-import { accessibilityAuditor } from "@/utils/accessibility-audit";
 
 const Index = memo(() => {
   const { isOffline } = usePWA();
   const { performanceScore, metrics } = usePerformance();
   const { trackPageView, trackPerformance, trackConversion } = useAnalytics();
-  const [showMetrics, setShowMetrics] = useState(false);
-  const [showResponsiveTesting, setShowResponsiveTesting] = useState(false);
-  const [showPerformancePanel, setShowPerformancePanel] = useState(false);
 
   // Initialize performance optimization
   const { preloadCriticalResources: preloadOptimized, startRenderTiming, endRenderTiming } = usePerformanceOptimization({
@@ -120,22 +112,7 @@ const Index = memo(() => {
       endRenderTiming();
     }, 100);
 
-    // Run accessibility audit in development with enhanced reporting
-    if (import.meta.env.DEV) {
-      setTimeout(async () => {
-        try {
-          const report = await accessibilityAuditor.audit({ includeNonCritical: false });
-          if (report.issues.length > 0) {
-            // Announce critical accessibility issues
-            if (report.summary.critical > 0) {
-              announceToScreenReader(`${report.summary.critical} problemas críticos de acessibilidade detectados.`, 'assertive');
-            }
-          }
-        } catch (error) {
-          // Only log in development
-        }
-      }, 2000);
-    }
+    // Run accessibility audit only in development (removed for production)
   }, [startRenderTiming, endRenderTiming, preloadOptimized]);
 
   // Enhanced performance tracking with Web Vitals
@@ -268,72 +245,16 @@ const Index = memo(() => {
       </main>
       <InstallPrompt />
       <A11yControls />
-      <PerformanceMonitor reportingEnabled={true} />
-      <AdvancedPerformanceMonitor 
-        enableRUM={!import.meta.env.DEV}
-        enableAlerts={import.meta.env.DEV}
-        sampleRate={0.1}
-        onAlert={(alert) => {
-          // Track performance alerts
-          if (alert.type === 'error') {
-            trackConversion({
-              type: 'error',
-              section: 'performance_alert',
-              metadata: alert
-            });
-          }
-        }}
-      />
+      <PerformanceMonitor reportingEnabled={!import.meta.env.DEV} />
+
       {isOffline && (
         <div 
-          className="fixed bottom-4 left-4 bg-destructive text-destructive-foreground px-4 py-2 rounded-lg text-sm z-50 animate-slide-in-right"
+          className="fixed bottom-4 left-4 right-4 bg-destructive text-destructive-foreground p-4 rounded-lg shadow-lg z-50 text-center"
           role="alert"
           aria-live="polite"
         >
           Você está offline. Algumas funcionalidades podem não estar disponíveis.
         </div>
-      )}
-
-      {/* Development Tools */}
-      {import.meta.env.DEV && (
-        <>
-          <RealTimeMetrics 
-            enabled={true}
-            position="bottom-right"
-            minimized={!showMetrics}
-            onToggle={() => setShowMetrics(!showMetrics)}
-          />
-          
-          <ResponsiveTestingPanel
-            enabled={showResponsiveTesting}
-            onClose={() => setShowResponsiveTesting(false)}
-          />
-          
-          <PerformanceOptimizationPanel
-            enabled={showPerformancePanel}
-            onClose={() => setShowPerformancePanel(false)}
-          />
-          
-          {/* Toggle buttons for dev tools */}
-          <div className="fixed bottom-4 left-4 z-50 space-y-2">
-            <Button
-              onClick={() => setShowResponsiveTesting(!showResponsiveTesting)}
-              variant="outline"
-              size="sm"
-              className="bg-background/80 backdrop-blur-sm border-primary/20"
-            >
-              📱 Responsivo
-            </Button>
-            <Button
-              onClick={() => setShowPerformancePanel(!showPerformancePanel)}
-              variant="outline"
-              size="sm"
-              className="bg-background/80 backdrop-blur-sm border-primary/20"
-            >
-              ⚡ Performance
-            </Button>
-          </div>
-        </>
       )}
     </div>
   );

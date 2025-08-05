@@ -52,17 +52,16 @@ const PerformanceMonitor = memo(({
       alerts.push(`CLS high: ${metrics.cls} (threshold: ${thresholds.cls})`);
     }
 
-    if (alerts.length > 0) {
+    if (alerts.length > 0 && import.meta.env.DEV) {
       logger.warn('Performance thresholds exceeded', { alerts, metrics });
     }
 
-    // Report to analytics in production
-    if (process.env.NODE_ENV === 'production' && performanceScore < 80) {
-      logger.warn('Low performance score detected', {
+    // Report only critical issues in production
+    if (!import.meta.env.DEV && performanceScore < 70) {
+      logger.warn('Critical performance issue', {
         score: performanceScore,
-        metrics,
-        userAgent: navigator.userAgent,
-        url: window.location.href
+        lcp: metrics.lcp,
+        cls: metrics.cls
       });
     }
   }, [metrics, performanceScore, reportingEnabled, thresholds]);
