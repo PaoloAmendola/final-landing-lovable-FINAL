@@ -628,6 +628,7 @@ All colors MUST be HSL.
     pointer-events: none !important;
   }
 
+  
   /* Esconde qualquer elemento fixo suspeito no canto direito inferior */
   div[style*="position: fixed"][style*="bottom: 16px"][style*="right: 16px"],
   div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"],

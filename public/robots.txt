@@ -1,14 +1,26 @@
+User-agent: *
+Allow: /
+
+# Google bots
 User-agent: Googlebot
 Allow: /
 
+# Bing bots
 User-agent: Bingbot
+Allow: /
+
+# Social media crawlers
+User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: LinkedInBot
 Allow: /
 
-User-agent: *
-Allow: /
+# Important pages
+Sitemap: https://nivela.bembeauty.com.br/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
