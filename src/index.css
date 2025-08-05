@@ -316,9 +316,42 @@ All colors MUST be HSL.
     .micro-hover,
     .micro-scale,
     .btn-primary,
-    .focus-enhanced {
+    .focus-enhanced,
+    * {
       transition: none !important;
       transform: none !important;
+      animation: none !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  /* ============================== */
+  /* OTIMIZAÇÕES DE PERFORMANCE */
+  /* ============================== */
+
+  /* Contenção de layout para prevenir CLS */
+  .hero-section {
+    contain: layout style paint;
+  }
+
+  .hero-content {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Cache de GPU para animações */
+  .micro-hover,
+  .micro-scale {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Preload crítico de fontes */
+  @media (min-width: 768px) {
+    .heading-1,
+    .heading-2 {
+      font-display: swap;
     }
   }
 }

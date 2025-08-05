@@ -34,64 +34,64 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
             <AnimatedSection animation="slide-right" delay={0.4}>
               <div className="relative group">
                 <LazyImage 
-                  src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-destaque.webp" 
+                  src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp" 
                   alt="NIVELA® Retexturizador Hidro Nutritivo 1kg - Produto em destaque com textura gel inovadora"
-                  className="w-full max-w-sm md:max-w-md lg:max-w-lg object-contain drop-shadow-2xl group-hover:scale-105 transition-elegant duration-500"
+                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-contain drop-shadow-2xl group-hover:scale-105 transition-all duration-500 ease-out"
                   width={600}
                   height={600}
-                  sizes="(max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={true}
+                  sizes="(max-width: 320px) 280px, (max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                   fallback="/placeholder.svg"
                 />
                 {/* Enhanced product glow effect */}
-                <div className="absolute inset-0 bg-gradient-accent/20 rounded-full blur-3xl -z-10 scale-75 group-hover:scale-90 transition-elegant duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-accent/20 rounded-full blur-3xl -z-10 scale-75 group-hover:scale-90 transition-all duration-500 ease-out"></div>
               </div>
             </AnimatedSection>
           </ParallaxContainer>
 
           {/* Content */}
-          <div className="space-y-4 lg:space-y-6 order-2 lg:order-2">
-            {/* Feature Cards */}
-            <StaggerContainer className="space-refined-base" staggerDelay={0.15}>
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
-                <CardContent className="padding-refined-md space-refined-sm">
-                  <h3 className="heading-4 text-primary">
+          <div className="space-y-6 lg:space-y-8 order-2 lg:order-2">
+            {/* Feature Cards - Responsividade otimizada */}
+            <StaggerContainer className="space-y-4 lg:space-y-6" staggerDelay={0.15}>
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-all duration-300 ease-out group shadow-sm hover:shadow-md">
+                <CardContent className="p-6 lg:p-8 space-y-4">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-primary">
                     Tecnologia Avançada
                   </h3>
-                  <p className="body-base text-muted-foreground">
+                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                     ASTRO QUAT V3® alinha, trata e sela a fibra em nano-escala, fios lisos e movimento natural em um único passo.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
-                <CardContent className="padding-refined-md space-refined-sm">
-                  <h3 className="heading-4 text-primary">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-all duration-300 ease-out group shadow-sm hover:shadow-md">
+                <CardContent className="p-6 lg:p-8 space-y-4">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-primary">
                     Segurança na aplicação
                   </h3>
-                  <p className="body-base text-muted-foreground">
+                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                     Fórmula 100% livre de formol, sem fumaça ou ardência. Aplicação confortável para o profissional e cliente.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
-                <CardContent className="padding-refined-md space-refined-sm">
-                  <h3 className="heading-4 text-primary">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-all duration-300 ease-out group shadow-sm hover:shadow-md">
+                <CardContent className="p-6 lg:p-8 space-y-4">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-primary">
                     Economia e Rendimento
                   </h3>
-                  <p className="body-base text-muted-foreground">
+                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                     Textura em gel inteligente rende até 30% mais aplicações e facilita o deslizamento da escova, aumentando a lucratividade do salão.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
-                <CardContent className="padding-refined-md space-refined-sm">
-                  <h3 className="heading-4 text-primary">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-all duration-300 ease-out group shadow-sm hover:shadow-md">
+                <CardContent className="p-6 lg:p-8 space-y-4">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-primary">
                     Compatibilidade Universal
                   </h3>
-                  <p className="body-base text-muted-foreground">
+                  <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                     Resultados consistentes em todos os tipos de cabelo, do 1A ao 4C, inclusive loiros e quimicamente tratados.
                   </p>
                 </CardContent>
