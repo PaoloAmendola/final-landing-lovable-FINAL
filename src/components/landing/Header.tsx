@@ -100,11 +100,11 @@ const Header = memo(({ id }: HeaderProps) => {
                    </div>
                  </div>
 
-                 {/* Primary CTA Button */}
+                 {/* Primary CTA Button - Captura de Lead Premium */}
                  <button 
                    onClick={() => setIsModalOpen(true)}
-                   className="min-h-[56px] min-w-[280px] touch-manipulation px-6 sm:px-8 lg:px-10 rounded-xl hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-latte/50 focus:ring-offset-2 transition-elegant text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto max-w-sm bg-gradient-to-r from-brand-caramel to-brand-latte text-white hover:shadow-premium active:scale-[0.98] cursor-pointer"
-                   aria-label="Solicitar acesso exclusivo ao NIVELA"
+                   className="min-h-[56px] min-w-[280px] touch-manipulation px-6 sm:px-8 lg:px-10 rounded-xl hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-latte/50 focus:ring-offset-2 transition-elegant text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto max-w-sm bg-gradient-to-r from-brand-caramel to-brand-latte text-brand-black hover:shadow-premium active:scale-[0.98] cursor-pointer"
+                   aria-label="Solicitar acesso exclusivo ao NIVELA - Formulário de cadastro profissional"
                    tabIndex={0}
                  >
                    SOLICITAR ACESSO EXCLUSIVO

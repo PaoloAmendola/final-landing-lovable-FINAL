@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* NIVELA® Brand Colors */
-    --brand-black: 198 52% 8%;           /* #0D181C */
-    --brand-latte: 30 33% 73%;           /* #D9C0AA */
-    --brand-caramel: 20 79% 35%;         /* #9D4916 */
-    --brand-cloud: 201 23% 70%;          /* #A6B8C1 */
-    --brand-deep: 196 39% 25%;           /* #254C5A */
-    --brand-light: 0 0% 98%;             /* #FAFAFA - Branco quase puro */
+    /* NIVELA® Brand Colors - Cores Oficiais da Marca */
+    --brand-black: 198 52% 8%;           /* #0D181C - Preto */
+    --brand-latte: 30 33% 73%;           /* #D9C0AA - Café com Leite */
+    --brand-caramel: 20 79% 35%;         /* #9D4916 - Caramelo */
+    --brand-cloud: 201 23% 70%;          /* #A6B8C1 - Azul Nuvem */
+    --brand-deep: 196 39% 25%;           /* #254C5A - Azul Profundo */
+    --brand-light: 0 0% 98%;             /* #FAFAFA - Branco Premium */
     
     /* Base Theme - Dark Premium */
     --background: 198 52% 8%;            /* Brand Black */

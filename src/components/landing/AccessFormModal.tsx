@@ -150,10 +150,10 @@ const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto bg-card/95 backdrop-blur-sm border border-primary/20">
         <DialogHeader className="space-y-4">
           <DialogTitle className="text-2xl font-bold text-primary font-montserrat text-center">
-            Solicite seu acesso exclusivo
+            Acesso Exclusivo NIVELA®
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground text-center">
-            Preencha apenas 4 campos essenciais para validação profissional.
+          <DialogDescription className="text-muted-foreground text-center leading-relaxed">
+            Validação profissional em 4 passos simples. Nossos especialistas analisarão seu perfil para garantir acesso exclusivo.
           </DialogDescription>
         </DialogHeader>
 
