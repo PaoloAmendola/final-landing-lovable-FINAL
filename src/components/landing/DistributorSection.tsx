@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-// Removed Supabase import - using placeholder
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { 
   Store, 
@@ -42,12 +42,41 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
     setIsLoading(true);
     
     try {
-      // Placeholder: Database integration will be configured later
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      // Coleta de dados do navegador e UTM
+      const userAgent = navigator.userAgent;
+      const urlParams = new URLSearchParams(window.location.search);
+      const utm_source = urlParams.get('utm_source');
+      const utm_medium = urlParams.get('utm_medium');
+      const utm_campaign = urlParams.get('utm_campaign');
+
+      // Inserção no Supabase
+      const { error } = await supabase
+        .from('distribuidores')
+        .insert({
+          nome: formData.nome,
+          email: formData.email,
+          telefone: formData.telefone,
+          cidade: formData.cidade,
+          ja_distribui: formData.ja_distribui,
+          empresa: formData.empresa || null,
+          apresentacao: formData.apresentacao || null,
+          user_agent: userAgent,
+          utm_source,
+          utm_medium,
+          utm_campaign,
+          origem: 'landing_page'
+        });
+
+      if (error) {
+        console.error('Erro ao inserir distribuidor:', error);
+        toast.error('Erro ao enviar solicitação. Tente novamente.');
+        return;
+      }
       
       setIsSubmitted(true);
       toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
+      console.error('Erro inesperado:', error);
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);

@@ -20,14 +20,14 @@
   ],
   "icons": [
     {
-      "src": "/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png",
-      "sizes": "180x180",
+      "src": "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png",
-      "sizes": "180x180",
+      "src": "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }

@@ -64,7 +64,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
         <div className="block lg:hidden mb-12 flex justify-center">
           <div className="relative w-full max-w-lg">
             <VideoLazy
-              src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+              src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
               className="w-full aspect-[4/3] object-cover rounded-lg"
               autoPlay={false}
               muted={true}
@@ -116,7 +116,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end">
             <div className="relative w-full max-w-lg">
               <VideoLazy
-                src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
                 className="w-full aspect-[4/3] object-cover rounded-lg"
                 autoPlay={true}
                 muted={true}
