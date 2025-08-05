@@ -89,24 +89,19 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
                   </div>
                   
                   <div className="relative p-4 lg:p-6 pt-8 lg:pt-10 space-y-4">
-                    {/* Title - Centered with better spacing */}
-                    <div className="text-center">
-                      <h4 className="titulo-h3 mb-2">
-                        {step.title}
-                      </h4>
-                      <div className="w-12 h-0.5 bg-gradient-accent mx-auto opacity-60"></div>
-                    </div>
+                    {/* Title */}
+                    <h4 className="titulo-h3">
+                      {step.title}
+                    </h4>
                     
-                    {/* Description - Better typography */}
-                    <div className="flex-1 flex items-center justify-center">
-                      <p className="text-sm text-muted-foreground leading-relaxed text-center max-w-xs">
-                        {step.description}
-                      </p>
-                    </div>
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
                     
-                    {/* Badge - Bottom aligned */}
-                    <div className="flex justify-center pt-2">
-                      <Badge variant="secondary" className="text-xs px-3 py-1">
+                    {/* Badge */}
+                    <div className="flex justify-center lg:justify-start">
+                      <Badge variant="secondary" className="text-xs">
                         {step.badge}
                       </Badge>
                     </div>
