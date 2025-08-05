@@ -15,14 +15,14 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
       <div className="max-w-6xl mx-auto">
         {/* Header Centralizado */}
         <AnimatedSection animation="fade" delay={0.2}>
-          <div className="text-center space-modular-4 mb-12 md:mb-16 lg:mb-20">
-            <div className="space-modular-4">
-              <h2 className="heading-2 text-white">
-                Conheça <span className="font-playfair italic">NIVELA</span><sup className="text-lg md:text-xl lg:text-2xl">®</sup>
+          <div className="text-center space-refined-base mb-10 md:mb-12">
+            <div className="space-refined-sm">
+              <h2 className="heading-2 text-white mx-auto">
+                Conheça <span className="font-playfair italic">NIVELA</span><sup className="text-lg">®</sup>
               </h2>
-              <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
+              <div className="h-0.5 bg-gradient-accent mx-auto w-16"></div>
             </div>
-            <p className="body-lg text-muted-foreground max-w-3xl lg:max-w-4xl mx-auto">
+            <p className="body-lg text-muted-foreground mx-auto">
               NIVELA® é um retexturizador hidro nutritivo de alta performance, uma nova geração de escova progressiva sem formol, desenvolvida exclusivamente para profissionais.
             </p>
           </div>
@@ -52,9 +52,9 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
           {/* Content */}
           <div className="space-y-4 lg:space-y-6 order-2 lg:order-2">
             {/* Feature Cards */}
-            <StaggerContainer className="space-modular-4" staggerDelay={0.15}>
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="padding-modular-6 space-modular-4">
+            <StaggerContainer className="space-refined-base" staggerDelay={0.15}>
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
+                <CardContent className="padding-refined-md space-refined-sm">
                   <h3 className="heading-4 text-primary">
                     Tecnologia Avançada
                   </h3>
@@ -64,8 +64,8 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="padding-modular-6 space-modular-4">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
+                <CardContent className="padding-refined-md space-refined-sm">
                   <h3 className="heading-4 text-primary">
                     Segurança na aplicação
                   </h3>
@@ -75,8 +75,8 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="padding-modular-6 space-modular-4">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
+                <CardContent className="padding-refined-md space-refined-sm">
                   <h3 className="heading-4 text-primary">
                     Economia e Rendimento
                   </h3>
@@ -86,8 +86,8 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="padding-modular-6 space-modular-4">
+              <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 micro-scale group">
+                <CardContent className="padding-refined-md space-refined-sm">
                   <h3 className="heading-4 text-primary">
                     Compatibilidade Universal
                   </h3>

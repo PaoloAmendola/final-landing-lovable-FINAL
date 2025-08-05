@@ -44,12 +44,12 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
     <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16 lg:mb-20 space-modular-6">
-          <div className="space-modular-4">
+        <div className="text-center mb-10 md:mb-12 space-refined-base">
+          <div className="space-refined-sm">
             <h2 className="heading-2 text-primary px-4 sm:px-0">
-              Tecnologia ASTRO QUAT V3<sup className="text-lg md:text-xl lg:text-2xl">®</sup>
+              Tecnologia ASTRO QUAT V3<sup className="text-lg">®</sup>
             </h2>
-            <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
+            <div className="h-0.5 bg-gradient-accent mx-auto w-16"></div>
           </div>
           
           {/* Descriptive Paragraph */}
@@ -86,23 +86,24 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
               <div className="hidden md:block absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-accent/60 to-accent/30 transform -translate-y-1/2 z-0"></div>
               
               {processSteps.map((process, index) => (
-                <Card key={process.step} className="bg-card/40 backdrop-blur-sm border-primary/30 hover:border-accent/60 transition-elegant duration-300 group hover:shadow-card shadow-card relative z-10">
-                  <CardContent className="padding-modular-4 relative">
-                    {/* Number positioned half outside, half inside the card */}
-                    <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-elegant duration-300 shadow-lg z-20">
-                      <span className="body-sm font-bold text-brand-black">
+                <Card key={process.step} className="bg-card/40 backdrop-blur-sm border-primary/30 hover:border-accent/60 micro-hover group relative">
+                  <CardContent className="padding-refined-md relative">
+                    {/* Number reduzido para referência secundária */}
+                    <div className="absolute -top-2 -left-2 w-6 h-6 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 z-10">
+                      <span className="body-xs font-medium text-brand-black">
                         {process.step}
                       </span>
                     </div>
                     
-                    <div className="mt-4 space-modular-4">
+                    {/* Conteúdo com largura aumentada para melhor leitura */}
+                    <div className="pl-2 space-refined-sm">
                       <h3 className="heading-4 text-primary">
                         {process.title}
                       </h3>
-                      <p className="body-base text-muted-foreground">
+                      <p className="body-base text-muted-foreground max-w-none">
                         {process.description}
                       </p>
-                      <Badge variant="secondary" className="body-xs mt-3">
+                      <Badge variant="secondary" className="body-xs mt-2">
                         {process.badge}
                       </Badge>
                     </div>

@@ -69,8 +69,8 @@ const Header = memo(({ id }: HeaderProps) => {
               <div className="hero-content flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:space-y-6 w-full max-w-full lg:max-w-4xl px-2 sm:px-4 lg:px-0">
                 
                 {/* Unified Brand + Title Block */}
-                <div className="space-modular-4">
-                  <h1 className="heading-1 text-brand-light">
+                <div className="space-refined-base">
+                  <h1 className="heading-1 text-brand-light mx-auto text-center lg:text-left">
                     <span className="block text-brand-latte font-playfair">NIVELA®</span>
                     <span className="block">A evolução da</span>
                     <span className="block">escova progressiva</span>
@@ -78,24 +78,24 @@ const Header = memo(({ id }: HeaderProps) => {
                 </div>
                 
                 {/* Subtitle Description */}
-                <p className="body-lg text-brand-cloud max-w-full lg:max-w-4xl mt-6 lg:mt-8 px-2 sm:px-0">
+                <p className="body-lg text-brand-cloud mx-auto text-center lg:text-left px-2 sm:px-0">
                   <span className="block sm:inline">Desenvolvido com tecnologia patenteada,</span>
                   <span className="block sm:inline"> sem formol, com ativos da Amazônia</span>
                   <span className="block sm:inline"> e rendimento 30% superior.</span>
                 </p>
 
-                 {/* Badges - Touch targets aprimorados */}
-                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 space-modular-4 w-full max-w-full lg:max-w-3xl mt-8 lg:mt-12 mb-8 lg:mb-14 px-4 sm:px-0">
-                   <div className="bg-brand-deep/50 border border-brand-deep hover:bg-brand-deep/70 focus-enhanced hover:scale-[1.02] transition-elegant padding-modular-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-card hover:shadow-card-hover touch-target-enhanced" tabIndex={0} role="button" aria-label="Produto livre de formol">
-                     <span className="body-sm font-bold text-brand-latte">LIVRE</span>
+                 {/* Badges - Refinadas com microinterações */}
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full max-w-full lg:max-w-3xl mt-6 mb-6 px-4 sm:px-0">
+                   <div className="bg-brand-deep/50 border border-brand-deep micro-hover focus-enhanced padding-refined-base rounded-xl flex flex-col items-center justify-center backdrop-blur-sm touch-target" tabIndex={0} role="button" aria-label="Produto livre de formol">
+                     <span className="body-sm font-semibold text-brand-latte">LIVRE</span>
                      <span className="body-xs text-brand-cloud/90">de formol</span>
                    </div>
-                   <div className="border border-brand-latte hover:bg-brand-latte/10 focus-enhanced hover:scale-[1.02] transition-elegant padding-modular-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-card hover:shadow-card-hover touch-target-enhanced" tabIndex={0} role="button" aria-label="Textura em gel">
-                     <span className="body-sm font-bold text-brand-latte">TEXTURA</span>
+                   <div className="border border-brand-latte hover:bg-brand-latte/10 micro-hover focus-enhanced padding-refined-base rounded-xl flex flex-col items-center justify-center backdrop-blur-sm touch-target" tabIndex={0} role="button" aria-label="Textura em gel">
+                     <span className="body-sm font-semibold text-brand-latte">TEXTURA</span>
                      <span className="body-xs text-brand-latte/90">em gel</span>
                    </div>
-                   <div className="sm:col-span-2 lg:col-span-1 bg-brand-caramel/20 border border-brand-caramel hover:bg-brand-caramel/30 focus-enhanced hover:scale-[1.02] transition-elegant padding-modular-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-card hover:shadow-card-hover touch-target-enhanced" tabIndex={0} role="button" aria-label="Tecnologia ASTRO QUAT V3">
-                     <span className="body-sm font-bold text-brand-latte">TECNOLOGIA</span>
+                   <div className="sm:col-span-2 lg:col-span-1 bg-brand-caramel/20 border border-brand-caramel micro-hover focus-enhanced padding-refined-base rounded-xl flex flex-col items-center justify-center backdrop-blur-sm touch-target" tabIndex={0} role="button" aria-label="Tecnologia ASTRO QUAT V3">
+                     <span className="body-sm font-semibold text-brand-latte">TECNOLOGIA</span>
                      <span className="body-xs text-brand-latte/90">ASTRO QUAT V3®</span>
                    </div>
                  </div>
