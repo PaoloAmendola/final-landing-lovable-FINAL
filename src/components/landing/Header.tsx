@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { ParallaxContainer } from "@/components/ui/parallax-container";
 import { StaggerContainer } from "@/components/ui/stagger-container";
-import { PerformanceAwareImage } from "@/components/ui/performance-aware-image";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { CTAButton, CTAStrategies } from "@/components/ui/cta-button";
 import AccessFormModal from "@/components/landing/AccessFormModal";
 import { usePerformanceOptimization } from "@/hooks/use-performance-optimization";
@@ -41,7 +41,7 @@ const Header = memo(({ id }: HeaderProps) => {
       
       {/* Navigation */}
       <nav className="w-full px-4 md:px-8 lg:px-12 py-8 flex justify-center items-center relative z-10">
-        <PerformanceAwareImage 
+        <OptimizedImage 
           src={optimizeImage("/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png", { 
             width: 200, 
             height: 50, 
@@ -49,13 +49,11 @@ const Header = memo(({ id }: HeaderProps) => {
             format: 'webp'
           })}
           alt="Bem Beauty Professional - Logo da marca"
-          className="h-8 md:h-10 w-auto object-contain"
+          className="h-8 md:h-10 w-auto"
           width={160}
           height={40}
-          sizes="(max-width: 768px) 160px, 200px"
           priority={true}
-          loading="eager"
-          placeholder="skeleton"
+          objectFit="contain"
         />
       </nav>
 
@@ -117,7 +115,7 @@ const Header = memo(({ id }: HeaderProps) => {
             <div className="flex justify-center lg:justify-end order-1 lg:order-2 w-full px-4 sm:px-6 lg:px-0">
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
-                <PerformanceAwareImage 
+                <OptimizedImage 
                   src={optimizeImage("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero%20(1).webp", {
                     width: 640,
                     height: 640,
@@ -125,14 +123,11 @@ const Header = memo(({ id }: HeaderProps) => {
                     format: 'webp'
                   })}
                   alt="NIVELA® - Retexturizador hidro nutritivo de 1kg sendo apresentado por mãos profissionais"
-                  className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto object-contain drop-shadow-2xl"
+                  className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto drop-shadow-2xl"
                   width={640}
                   height={640}
-                  sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1024px) 416px, (max-width: 1280px) 480px, 576px"
                   priority={true}
-                  loading="eager"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                  objectFit="contain"
                 />
                 
                 {/* Optimized spotlight glow effect */}

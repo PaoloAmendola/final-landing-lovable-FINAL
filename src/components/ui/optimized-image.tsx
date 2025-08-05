@@ -1,47 +1,47 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useState, useRef, useEffect, memo } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
-interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface OptimizedImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'onLoad' | 'onError'> {
   src: string;
   alt: string;
   width?: number;
   height?: number;
   priority?: boolean;
-  className?: string;
   fallback?: string;
-  sizes?: string;
-  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  onLoad?: () => void;
+  onError?: () => void;
 }
 
-export const OptimizedImage = React.memo(({
+const OptimizedImage = memo(({
   src,
   alt,
   width,
   height,
   priority = false,
-  className,
-  fallback = '/placeholder.svg',
-  sizes,
-  objectFit = 'cover',
-  loading,
-  decoding = 'async',
+  fallback = "/placeholder.svg",
+  objectFit = 'contain',
+  className = "",
+  onLoad,
+  onError,
   ...props
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isInView, setIsInView] = useState(priority);
+  
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer para lazy loading
   useEffect(() => {
-    if (priority || isInView) return;
+    if (priority) return; // Não usar lazy loading para imagens críticas
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.disconnect();
+          observer.unobserve(entry.target);
         }
       },
       {
@@ -55,41 +55,35 @@ export const OptimizedImage = React.memo(({
     }
 
     return () => observer.disconnect();
-  }, [priority, isInView]);
+  }, [priority]);
 
   const handleLoad = () => {
     setIsLoaded(true);
+    onLoad?.();
   };
 
   const handleError = () => {
     setHasError(true);
-    setIsLoaded(true);
+    onError?.();
   };
 
-  // Calculate aspect ratio for preventing layout shift
-  const aspectRatio = width && height ? `${width}/${height}` : undefined;
+  // Calcular aspect ratio se width e height fornecidos
+  const aspectRatio = width && height ? width / height : undefined;
 
   return (
-    <div
+    <div 
       ref={containerRef}
-      className={cn("relative overflow-hidden", className)}
-      style={{
-        aspectRatio,
-        width: width ? `${width}px` : undefined,
-        height: height ? `${height}px` : undefined
-      }}
+      className={`relative overflow-hidden ${className}`}
+      style={aspectRatio ? { aspectRatio } : undefined}
     >
-      {/* Placeholder/Loading state */}
-      {!isLoaded && (
-        <div
-          className="absolute inset-0 bg-muted/20 animate-pulse flex items-center justify-center"
-          aria-hidden="true"
-        >
-          <div className="w-8 h-8 border-2 border-muted/40 border-t-primary rounded-full animate-spin" />
+      {/* Placeholder/Loading State */}
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Skeleton className="w-full h-full loading-shimmer" />
         </div>
       )}
 
-      {/* Actual image */}
+      {/* Imagem principal */}
       {isInView && (
         <img
           ref={imgRef}
@@ -97,33 +91,29 @@ export const OptimizedImage = React.memo(({
           alt={alt}
           width={width}
           height={height}
-          className={cn(
-            "transition-opacity duration-300",
-            `object-${objectFit}`,
-            isLoaded ? "opacity-100" : "opacity-0",
-            "w-full h-full"
-          )}
-          loading={loading || (priority ? "eager" : "lazy")}
-          decoding={decoding}
-          sizes={sizes}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
           onLoad={handleLoad}
           onError={handleError}
+          className={`
+            w-full h-full transition-opacity duration-300 gpu-accelerated
+            ${isLoaded ? 'opacity-100' : 'opacity-0'}
+            ${objectFit === 'contain' ? 'object-contain' : 
+              objectFit === 'cover' ? 'object-cover' : 
+              objectFit === 'fill' ? 'object-fill' : 
+              objectFit === 'none' ? 'object-none' : 'object-scale-down'}
+          `}
           style={{
-            aspectRatio,
-            imageRendering: 'crisp-edges'
+            willChange: isLoaded ? 'auto' : 'transform, opacity'
           }}
           {...props}
         />
       )}
 
-      {/* Error state */}
+      {/* Error State */}
       {hasError && (
-        <div
-          className="absolute inset-0 bg-muted/10 flex items-center justify-center text-muted-foreground text-sm"
-          role="img"
-          aria-label="Imagem não pôde ser carregada"
-        >
-          Imagem indisponível
+        <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+          <span className="text-sm">Erro ao carregar imagem</span>
         </div>
       )}
     </div>
@@ -131,3 +121,5 @@ export const OptimizedImage = React.memo(({
 });
 
 OptimizedImage.displayName = 'OptimizedImage';
+
+export { OptimizedImage };
