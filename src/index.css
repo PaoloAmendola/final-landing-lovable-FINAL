@@ -213,7 +213,7 @@ All colors MUST be HSL.
   }
 
   .card-interactive {
-    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-accent/40 hover:scale-[1.02] hover:shadow-card-hover transition-all duration-200 cursor-pointer;
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-accent/40 hover:scale-[1.01] hover:shadow-card-hover transition-all duration-200 cursor-pointer;
   }
 
   /* Section Spacing Standardization */
@@ -479,14 +479,17 @@ All colors MUST be HSL.
   /* Reduce layout shifts */
   .aspect-ratio-16-9 {
     aspect-ratio: 16 / 9;
+    min-height: 0; /* Prevent layout shift */
   }
 
   .aspect-ratio-1-1 {
     aspect-ratio: 1 / 1;
+    min-height: 0; /* Prevent layout shift */
   }
 
   .aspect-ratio-4-3 {
     aspect-ratio: 4 / 3;
+    min-height: 0; /* Prevent layout shift */
   }
 
   /* Optimized content layout - prevent oversized elements on desktop */
@@ -541,5 +544,57 @@ All colors MUST be HSL.
   div[style*="position: fixed"][style*="bottom: 24px"][style*="right: 24px"],
   .lovable-floating-badge {
     display: none !important;
+  }
+
+  /* Skeleton loading optimizations */
+  .skeleton-loading {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Prevent layout shifts with video elements */
+  video {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Optimized video loading */
+  video[data-lazy="true"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  video[data-lazy="true"][data-loaded="true"] {
+    opacity: 1;
+  }
+
+  /* Enhanced focus management for videos */
+  video:focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
+  }
+
+  /* Optimized card loading states */
+  .card-loading {
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: 12px;
+    padding: 24px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

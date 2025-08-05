@@ -28,11 +28,15 @@ import { useAccessibilityEnhancements, announceToScreenReader } from "@/componen
 import { SkipToContent } from "@/components/ui/skip-to-content";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
 import { preloadCriticalResources } from "@/utils/preloader";
+import { useCriticalImages } from "@/hooks/use-critical-images";
 
 const Index = memo(() => {
   const { isOffline } = usePWA();
   const { performanceScore, metrics } = usePerformance();
   const { trackPageView, trackPerformance, trackConversion } = useAnalytics();
+  
+  // Preload critical images for better LCP
+  useCriticalImages();
 
   // Initialize performance optimization
   const { preloadCriticalResources: preloadOptimized, startRenderTiming, endRenderTiming } = usePerformanceOptimization({
