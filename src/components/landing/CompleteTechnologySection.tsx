@@ -81,26 +81,30 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
                     step.gradient
                   )}></div>
                   
-                  <div className="relative p-4 lg:p-6 space-y-3">
-                    {/* Step Number */}
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
-                        <span className="font-bold text-sm text-brand-black font-montserrat">
-                          {step.number}
-                        </span>
-                      </div>
-                      <h4 className="titulo-h3">
-                        {step.title}
-                      </h4>
-                    </div>
+                  {/* Step Number - Positioned in top-left corner */}
+                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center z-10 group-hover:scale-105 transition-transform duration-200 shadow-lg">
+                    <span className="font-bold text-sm text-brand-black font-montserrat">
+                      {step.number}
+                    </span>
+                  </div>
+                  
+                  <div className="relative p-4 lg:p-6 pt-6 lg:pt-8 space-y-4">
+                    {/* Title */}
+                    <h4 className="titulo-h3 text-center lg:text-left">
+                      {step.title}
+                    </h4>
                     
+                    {/* Description */}
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
                     
-                    <Badge variant="secondary" className="text-xs">
-                      {step.badge}
-                    </Badge>
+                    {/* Badge */}
+                    <div className="flex justify-center lg:justify-start">
+                      <Badge variant="secondary" className="text-xs">
+                        {step.badge}
+                      </Badge>
+                    </div>
                   </div>
                 </Card>
               ))}
