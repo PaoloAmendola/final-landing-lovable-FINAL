@@ -45,17 +45,25 @@ const Manifesto = ({ id }: ManifestoProps) => {
                     loop={false}
                     controls={true}
                     preload="auto"
-                    threshold={0.1}
-                    rootMargin="50px"
+                    threshold={0.05}
+                    rootMargin="20px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
                     onError={(error) => {
-                      logger.error('Erro ao carregar vídeo do manifesto', { error: error.message });
-                      console.error('Manifesto video error:', error);
+                      logger.error('Erro ao carregar vídeo do manifesto', { 
+                        error: error.message,
+                        url: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4'
+                      });
+                      console.error('Manifesto video failed to load:', error);
                     }}
-                    onPlay={() => console.log('Manifesto video started playing')}
-                    onPause={() => console.log('Manifesto video paused')}
+                    onPlay={() => console.log('✅ Manifesto video playing')}
+                    onPause={() => console.log('⏸️ Manifesto video paused')}
                   />
+                  
+                  {/* Fallback for video load issues */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <p className="text-sm text-muted-foreground">Carregando vídeo...</p>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
