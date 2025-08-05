@@ -40,13 +40,13 @@ const Manifesto = ({ id }: ManifestoProps) => {
                   <VideoLazy
                     src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4"
                     className="aspect-video w-full"
-                    autoPlay={false}
+                    autoPlay={true}
                     muted={true}
-                    loop={false}
+                    loop={true}
                     controls={true}
-                    preload="auto"
-                    threshold={0.05}
-                    rootMargin="20px"
+                    preload="metadata"
+                    threshold={0.1}
+                    rootMargin="50px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
                     onError={(error) => {

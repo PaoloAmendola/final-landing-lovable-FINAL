@@ -77,17 +77,17 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
         </div>
 
         {/* Side by Side Layout */}
-        <div className="flex flex-col lg:flex-row section-spacing items-start">
+        <div className="flex flex-col lg:flex-row section-spacing items-start lg:items-stretch">
           {/* Process Steps Grid - Left Side */}
           <div className="w-full lg:w-1/2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 relative min-h-[400px] lg:min-h-[480px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 relative h-full min-h-[600px]">
               {/* Flow indicators for desktop 2x2 grid */}
               <div className="hidden md:block absolute top-1/4 left-1/2 w-0.5 h-1/2 bg-gradient-to-b from-accent/60 to-accent/30 transform -translate-x-1/2 z-0"></div>
               <div className="hidden md:block absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-accent/60 to-accent/30 transform -translate-y-1/2 z-0"></div>
               
               {processSteps.map((process, index) => (
-                <Card key={process.step} className="card-interactive group relative z-10 h-full">
-                  <CardContent className="relative h-full flex flex-col justify-between p-6 lg:p-8">
+                <Card key={process.step} className="card-interactive group relative z-10 h-full min-h-[280px] lg:min-h-[320px]">
+                  <CardContent className="relative h-full flex flex-col p-6 lg:p-8">
                     {/* Number positioned half outside, half inside the card */}
                     <div className="absolute -top-4 -left-4 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-accent rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-xl z-20">
                       <span className="font-bold text-base lg:text-lg text-brand-black font-montserrat">
@@ -95,21 +95,24 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
                       </span>
                     </div>
                     
-                    <div className="flex-1 space-y-4 lg:space-y-6 pt-6">
-                      <div className="space-y-3 lg:space-y-4">
+                    {/* Main content area with better spacing */}
+                    <div className="flex-1 flex flex-col justify-between pt-6 space-y-6">
+                      {/* Title and description section */}
+                      <div className="space-y-4">
                         <h3 className="titulo-h3 text-xl lg:text-2xl leading-tight">
                           {process.title}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed text-base lg:text-lg min-h-[3rem] lg:min-h-[4rem]">
+                        <p className="text-muted-foreground leading-relaxed text-base lg:text-lg flex-grow">
                           {process.description}
                         </p>
                       </div>
                       
-                      <div className="flex items-end justify-between mt-auto pt-4">
-                        <Badge variant="secondary" className="text-xs lg:text-sm px-3 py-1">
+                      {/* Footer section */}
+                      <div className="flex items-center justify-between pt-4 mt-auto">
+                        <Badge variant="secondary" className="text-xs lg:text-sm px-3 py-2 font-medium">
                           {process.badge}
                         </Badge>
-                        <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-accent/20 flex items-center justify-center group-hover:bg-gradient-accent/30 transition-colors duration-200">
+                        <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-accent/20 flex items-center justify-center group-hover:bg-gradient-accent/30 transition-colors duration-200 flex-shrink-0">
                           <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gradient-accent"></div>
                         </div>
                       </div>
@@ -121,11 +124,11 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           </div>
 
           {/* Video Player - Desktop Only (right side) */}
-          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg">
+          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end lg:pl-8">
+            <div className="relative w-full max-w-lg h-full">
               <VideoLazy
                 src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4"
-                className="w-full aspect-[4/3] object-cover rounded-lg"
+                className="w-full h-full min-h-[600px] object-cover rounded-lg"
                 autoPlay={true}
                 muted={true}
                 loop={true}
