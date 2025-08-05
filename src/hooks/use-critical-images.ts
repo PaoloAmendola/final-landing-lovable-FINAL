@@ -11,11 +11,6 @@ const criticalImages: CriticalImage[] = [
     src: "/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png",
     priority: true,
     sizes: "160px"
-  },
-  {
-    src: "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero%20(1).webp",
-    priority: true,
-    sizes: "(max-width: 768px) 320px, (max-width: 1024px) 480px, 640px"
   }
 ];
 
