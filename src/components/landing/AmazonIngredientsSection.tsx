@@ -38,37 +38,40 @@ const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) =>
   return (
     <section 
       id={id}
-      className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-muted/30 via-background to-background"
+      className="section-standard bg-gradient-subtle"
     >
-      <div className="container mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-12">
         {/* Header */}
-        <AnimatedSection animation="fade" className="text-center mb-8 lg:mb-10">
-          <h2 className="text-2xl lg:text-3xl font-bold font-montserrat text-primary">
-            Ativos da Amazônia
-          </h2>
+        <AnimatedSection animation="fade" className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
+          <div className="space-y-4">
+            <h2 className="titulo-h2">
+              Ativos da Amazônia
+            </h2>
+            <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
+          </div>
         </AnimatedSection>
 
         {/* Ingredients Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           {amazonIngredients.map((ingredient, index) => (
             <div 
               key={ingredient.name}
               className={cn(
-                "relative p-4 transition-elegant duration-300 hover:border-accent/40 hover:scale-[1.02] hover:-translate-y-1 shadow-card hover:shadow-card-hover rounded-lg border",
-                `bg-gradient-to-br ${ingredient.bgGradient} border-primary/20`
+                "card-interactive p-6 h-full",
+                `bg-gradient-to-br ${ingredient.bgGradient}`
               )}
             >
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold text-foreground mb-2 uppercase">
+              <div className="relative z-10 space-y-4">
+                <h3 className="titulo-h3 uppercase">
                   {ingredient.name}
                 </h3>
-                <p className="text-sm text-muted-foreground italic mb-3">
+                <p className="text-sm text-muted-foreground italic">
                   {ingredient.scientificName}
                 </p>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-muted-foreground leading-relaxed text-base">
                   {ingredient.description}
                 </p>
-                <div className={cn("inline-flex items-center text-xs font-medium", ingredient.originColor)}>
+                <div className={cn("inline-flex items-center text-sm font-medium", ingredient.originColor)}>
                   • {ingredient.origin}
                 </div>
               </div>

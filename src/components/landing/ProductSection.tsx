@@ -16,11 +16,11 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
         {/* Header Centralizado */}
         <AnimatedSection animation="fade" delay={0.2}>
           <div className="text-center space-y-4 lg:space-y-6 mb-12 md:mb-16 lg:mb-20">
-            <div className="space-y-3 lg:space-y-4">
+            <div className="space-y-4">
               <h2 className="titulo-h2 text-white">
                 Conheça <span className="font-montserrat italic">NIVELA</span><sup className="text-lg md:text-xl lg:text-2xl">®</sup>
               </h2>
-              <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
+              <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
             </div>
             <p className="subtitulo-premium max-w-3xl lg:max-w-4xl mx-auto">
               NIVELA® é um retexturizador hidro nutritivo de alta performance, uma nova geração de escova progressiva sem formol, desenvolvida exclusivamente para profissionais.
@@ -54,44 +54,44 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
             {/* Feature Cards */}
             <StaggerContainer className="space-y-4 lg:space-y-5" staggerDelay={0.15}>
               <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="titulo-h3 group-hover:text-accent transition-colors">
                     Tecnologia Avançada
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     ASTRO QUAT V3® alinha, trata e sela a fibra em nano-escala, fios lisos e movimento natural em um único passo.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="titulo-h3 group-hover:text-accent transition-colors">
                     Segurança na aplicação
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     Fórmula 100% livre de formol, sem fumaça ou ardência. Aplicação confortável para o profissional e cliente.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="titulo-h3 group-hover:text-accent transition-colors">
                     Economia e Rendimento
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     Textura em gel inteligente rende até 30% mais aplicações e facilita o deslizamento da escova, aumentando a lucratividade do salão.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
+                <CardContent className="p-6 space-y-4">
+                  <h3 className="titulo-h3 group-hover:text-accent transition-colors">
                     Compatibilidade Universal
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-base">
                     Resultados consistentes em todos os tipos de cabelo, do 1A ao 4C, inclusive loiros e quimicamente tratados.
                   </p>
                 </CardContent>

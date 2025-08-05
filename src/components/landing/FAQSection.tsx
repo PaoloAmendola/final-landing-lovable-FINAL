@@ -66,10 +66,10 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
                 className="group border border-primary/20 rounded-2xl px-6 py-1 hover:border-accent/40 hover:bg-primary/5 hover:scale-[1.01] transition-elegant duration-300 shadow-card hover:shadow-card-hover focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <AccordionTrigger className="text-left titulo-h3 group-hover:text-accent transition-all duration-200 py-5 min-h-12 focus-visible-enhanced">
+                <AccordionTrigger className="text-left text-lg md:text-xl font-semibold group-hover:text-accent transition-all duration-200 py-5 min-h-12 focus-visible-enhanced">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-5 text-base">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

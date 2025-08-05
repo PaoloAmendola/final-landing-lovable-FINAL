@@ -49,8 +49,8 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
   ];
 
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
-      <div className="max-w-6xl mx-auto">
+    <section id={id} className="section-standard bg-gradient-subtle">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-12">
         {/* Header */}
         <AnimatedSection animation="fade" delay={0.2}>
           <div className="text-center mb-10 md:mb-14 lg:mb-18 space-y-4 lg:space-y-6">
@@ -60,52 +60,54 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
                   BÔNUS Exclusivo para Clientes NIVELA®
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1]">
+              <h2 className="titulo-h2">
                 BemTech™ Ecosystem
               </h2>
-              <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
+              <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
             </div>
-            <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-primary/90">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-primary/90">
               O primeiro ecossistema digital do setor de beleza
             </h3>
-            <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
-              Uma infraestrutura completa de apoio ao cabeleireiro e ao distribuidor. 
-              Um conjunto de apps inteligentes com IA integrada, que coloca conhecimento, 
-              treinamento e suporte na palma da mão.
-            </p>
+            <div className="max-w-5xl mx-auto">
+              <p className="subtitulo-premium">
+                Uma infraestrutura completa de apoio ao cabeleireiro e ao distribuidor. 
+                Um conjunto de apps inteligentes com IA integrada, que coloca conhecimento, 
+                treinamento e suporte na palma da mão.
+              </p>
+            </div>
           </div>
         </AnimatedSection>
 
         {/* Technologies Grid */}
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-16 lg:mb-20" staggerDelay={0.2}>
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-16 lg:mb-20" staggerDelay={0.2}>
           {technologies.map((tech, index) => {
             return (
-                <Card key={index} className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-accent/50 hover:scale-[1.02] transition-elegant duration-500 group shadow-card hover:shadow-card-hover">
-                  <CardContent className="p-5 md:p-6 lg:p-7 space-y-4 lg:space-y-5 text-center">
+                <Card key={index} className="card-interactive group h-full">
+                  <CardContent className="p-6 h-full flex flex-col">
                     {/* Title and Subtitle */}
-                    <div className="space-y-2 lg:space-y-3">
-                      <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
+                    <div className="space-y-3 text-center mb-6">
+                      <h4 className="titulo-h3 group-hover:text-accent transition-colors">
                         {tech.name}
                       </h4>
-                      <p className="text-base md:text-lg lg:text-xl text-accent">
+                      <p className="text-accent text-lg">
                         {tech.subtitle}
                       </p>
                     </div>
                     
                     {/* Features */}
-                    <ul className="space-y-2 lg:space-y-3 text-base md:text-lg lg:text-xl text-muted-foreground text-left" role="list">
+                    <ul className="space-y-3 text-muted-foreground text-left flex-1" role="list">
                       {tech.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start space-x-2 lg:space-x-3">
-                          <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-accent rounded-full mt-1.5 lg:mt-2 flex-shrink-0" aria-hidden="true"></div>
-                          <span className="leading-relaxed">{feature}</span>
+                        <li key={featureIndex} className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" aria-hidden="true"></div>
+                          <span className="leading-relaxed text-base">{feature}</span>
                         </li>
                       ))}
                     </ul>
                     
                     {/* Impact Badge */}
-                    <div className="pt-4 lg:pt-5 flex justify-center">
+                    <div className="pt-6 flex justify-center">
                       <div className="inline-flex items-center justify-center bg-primary/10 border border-primary/20 rounded-full px-4 py-2">
-                        <span className="text-base md:text-lg font-medium text-primary/80 italic">
+                        <span className="text-primary/80 italic font-medium">
                           {tech.impact}
                         </span>
                       </div>
@@ -127,13 +129,13 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
                 </div>
                 
                 {/* Content */}
-                <div className="space-y-3 lg:space-y-4">
-                  <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">BemBOT™</h4>
-                  <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl lg:max-w-4xl mx-auto">
+                <div className="space-y-4">
+                  <h4 className="titulo-h3">BemBOT™</h4>
+                  <p className="text-muted-foreground leading-relaxed max-w-4xl mx-auto text-lg">
                     <strong className="text-accent">BemBOT™</strong> é a inteligência que conecta todo o ecossistema. 
                     Presente em todos os módulos, entrega suporte personalizado, respostas instantâneas e aprendizado contínuo.
                   </p>
-                  <p className="text-base md:text-lg lg:text-xl text-accent font-medium italic">
+                  <p className="text-accent font-medium italic text-lg">
                     O suporte que nunca dorme.
                   </p>
                 </div>
@@ -144,10 +146,10 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
 
         {/* Final Section */}
         <div className="text-center space-y-4 lg:space-y-6 pt-8 lg:pt-12">
-          <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary">
+          <h3 className="titulo-h2 text-primary">
             Tudo conectado. Tudo BemTech™
           </h3>
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl lg:max-w-3xl mx-auto">
+          <p className="subtitulo-premium max-w-3xl mx-auto">
             <strong>Distribuidores mais preparados. Equipes mais confiantes. Cabeleireiros mais seguros.</strong>
           </p>
         </div>
