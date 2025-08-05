@@ -76,7 +76,7 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
           <AnimatedSection animation="scale" className="w-full max-w-lg">
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-elegant">
               <VideoLazy
-                src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4"
                 poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
                 autoPlay={false}
                 muted
@@ -134,7 +134,7 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
             <AnimatedSection animation="scale" delay={0.3} className="w-full max-w-lg">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-elegant">
                 <VideoLazy
-                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4"
                   poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
                   autoPlay={false}
                   muted

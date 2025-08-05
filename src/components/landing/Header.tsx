@@ -116,7 +116,7 @@ const Header = memo(({ id }: HeaderProps) => {
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
                 <OptimizedImage 
-                  src={getOptimizedImageSrc("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero%20(1).webp", 480)}
+                  src={getOptimizedImageSrc("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero%20(1).webp", 480)}
                   alt="NIVELA® - Retexturizador hidro nutritivo de 1kg sendo apresentado por mãos profissionais"
                   className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto drop-shadow-2xl"
                   width={480}
