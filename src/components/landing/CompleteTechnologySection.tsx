@@ -81,27 +81,32 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
                     step.gradient
                   )}></div>
                   
-                  {/* Step Number - Positioned in top-left corner */}
-                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center z-10 group-hover:scale-105 transition-transform duration-200 shadow-lg">
+                  {/* Step Number - Positioned above top border */}
+                  <div className="absolute -top-4 left-4 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center z-10 group-hover:scale-105 transition-transform duration-200 shadow-lg border-2 border-background">
                     <span className="font-bold text-sm text-brand-black font-montserrat">
                       {step.number}
                     </span>
                   </div>
                   
-                  <div className="relative p-4 lg:p-6 pt-6 lg:pt-8 space-y-4">
-                    {/* Title */}
-                    <h4 className="titulo-h3 text-center lg:text-left">
-                      {step.title}
-                    </h4>
+                  <div className="relative p-4 lg:p-6 pt-8 lg:pt-10 space-y-4">
+                    {/* Title - Centered with better spacing */}
+                    <div className="text-center">
+                      <h4 className="titulo-h3 mb-2">
+                        {step.title}
+                      </h4>
+                      <div className="w-12 h-0.5 bg-gradient-accent mx-auto opacity-60"></div>
+                    </div>
                     
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
+                    {/* Description - Better typography */}
+                    <div className="flex-1 flex items-center justify-center">
+                      <p className="text-sm text-muted-foreground leading-relaxed text-center max-w-xs">
+                        {step.description}
+                      </p>
+                    </div>
                     
-                    {/* Badge */}
-                    <div className="flex justify-center lg:justify-start">
-                      <Badge variant="secondary" className="text-xs">
+                    {/* Badge - Bottom aligned */}
+                    <div className="flex justify-center pt-2">
+                      <Badge variant="secondary" className="text-xs px-3 py-1">
                         {step.badge}
                       </Badge>
                     </div>
