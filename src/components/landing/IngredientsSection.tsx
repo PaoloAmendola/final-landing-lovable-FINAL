@@ -37,14 +37,14 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
     <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
-          <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary tracking-tight leading-[1.1] px-4 sm:px-0">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20 space-modular-6">
+          <div className="space-modular-4">
+            <h2 className="heading-2 text-primary px-4 sm:px-0">
               Ativos da Amazônia
             </h2>
             <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
           </div>
-          <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-primary/80 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
+          <p className="body-lg text-primary/80 max-w-4xl mx-auto px-4 sm:px-0">
             Cada ativo foi cuidadosamente selecionado por suas propriedades excepcionais
           </p>
         </div>
@@ -71,29 +71,29 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
           </div>
 
           {/* Ingredients Cards */}
-          <div className="w-full lg:w-1/2 space-y-6">
+          <div className="w-full lg:w-1/2 space-modular-6">
             {ingredients.map((ingredient, index) => (
               <div 
                 key={index}
-                className="group bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-2xl p-4 lg:p-6 backdrop-blur-sm hover:bg-primary/15 hover:border-accent/30 hover:scale-[1.02] hover:-translate-y-1 transition-elegant duration-300 shadow-card hover:shadow-card-hover"
+                className="group bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-2xl padding-modular-6 backdrop-blur-sm hover:bg-primary/15 hover:border-accent/30 hover:scale-[1.02] hover:-translate-y-1 transition-elegant duration-300 shadow-card hover:shadow-card-hover touch-target-enhanced"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="space-y-3">
+                <div className="space-modular-4">
                   <div className="space-y-2">
-                    <h3 className="text-2xl lg:text-3xl font-bold font-montserrat text-primary">
+                    <h3 className="heading-3 text-primary">
                       {ingredient.name}
                     </h3>
-                    <p className="text-base lg:text-lg font-montserrat italic text-primary/70">
+                    <p className="body-base italic text-primary/70">
                       {ingredient.scientificName}
                     </p>
                   </div>
                   
-                  <p className="text-sm lg:text-base leading-relaxed text-primary/90 font-montserrat">
+                  <p className="body-base text-primary/90">
                     {ingredient.description}
                   </p>
                   
                   <div className="pt-1">
-                    <div className="inline-flex items-center space-x-2 text-sm lg:text-base text-accent">
+                    <div className="inline-flex items-center space-x-2 body-sm text-accent">
                       <div className="w-2 h-2 bg-accent rounded-full"></div>
                       <span className="font-medium">Origem: {ingredient.origin}</span>
                     </div>

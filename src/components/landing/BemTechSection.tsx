@@ -53,27 +53,27 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <AnimatedSection animation="fade" delay={0.2}>
-          <div className="text-center mb-10 md:mb-14 lg:mb-18 space-y-4 lg:space-y-6">
-            <div className="space-y-3 lg:space-y-4">
-              <div className="inline-flex items-center justify-center bg-accent/20 border-2 border-accent/40 rounded-full px-8 py-4 mb-6 lg:mb-8 shadow-elegant">
-                <span className="text-base md:text-lg lg:text-xl font-bold text-accent tracking-wide">
-                  BÔNUS Exclusivo para Clientes NIVELA®
-                </span>
+            <div className="text-center mb-10 md:mb-14 lg:mb-18 space-modular-6">
+              <div className="space-modular-4">
+                <div className="inline-flex items-center justify-center bg-accent/20 border-2 border-accent/40 rounded-full padding-modular-6 mb-6 lg:mb-8 shadow-elegant touch-target-enhanced">
+                  <span className="body-base font-bold text-accent tracking-wide">
+                    BÔNUS Exclusivo para Clientes NIVELA®
+                  </span>
+                </div>
+                <h2 className="heading-2 text-white">
+                  BemTech™ Ecosystem
+                </h2>
+                <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1]">
-                BemTech™ Ecosystem
-              </h2>
-              <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
+              <h3 className="heading-3 text-primary/90">
+                O primeiro ecossistema digital do setor de beleza
+              </h3>
+              <p className="body-lg text-muted-foreground max-w-4xl lg:max-w-5xl mx-auto">
+                Uma infraestrutura completa de apoio ao cabeleireiro e ao distribuidor. 
+                Um conjunto de apps inteligentes com IA integrada, que coloca conhecimento, 
+                treinamento e suporte na palma da mão.
+              </p>
             </div>
-            <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium text-primary/90">
-              O primeiro ecossistema digital do setor de beleza
-            </h3>
-            <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground max-w-4xl lg:max-w-5xl mx-auto leading-relaxed">
-              Uma infraestrutura completa de apoio ao cabeleireiro e ao distribuidor. 
-              Um conjunto de apps inteligentes com IA integrada, que coloca conhecimento, 
-              treinamento e suporte na palma da mão.
-            </p>
-          </div>
         </AnimatedSection>
 
         {/* Technologies Grid */}

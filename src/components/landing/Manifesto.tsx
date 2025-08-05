@@ -14,17 +14,17 @@ const Manifesto = ({ id }: ManifestoProps) => {
         <div className="space-y-10 md:space-y-14 lg:space-y-18">
           {/* Citação em Destaque - Centralizada */}
           <AnimatedSection animation="fade" delay={0.2}>
-            <div className="text-center max-w-4xl lg:max-w-5xl mx-auto space-y-6 lg:space-y-8">
-              <div className="space-y-6 lg:space-y-8">
+            <div className="text-center max-w-4xl lg:max-w-5xl mx-auto space-modular-6">
+              <div className="space-modular-6">
                 {/* Elemento decorativo centralizado */}
                 <div className="w-16 lg:w-20 h-0.5 lg:h-1 bg-gradient-accent rounded-full mx-auto"></div>
                 
                 {/* Citação principal - Dividida em dois blocos */}
-                <blockquote className="relative space-y-4 lg:space-y-6">
-                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
+                <blockquote className="relative space-modular-4">
+                  <p className="heading-3 font-playfair italic text-brand-latte">
                     "Acreditamos que profissionais extraordinários merecem ferramentas à altura de sua expertise.
                   </p>
-                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte/80 leading-relaxed tracking-wide">
+                  <p className="heading-3 font-playfair italic text-brand-latte/80">
                     NIVELA® representa uma nova era em retexturização capilar."
                   </p>
                 </blockquote>

@@ -15,14 +15,14 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
       <div className="max-w-6xl mx-auto">
         {/* Header Centralizado */}
         <AnimatedSection animation="fade" delay={0.2}>
-          <div className="text-center space-y-4 lg:space-y-6 mb-12 md:mb-16 lg:mb-20">
-            <div className="space-y-3 lg:space-y-4">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1]">
-                Conheça <span className="font-montserrat italic">NIVELA</span><sup className="text-lg md:text-xl lg:text-2xl">®</sup>
+          <div className="text-center space-modular-4 mb-12 md:mb-16 lg:mb-20">
+            <div className="space-modular-4">
+              <h2 className="heading-2 text-white">
+                Conheça <span className="font-playfair italic">NIVELA</span><sup className="text-lg md:text-xl lg:text-2xl">®</sup>
               </h2>
               <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
             </div>
-            <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed max-w-3xl lg:max-w-4xl mx-auto">
+            <p className="body-lg text-muted-foreground max-w-3xl lg:max-w-4xl mx-auto">
               NIVELA® é um retexturizador hidro nutritivo de alta performance, uma nova geração de escova progressiva sem formol, desenvolvida exclusivamente para profissionais.
             </p>
           </div>
@@ -52,46 +52,46 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
           {/* Content */}
           <div className="space-y-4 lg:space-y-6 order-2 lg:order-2">
             {/* Feature Cards */}
-            <StaggerContainer className="space-y-4 lg:space-y-5" staggerDelay={0.15}>
+            <StaggerContainer className="space-modular-4" staggerDelay={0.15}>
               <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="p-5 md:p-6 lg:p-7 space-y-3">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-primary font-montserrat">
+                <CardContent className="padding-modular-6 space-modular-4">
+                  <h3 className="heading-4 text-primary">
                     Tecnologia Avançada
                   </h3>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
+                  <p className="body-base text-muted-foreground">
                     ASTRO QUAT V3® alinha, trata e sela a fibra em nano-escala, fios lisos e movimento natural em um único passo.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="p-5 md:p-6 lg:p-7 space-y-3">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-primary font-montserrat">
+                <CardContent className="padding-modular-6 space-modular-4">
+                  <h3 className="heading-4 text-primary">
                     Segurança na aplicação
                   </h3>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
+                  <p className="body-base text-muted-foreground">
                     Fórmula 100% livre de formol, sem fumaça ou ardência. Aplicação confortável para o profissional e cliente.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="p-5 md:p-6 lg:p-7 space-y-3">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-primary font-montserrat">
+                <CardContent className="padding-modular-6 space-modular-4">
+                  <h3 className="heading-4 text-primary">
                     Economia e Rendimento
                   </h3>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
+                  <p className="body-base text-muted-foreground">
                     Textura em gel inteligente rende até 30% mais aplicações e facilita o deslizamento da escova, aumentando a lucratividade do salão.
                   </p>
                 </CardContent>
               </Card>
 
               <Card className="bg-card/50 backdrop-blur-sm border-accent/30 hover:border-accent/60 hover:scale-[1.02] transition-elegant duration-300 group shadow-card hover:shadow-card-hover">
-                <CardContent className="p-5 md:p-6 lg:p-7 space-y-3">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-primary font-montserrat">
+                <CardContent className="padding-modular-6 space-modular-4">
+                  <h3 className="heading-4 text-primary">
                     Compatibilidade Universal
                   </h3>
-                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed">
+                  <p className="body-base text-muted-foreground">
                     Resultados consistentes em todos os tipos de cabelo, do 1A ao 4C, inclusive loiros e quimicamente tratados.
                   </p>
                 </CardContent>
