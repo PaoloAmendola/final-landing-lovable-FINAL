@@ -103,9 +103,10 @@ export const usePerformanceOptimization = (options: UsePerformanceOptimizationOp
     }
   }, []);
 
-  // Timing utilities
+  // Timing utilities with stable references
   const startRenderTiming = useCallback(() => {
-    setRenderStartTime(performance.now());
+    const startTime = performance.now();
+    setRenderStartTime(startTime);
   }, []);
 
   const endRenderTiming = useCallback(() => {
@@ -120,7 +121,8 @@ export const usePerformanceOptimization = (options: UsePerformanceOptimizationOp
         });
       }
       
-      setRenderStartTime(0);
+      // Reset only after logging to prevent infinite loop
+      setTimeout(() => setRenderStartTime(0), 0);
     }
   }, [renderStartTime, performanceBudget.maxRenderTime]);
 

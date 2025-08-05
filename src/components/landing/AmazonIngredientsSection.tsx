@@ -1,7 +1,6 @@
-import { memo } from "react";
-import { Card } from "@/components/ui/card";
-import { SectionOptimized } from "@/components/ui/section-optimized";
-import { StaggerContainer } from "@/components/ui/stagger-container";
+import React, { memo, useCallback } from 'react';
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { AnimatedSection } from "@/components/ui/animated-section";
 import { cn } from "@/lib/utils";
 
 interface AmazonIngredientsSectionProps {
@@ -37,27 +36,25 @@ const amazonIngredients = [
 
 const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) => {
   return (
-    <SectionOptimized 
+    <section 
       id={id}
       className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-muted/30 via-background to-background"
-      loadingVariant="card"
-      enableLazyLoad={true}
     >
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-8 lg:mb-10">
+        <AnimatedSection animation="fade" className="text-center mb-8 lg:mb-10">
           <h2 className="text-2xl lg:text-3xl font-bold font-montserrat text-primary">
             Ativos da Amazônia
           </h2>
-        </div>
+        </AnimatedSection>
 
         {/* Ingredients Cards */}
-        <StaggerContainer staggerDelay={0.1} childAnimation="slide-up" className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {amazonIngredients.map((ingredient, index) => (
-            <Card 
+            <div 
               key={ingredient.name}
               className={cn(
-                "relative p-4 transition-elegant duration-300 hover:border-accent/40 hover:scale-[1.02] hover:-translate-y-1 shadow-card hover:shadow-card-hover",
+                "relative p-4 transition-elegant duration-300 hover:border-accent/40 hover:scale-[1.02] hover:-translate-y-1 shadow-card hover:shadow-card-hover rounded-lg border",
                 `bg-gradient-to-br ${ingredient.bgGradient} border-primary/20`
               )}
             >
@@ -75,11 +72,11 @@ const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) =>
                   • {ingredient.origin}
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
-    </SectionOptimized>
+    </section>
   );
 });
 

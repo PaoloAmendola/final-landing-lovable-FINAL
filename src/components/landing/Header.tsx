@@ -27,8 +27,12 @@ const Header = memo(({ id }: HeaderProps) => {
 
   useEffect(() => {
     startRenderTiming();
-    return () => endRenderTiming();
-  }, [startRenderTiming, endRenderTiming]);
+    
+    // Cleanup on unmount only
+    return () => {
+      endRenderTiming();
+    };
+  }, []); // Empty dependency array to run only once
 
   return (
     <header id={id} className="hero-section relative overflow-hidden">
