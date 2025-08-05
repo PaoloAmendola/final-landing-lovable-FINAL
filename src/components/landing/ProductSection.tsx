@@ -39,10 +39,11 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
                   className="w-full max-w-sm md:max-w-md lg:max-w-lg drop-shadow-2xl group-hover:scale-105 transition-elegant duration-500"
                   width={400}
                   height={400}
-                  priority={false}
+                  priority={true}
                   objectFit="contain"
                   fallback="/placeholder.svg"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 {/* Enhanced product glow effect */}
                 <div className="absolute inset-0 bg-gradient-accent/20 rounded-full blur-3xl -z-10 scale-75 group-hover:scale-90 transition-elegant duration-500"></div>
