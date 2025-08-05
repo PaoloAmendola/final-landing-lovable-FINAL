@@ -44,12 +44,17 @@ const Manifesto = ({ id }: ManifestoProps) => {
                     muted={true}
                     loop={false}
                     controls={true}
-                    preload="metadata"
-                    threshold={0.3}
-                    rootMargin="100px"
+                    preload="auto"
+                    threshold={0.1}
+                    rootMargin="50px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
-                    onError={(error) => logger.error('Erro ao carregar vídeo do manifesto', { error: error.message })}
+                    onError={(error) => {
+                      logger.error('Erro ao carregar vídeo do manifesto', { error: error.message });
+                      console.error('Manifesto video error:', error);
+                    }}
+                    onPlay={() => console.log('Manifesto video started playing')}
+                    onPause={() => console.log('Manifesto video paused')}
                   />
                 </div>
               </div>
