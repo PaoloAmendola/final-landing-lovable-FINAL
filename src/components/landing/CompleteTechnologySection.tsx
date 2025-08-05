@@ -1,10 +1,9 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { VideoLazy } from "@/components/ui/video-lazy";
-import { AnimatedSection } from "@/components/ui/animated-section";
-import { StaggerContainer } from "@/components/ui/stagger-container";
 import { cn } from "@/lib/utils";
+import { logger } from "@/utils/logger";
 
 interface CompleteTechnologySectionProps {
   id?: string;
@@ -42,105 +41,94 @@ const processSteps = [
 ];
 
 const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) => {
-  const handleVideoError = () => {
-    // Video error handled silently
-  };
+  const handleVideoError = useCallback(() => {
+    logger.warn('Erro ao carregar vídeo da tecnologia completa', { section: 'CompleteTechnologySection' });
+  }, []);
 
   return (
-    <section 
-      id={id}
-      className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/30"
-    >
-      <div className="container mx-auto px-4">
+    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <AnimatedSection animation="fade" className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Tecnologia{" "}
-            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              ASTRO QUAT V3®
-            </span>
-          </h2>
-          <div className="h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent w-16 mx-auto mb-6"></div>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Desenvolvida por pesquisa molecular avançada, a tecnologia ASTRO QUAT V3® atua em escala nanométrica, 
-            reorganizando as ligações internas da fibra capilar com precisão e segurança, totalmente livre de formol.
-          </p>
-        </AnimatedSection>
-
-        {/* Main Content - Mobile: Video first, then cards */}
-        <div className="lg:hidden">
-          <AnimatedSection animation="scale" className="mb-12">
-            <div className="relative aspect-[4/3] max-w-md mx-auto rounded-xl overflow-hidden shadow-elegant">
-              <VideoLazy
-                src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
-                poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
-                autoPlay
-                muted
-                loop
-                className="w-full h-full object-cover"
-                threshold={0.3}
-                onError={handleVideoError}
-              />
-            </div>
-          </AnimatedSection>
+        <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
+          <div className="space-y-4">
+            <h2 className="titulo-h2 px-4 sm:px-0">
+              Como funciona a tecnologia
+              <span className="block text-accent">ASTRO QUAT V3®</span>
+            </h2>
+            <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <p className="subtitulo-premium">
+              Um processo revolucionário em quatro etapas precisas que transforma a estrutura capilar sem agressões químicas.
+            </p>
+          </div>
         </div>
 
-        {/* Main Content - Desktop: Side by side */}
-        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
-          {/* Process Cards Grid */}
-          <StaggerContainer staggerDelay={0.15} className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-              {/* Connection Lines */}
-              <div className="hidden md:block absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 w-px h-12 bg-gradient-to-b from-primary/40 to-transparent transform -translate-x-1/2 -translate-y-6" />
-                <div className="absolute top-1/2 left-1/2 w-12 h-px bg-gradient-to-r from-primary/40 to-transparent transform -translate-x-6 -translate-y-1/2" />
-              </div>
-
+        {/* Technology Flow - Grid Layout */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          {/* Process Steps - Left */}
+          <div className="space-y-6">
+            <h3 className="text-xl md:text-2xl font-bold text-primary font-montserrat mb-8 text-center lg:text-left">
+              Processo Molecular Avançado
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
               {processSteps.map((step, index) => (
-                <Card 
-                  key={step.number}
-                  className={cn(
-                    "relative p-6 transition-all duration-300 hover:scale-105 hover:shadow-elegant group",
-                    `bg-gradient-to-br ${step.gradient} border-muted/20 backdrop-blur-sm`
-                  )}
-                >
-                  {/* Step Number */}
-                  <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-primary-foreground font-bold text-lg shadow-lg">
-                    {step.number}
-                  </div>
+                <Card key={step.number} className="card-interactive group relative overflow-hidden">
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-br opacity-60 group-hover:opacity-80 transition-opacity duration-300",
+                    step.gradient
+                  )}></div>
                   
-                  <div className="pt-4">
-                    <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed mb-3">
+                  <div className="relative p-4 lg:p-6 space-y-3">
+                    {/* Step Number */}
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+                        <span className="font-bold text-sm text-brand-black font-montserrat">
+                          {step.number}
+                        </span>
+                      </div>
+                      <h4 className="titulo-h3">
+                        {step.title}
+                      </h4>
+                    </div>
+                    
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                    
+                    <Badge variant="secondary" className="text-xs">
                       {step.badge}
                     </Badge>
                   </div>
                 </Card>
               ))}
             </div>
-          </StaggerContainer>
+          </div>
 
-          {/* Video Player - Desktop only */}
-          <div className="hidden lg:block">
-            <AnimatedSection animation="scale" delay={0.3}>
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-elegant">
+          {/* Video Player - Right */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-lg">
+              <div className="relative overflow-hidden rounded-xl shadow-card hover:shadow-card-hover transition-elegant duration-500">
                 <VideoLazy
                   src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
-                  poster="/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png"
-                  autoPlay
-                  muted
-                  loop
-                  className="w-full h-full object-cover"
-                  threshold={0.3}
+                  className="w-full aspect-[4/3] object-cover"
+                  autoPlay={false}
+                  muted={true}
+                  loop={true}
+                  controls={true}
+                  preload="none"
+                  threshold={0.5}
+                  rootMargin="50px"
+                  title="Demonstração da Tecnologia ASTRO QUAT V3® em ação"
                   onError={handleVideoError}
                 />
               </div>
-            </AnimatedSection>
+              
+              {/* Decorative glow effect */}
+              <div className="absolute inset-0 bg-gradient-accent/10 rounded-xl blur-lg -z-10 scale-110"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -148,7 +136,7 @@ const CompleteTechnologySection = memo(({ id }: CompleteTechnologySectionProps) 
   );
 });
 
-CompleteTechnologySection.displayName = "CompleteTechnologySection";
+CompleteTechnologySection.displayName = 'CompleteTechnologySection';
 
 export { CompleteTechnologySection };
 export default CompleteTechnologySection;

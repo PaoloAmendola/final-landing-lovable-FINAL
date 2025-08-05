@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { AnimatedSection } from "@/components/ui/animated-section";
+import { useState, memo, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/use-analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { 
@@ -24,7 +23,7 @@ interface DistributorSectionProps {
   id?: string;
 }
 
-const DistributorSection = ({ id }: DistributorSectionProps) => {
+const DistributorSection = memo(({ id }: DistributorSectionProps) => {
   const [formData, setFormData] = useState({
     nome: "",
     telefone: "",
@@ -36,12 +35,27 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { trackConversion } = useAnalytics();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleInputChange = useCallback((field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  }, []);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
+      // Track conversion
+      trackConversion({
+        type: 'form_submit',
+        section: 'distributor_form',
+        metadata: {
+          city: formData.cidade,
+          already_distributes: formData.ja_distribui
+        }
+      });
+
       // Coleta de dados do navegador e UTM
       const userAgent = navigator.userAgent;
       const urlParams = new URLSearchParams(window.location.search);
@@ -81,21 +95,15 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [formData, trackConversion]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleInputChangeOld = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    handleInputChange(e.target.name, e.target.value);
+  }, [handleInputChange]);
 
-  const handleRadioChange = (value: string) => {
-    setFormData({
-      ...formData,
-      ja_distribui: value
-    });
-  };
+  const handleRadioChange = useCallback((value: string) => {
+    handleInputChange('ja_distribui', value);
+  }, [handleInputChange]);
 
   if (isSubmitted) {
     return (
@@ -165,7 +173,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
   return (
     <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-muted/30">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center space-y-4 md:space-y-6 mb-12 md:mb-16">
+        <div className="text-center space-y-4 md:space-y-6 mb-12 md:mb-16">
           <Badge variant="secondary" className="mx-auto bg-primary/10 border-primary/20 text-primary/80 text-xs md:text-sm">
             OPORTUNIDADE EXCLUSIVA
           </Badge>
@@ -177,11 +185,11 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
           <p className="subtitulo-premium max-w-3xl mx-auto px-4">
             Junte-se à revolução da beleza profissional. Distribua produtos premium com tecnologia patenteada e suporte completo para o seu sucesso.
           </p>
-        </AnimatedSection>
+        </div>
 
         <div className="grid lg:grid-cols-2 section-spacing items-start">
           {/* Benefits Section */}
-          <AnimatedSection animation="slide-right" className="space-y-6 md:space-y-8 order-2 lg:order-1">
+          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="space-y-4 md:space-y-6">
               <h3 className="titulo-h3 px-2">
                 Por que ser nosso distribuidor?
@@ -189,11 +197,8 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
               
               <div className="grid gap-4 md:gap-6">
                 {benefits.map((benefit, index) => (
-                  <motion.div
+                  <div
                     key={benefit.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
                     className="card-standard"
                   >
                     <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -207,21 +212,20 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                         {benefit.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Form Section */}
-          <AnimatedSection animation="slide-left" className="order-1 lg:order-2">
+          <div className="order-1 lg:order-2">
             <Card className="p-4 md:p-6 lg:p-8 bg-card/80 backdrop-blur-sm border-border/50">
               <div className="space-y-4 md:space-y-6">
                 <div className="text-center space-y-2">
-                    <h3 className="titulo-h3">
-                      Quero conhecer o modelo
-                    </h3>
+                  <h3 className="titulo-h3">
+                    Quero conhecer o modelo
+                  </h3>
                   <p className="text-muted-foreground text-sm md:text-base">
                     Preencha seus dados e receba informações detalhadas
                   </p>
@@ -237,7 +241,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                         name="nome"
                         placeholder="Nome completo *"
                         value={formData.nome}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeOld}
                         required
                         aria-label="Nome completo"
                         className="bg-background/50 h-10 md:h-11 text-sm md:text-base"
@@ -252,7 +256,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                         type="tel"
                         placeholder="WhatsApp *"
                         value={formData.telefone}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeOld}
                         required
                         aria-label="Número do WhatsApp"
                         className="bg-background/50 h-10 md:h-11 text-sm md:text-base"
@@ -270,7 +274,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                         type="email"
                         placeholder="E-mail *"
                         value={formData.email}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeOld}
                         required
                         aria-label="E-mail"
                         className="bg-background/50 h-10 md:h-11 text-sm md:text-base"
@@ -284,7 +288,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                         name="cidade"
                         placeholder="Cidade *"
                         value={formData.cidade}
-                        onChange={handleInputChange}
+                        onChange={handleInputChangeOld}
                         required
                         aria-label="Cidade"
                         className="bg-background/50 h-10 md:h-11 text-sm md:text-base"
@@ -323,7 +327,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                       name="empresa"
                       placeholder="Empresa (opcional)"
                       value={formData.empresa}
-                      onChange={handleInputChange}
+                      onChange={handleInputChangeOld}
                       aria-label="Nome da empresa"
                       className="bg-background/50 h-10 md:h-11 text-sm md:text-base"
                       disabled={isLoading}
@@ -337,7 +341,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                       name="apresentacao"
                       placeholder="Faça uma breve apresentação (opcional)"
                       value={formData.apresentacao}
-                      onChange={handleInputChange}
+                      onChange={handleInputChangeOld}
                       aria-label="Apresentação pessoal"
                       className="bg-background/50 min-h-[80px] md:min-h-[100px] text-sm md:text-base resize-none"
                       disabled={isLoading}
@@ -365,11 +369,13 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                 </form>
               </div>
             </Card>
-          </AnimatedSection>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+});
+
+DistributorSection.displayName = 'DistributorSection';
 
 export default DistributorSection;
