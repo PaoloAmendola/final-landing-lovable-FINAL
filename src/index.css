@@ -236,7 +236,7 @@ All colors MUST be HSL.
   /* ============================== */
 
   .btn-primary {
-    @apply bg-gradient-accent hover:scale-105 active:scale-95 text-brand-black font-montserrat font-semibold transition-elegant focus-visible-enhanced touch-target border-2 border-brand-caramel/20;
+    @apply bg-gradient-accent hover:scale-105 active:scale-95 text-brand-black font-montserrat font-semibold focus-visible-enhanced touch-target border-2 border-brand-caramel/20;
     min-height: 48px;
     padding: 12px 24px;
     border-radius: 12px;
@@ -249,6 +249,7 @@ All colors MUST be HSL.
     text-decoration: none;
     touch-action: manipulation;
     box-shadow: var(--shadow-premium);
+    transition: var(--transition-elegant);
   }
 
   .btn-primary:hover {
@@ -256,7 +257,7 @@ All colors MUST be HSL.
   }
 
   .btn-secondary {
-    @apply bg-card border-2 border-primary/20 hover:border-accent/50 hover:bg-card/80 text-primary font-montserrat font-medium transition-elegant focus-visible-enhanced touch-target;
+    @apply bg-card border-2 border-primary/20 hover:border-accent/50 hover:bg-card/80 text-primary font-montserrat font-medium focus-visible-enhanced touch-target;
     min-height: 48px;
     padding: 12px 24px;
     border-radius: 12px;
@@ -268,6 +269,7 @@ All colors MUST be HSL.
     justify-content: center;
     text-decoration: none;
     touch-action: manipulation;
+    transition: var(--transition-elegant);
   }
 
   /* ============================== */
