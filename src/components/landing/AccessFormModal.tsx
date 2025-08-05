@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { LoadingState } from "@/components/ui/loading-state";
-// Removed Supabase import - using placeholder
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 interface AccessFormModalProps {
@@ -85,13 +85,37 @@ const AccessFormModal = memo(({ isOpen, onClose }: AccessFormModalProps) => {
     setIsLoading(true);
     
     try {
-      // Placeholder: Database integration will be configured later
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      // Capturar dados de rastreamento
+      const utmParams = new URLSearchParams(window.location.search);
+      const leadData = {
+        nome: formData.nome.trim(),
+        email: formData.email.trim().toLowerCase(),
+        telefone: formData.telefone,
+        tipo_estabelecimento: formData.tipo_estabelecimento,
+        utm_source: utmParams.get('utm_source') || 'landing_page',
+        utm_medium: utmParams.get('utm_medium') || 'form',
+        utm_campaign: utmParams.get('utm_campaign') || 'acesso_exclusivo',
+        user_agent: navigator.userAgent
+      };
+
+      // Inserir no Supabase
+      const { error } = await supabase
+        .from('leads_nivela')
+        .insert([leadData]);
+
+      if (error) {
+        throw error;
+      }
       
       setIsSubmitted(true);
-      toast.success('Solicitação enviada com sucesso!');
-    } catch (error) {
-      toast.error('Erro inesperado. Tente novamente.');
+      toast.success('Solicitação enviada com sucesso! Nossa equipe entrará em contato em até 24 horas.');
+    } catch (error: any) {
+      console.error('Erro ao enviar lead:', error);
+      if (error.code === '23505') {
+        toast.error('Este email já foi cadastrado. Nossa equipe entrará em contato em breve.');
+      } else {
+        toast.error('Erro inesperado. Tente novamente ou entre em contato via WhatsApp.');
+      }
     } finally {
       setIsLoading(false);
     }
