@@ -134,47 +134,51 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
   ];
 
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-20 xl:py-24 px-4 md:px-6 lg:px-12 bg-muted/30">
+    <section id={id} className="py-16 md:py-20 lg:py-24 px-4 md:px-6 lg:px-8 bg-muted/30">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection className="text-center space-y-4 md:space-y-6 mb-12 md:mb-16">
-          <Badge variant="secondary" className="mx-auto bg-primary/10 border-primary/20 text-primary/80 text-xs md:text-sm">
+        <AnimatedSection className="text-center space-y-6 mb-16 md:mb-20">
+          <Badge variant="secondary" className="mx-auto bg-primary/10 border-primary/20 text-primary/80 text-sm">
             OPORTUNIDADE EXCLUSIVA
           </Badge>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1] px-2">
-            Seja um Distribuidor
-            <span className="block text-brand-caramel">Bem Beauty Professional</span>
-          </h2>
-          <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-12 md:w-16 lg:w-24"></div>
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto px-4">
-            Junte-se à revolução da beleza profissional. Distribua produtos premium com tecnologia patenteada e suporte completo para o seu sucesso.
-          </p>
+          <div className="space-y-4">
+            <h2 className="heading-2 text-white tracking-tight leading-tight">
+              Seja um Distribuidor
+              <span className="block text-brand-caramel">Bem Beauty Professional</span>
+            </h2>
+            <div className="h-1 bg-gradient-accent mx-auto w-20 md:w-24"></div>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <p className="body-lg text-muted-foreground leading-relaxed">
+              Junte-se à revolução da beleza profissional. Distribua produtos premium com tecnologia patenteada e suporte completo para o seu sucesso.
+            </p>
+          </div>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-start">
           {/* Benefits Section */}
-          <AnimatedSection animation="slide-right" className="space-y-6 md:space-y-8 order-2 lg:order-1">
-            <div className="space-y-4 md:space-y-6">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary font-montserrat px-2">
+          <AnimatedSection animation="slide-right" className="space-y-8 order-2 lg:order-1">
+            <div className="space-y-6">
+              <h3 className="heading-3 text-primary">
                 Por que ser nosso distribuidor?
               </h3>
               
-              <div className="grid gap-4 md:gap-6">
+              <div className="grid gap-6">
                 {benefits.map((benefit, index) => (
                   <motion.div
                     key={benefit.title}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-card/50 border border-border/50"
+                    className="flex items-start gap-4 p-5 rounded-xl bg-card/50 border border-border/50 hover:bg-card/70 hover:border-primary/30 transition-all duration-300"
                   >
-                    <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <benefit.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <benefit.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <div>
-                      <h4 className="font-bold text-primary font-montserrat mb-1 text-sm md:text-base">
+                    <div className="space-y-1">
+                      <h4 className="heading-4 text-primary">
                         {benefit.title}
                       </h4>
-                      <p className="text-muted-foreground text-sm md:text-base">
+                      <p className="body-base text-muted-foreground leading-relaxed">
                         {benefit.description}
                       </p>
                     </div>
@@ -187,13 +191,13 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
 
           {/* Form Section */}
           <AnimatedSection animation="slide-left" className="order-1 lg:order-2">
-            <Card className="p-4 md:p-6 lg:p-8 bg-card/80 backdrop-blur-sm border-border/50">
-              <div className="space-y-4 md:space-y-6">
-                <div className="text-center space-y-2">
-                  <h3 className="text-xl md:text-2xl font-bold text-primary font-montserrat">
+            <Card className="p-6 md:p-8 lg:p-10 bg-card/80 backdrop-blur-sm border-border/50 shadow-card">
+              <div className="space-y-6">
+                <div className="text-center space-y-3">
+                  <h3 className="heading-3 text-primary">
                     Quero conhecer o modelo
                   </h3>
-                  <p className="text-muted-foreground text-sm md:text-base">
+                  <p className="body-base text-muted-foreground">
                     Preencha seus dados e receba informações detalhadas
                   </p>
                 </div>
