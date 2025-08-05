@@ -224,10 +224,14 @@ All colors MUST be HSL.
     }
   }
 
-  /* Enhanced contrast for accessibility */
-  .text-contrast-high {
-    @apply text-primary;
-    text-shadow: 0 1px 2px hsl(var(--brand-black) / 0.3);
+  /* Remove production debug tools */
+  .lovable-badge,
+  .lovable-edit-button,
+  [data-lovable],
+  .development-only,
+  .debug-panel {
+    display: none !important;
+    visibility: hidden !important;
   }
 
   /* Improved mobile touch targets */

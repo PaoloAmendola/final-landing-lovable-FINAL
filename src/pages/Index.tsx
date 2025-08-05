@@ -28,8 +28,6 @@ import { useAccessibilityEnhancements, announceToScreenReader } from "@/componen
 import { SkipToContent } from "@/components/ui/skip-to-content";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
 import { preloadCriticalResources } from "@/utils/preloader";
-import { optimizeCriticalCSS } from "@/utils/automated-critical-css";
-import { preloadCriticalImages } from "@/utils/image-cache";
 
 const Index = memo(() => {
   const { isOffline } = usePWA();
@@ -83,32 +81,21 @@ const Index = memo(() => {
   useEffect(() => {
     startRenderTiming();
     
+    // Initialize critical optimizations
+    Promise.all([
+      preloadCriticalResources()
+    ]).catch(() => {
+      // Silently handle preload errors
+    });
+    
     // Start preloading critical resources
-    preloadCriticalResources();
     preloadOptimized([
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp',
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-destaque.webp',
-      '/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png'
+      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
+      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp'
     ]);
     
-    // Preload critical images for faster loading
-    preloadCriticalImages([
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp',
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-destaque.webp',
-      '/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png'
-    ]);
-    
-    // Optimize critical CSS after initial render
+    // Complete optimization after initial render
     setTimeout(() => {
-      optimizeCriticalCSS({
-        viewport: { width: window.innerWidth, height: window.innerHeight },
-        inlineThreshold: 14 * 1024, // 14KB budget
-        performanceBudget: {
-          maxCriticalSize: 14 * 1024,
-          maxTotalSize: 100 * 1024,
-          maxRenderBlocking: 3
-        }
-      });
       endRenderTiming();
     }, 100);
 
