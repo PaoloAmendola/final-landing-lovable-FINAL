@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { Instagram, Youtube, MessageCircle, Mail, MapPin, Phone, ExternalLink, ChevronUp } from 'lucide-react';
 import { useCurrentYear } from '@/hooks/use-current-year';
 
@@ -6,19 +6,19 @@ interface FooterProps {
   id?: string;
 }
 
-const Footer = ({ id }: FooterProps) => {
+const Footer = memo(({ id }: FooterProps) => {
   const currentYear = useCurrentYear();
   const [email, setEmail] = useState('');
   const [isNewsletterLoading, setIsNewsletterLoading] = useState(false);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
+  }, []);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+  const handleNewsletterSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     
@@ -28,11 +28,18 @@ const Footer = ({ id }: FooterProps) => {
     setIsNewsletterLoading(false);
     setEmail('');
     // Could integrate with Supabase here for newsletter signup
-  };
+  }, [email]);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
+
+  const navigationItems = useCallback(() => [
+    { label: 'Conheça o Nivela', target: 'produto' },
+    { label: 'Como Funciona', target: 'tecnologia' },
+    { label: 'Tecnologias', target: 'bemtech' },
+    { label: 'Depoimentos', target: 'faq' }
+  ], []);
 
   return (
     <footer id={id} className="bg-gradient-to-b from-[#0D181C] to-[#0A1419] relative">
@@ -88,17 +95,13 @@ const Footer = ({ id }: FooterProps) => {
               <h4 className="titulo-h3 text-brand-latte">
                 Navegação
               </h4>
-              <nav className="space-y-3">
-                {[
-                  { label: 'Conheça o Nivela', target: 'produto' },
-                  { label: 'Como Funciona', target: 'tecnologia' },
-                  { label: 'Tecnologias', target: 'bemtech' },
-                  { label: 'Depoimentos', target: 'faq' }
-                ].map((item) => (
+              <nav className="space-y-3" role="navigation" aria-label="Navegação interna">
+                {navigationItems().map((item) => (
                   <button
                     key={item.target}
                     onClick={() => scrollToSection(item.target)}
-                    className="block text-base font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant group"
+                    className="block text-base font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant group focus-visible-enhanced"
+                    aria-label={`Ir para seção ${item.label}`}
                   >
                     <span className="border-b border-transparent group-hover:border-brand-latte transition-elegant">
                       {item.label}
@@ -163,13 +166,13 @@ const Footer = ({ id }: FooterProps) => {
               </h4>
               
               {/* Social Media Icons */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4" role="group" aria-label="Redes sociais">
                 <a
                   href="https://instagram.com/bembeautyprofessional"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group"
-                  aria-label="Seguir no Instagram"
+                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group focus-visible-enhanced"
+                  aria-label="Seguir no Instagram - abre em nova aba"
                 >
                   <Instagram className="h-5 w-5 text-brand-caramel group-hover:text-brand-latte transition-colors" />
                 </a>
@@ -177,8 +180,8 @@ const Footer = ({ id }: FooterProps) => {
                   href="https://youtube.com/@BemBeautyProfessional"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group"
-                  aria-label="Acompanhar no YouTube"
+                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group focus-visible-enhanced"
+                  aria-label="Acompanhar no YouTube - abre em nova aba"
                 >
                   <Youtube className="h-5 w-5 text-brand-caramel group-hover:text-brand-latte transition-colors" />
                 </a>
@@ -186,8 +189,8 @@ const Footer = ({ id }: FooterProps) => {
                   href="https://wa.me/552139500901"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group"
-                  aria-label="Conversar no WhatsApp"
+                  className="p-3 bg-brand-caramel/10 border border-brand-caramel/20 rounded-xl hover:bg-brand-caramel/20 hover:border-brand-caramel/40 transition-all duration-300 hover:scale-105 group focus-visible-enhanced"
+                  aria-label="Conversar no WhatsApp - abre em nova aba"
                 >
                   <MessageCircle className="h-5 w-5 text-brand-caramel group-hover:text-brand-latte transition-colors" />
                 </a>
@@ -258,6 +261,8 @@ const Footer = ({ id }: FooterProps) => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;

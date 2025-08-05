@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Network, GraduationCap, Briefcase, Bot } from "lucide-react";
@@ -10,7 +10,7 @@ interface BemTechSectionProps {
 }
 
 const BemTechSection = memo(({ id }: BemTechSectionProps) => {
-  const technologies = [
+  const technologies = useCallback(() => [
     {
       name: "BemHUB™",
       subtitle: "Central estratégica do distribuidor",
@@ -46,7 +46,7 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
       ],
       impact: "A confiança técnica que o cabeleireiro precisa.",
     },
-  ];
+  ], []);
 
   return (
     <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
@@ -78,9 +78,9 @@ const BemTechSection = memo(({ id }: BemTechSectionProps) => {
 
         {/* Technologies Grid */}
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-16 lg:mb-20" staggerDelay={0.2}>
-          {technologies.map((tech, index) => {
+          {technologies().map((tech, index) => {
             return (
-                <Card key={index} className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-accent/50 hover:scale-[1.02] transition-elegant duration-500 group shadow-card hover:shadow-card-hover">
+                <Card key={index} className="bg-card/50 backdrop-blur-sm border-primary/20 hover:border-accent/50 hover:scale-[1.02] transition-elegant duration-500 group shadow-card hover:shadow-card-hover focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2" tabIndex={0} role="article">
                   <CardContent className="p-5 md:p-6 lg:p-7 space-y-4 lg:space-y-5 text-center">
                     {/* Title and Subtitle */}
                     <div className="space-y-2 lg:space-y-3">

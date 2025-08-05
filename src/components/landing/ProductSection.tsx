@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { StaggerContainer } from "@/components/ui/stagger-container";
@@ -10,6 +10,25 @@ interface ProductSectionProps {
 }
 
 const ProductSection = memo(({ id }: ProductSectionProps) => {
+  const features = useCallback(() => [
+    {
+      title: "Tecnologia Avançada",
+      description: "ASTRO QUAT V3® alinha, trata e sela a fibra em nano-escala, fios lisos e movimento natural em um único passo."
+    },
+    {
+      title: "Segurança na aplicação", 
+      description: "Fórmula 100% livre de formol, sem fumaça ou ardência. Aplicação confortável para o profissional e cliente."
+    },
+    {
+      title: "Economia e Rendimento",
+      description: "Textura em gel inteligente rende até 30% mais aplicações e facilita o deslizamento da escova, aumentando a lucratividade do salão."
+    },
+    {
+      title: "Compatibilidade Universal",
+      description: "Resultados consistentes em todos os tipos de cabelo, do 1A ao 4C, inclusive loiros e quimicamente tratados."
+    }
+  ], []);
+
   return (
     <section id={id} className="section-standard px-4 md:px-6 lg:px-12">
       <div className="max-w-6xl mx-auto">
@@ -53,49 +72,18 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
           <div className="space-y-4 lg:space-y-6 order-2 lg:order-2">
             {/* Feature Cards */}
             <StaggerContainer className="space-y-4 lg:space-y-5" staggerDelay={0.15}>
-              <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
-                    Tecnologia Avançada
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    ASTRO QUAT V3® alinha, trata e sela a fibra em nano-escala, fios lisos e movimento natural em um único passo.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
-                    Segurança na aplicação
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Fórmula 100% livre de formol, sem fumaça ou ardência. Aplicação confortável para o profissional e cliente.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
-                    Economia e Rendimento
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Textura em gel inteligente rende até 30% mais aplicações e facilita o deslizamento da escova, aumentando a lucratividade do salão.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="card-interactive group">
-                <CardContent className="space-y-3">
-                  <h3 className="titulo-h3">
-                    Compatibilidade Universal
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Resultados consistentes em todos os tipos de cabelo, do 1A ao 4C, inclusive loiros e quimicamente tratados.
-                  </p>
-                </CardContent>
-              </Card>
+              {features().map((feature, index) => (
+                <Card key={index} className="card-interactive group focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2">
+                  <CardContent className="space-y-3">
+                    <h3 className="titulo-h3" id={`feature-${index}`}>
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed" aria-describedby={`feature-${index}`}>
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </StaggerContainer>
           </div>
         </div>

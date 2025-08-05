@@ -1,14 +1,12 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { LoadingState } from "@/components/ui/loading-state";
 
 interface FAQSectionProps {
   id?: string;
 }
 
 const FAQSection = memo(({ id }: FAQSectionProps) => {
-  const faqs = [
+  const faqs = useCallback(() => [
     {
       question: "NIVELA® é realmente livre de formol?",
       answer: "Absolutamente. NIVELA® utiliza a tecnologia patenteada ASTRO QUAT V3®, completamente livre de formol, formaldeído ou qualquer substância similar.",
@@ -41,7 +39,7 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
       question: "Existe suporte para marketing e vendas?",
       answer: "Sim! O ecossistema BemTech™ inclui materiais prontos para redes sociais, scripts de vendas, campanhas e tudo que você precisa para potencializar seus resultados comerciais.",
     },
-  ];
+  ], []);
 
   return (
     <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
@@ -59,7 +57,7 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
         {/* FAQ Accordion */}
         <div className="space-y-3 lg:space-y-4">
           <Accordion type="single" collapsible className="space-y-3 lg:space-y-4">
-            {faqs.map((faq, index) => (
+            {faqs().map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
