@@ -121,7 +121,7 @@ export const AccessibleVideo = React.memo(({
         muted={muted}
         loop={loop}
         playsInline
-        controls={showControls}
+        controls={false}
         preload="metadata"
         className="w-full h-full object-cover"
         onPlay={() => setIsPlaying(true)}
@@ -136,26 +136,7 @@ export const AccessibleVideo = React.memo(({
         Seu navegador não suporta vídeos HTML5.
       </video>
 
-      {/* Custom accessible controls */}
-      {!showControls && (
-        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <button
-            onClick={isPlaying ? handlePause : handlePlay}
-            className="touch-target bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors focus-visible-enhanced"
-            aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
-          >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </button>
-          
-          <button
-            onClick={handleMuteToggle}
-            className="touch-target bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors focus-visible-enhanced"
-            aria-label={isMuted ? 'Ativar som' : 'Silenciar'}
-          >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-          </button>
-        </div>
-      )}
+      {/* All custom controls removed - autoplay only */}
 
       {/* Screen reader description */}
       <div className="sr-only" aria-live="polite">

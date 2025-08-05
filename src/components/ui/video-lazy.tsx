@@ -352,7 +352,7 @@ const VideoLazy = React.memo(({
           muted={muted}
           loop={loop}
           playsInline
-          controls={controls || autoPlay}
+          controls={false}
           preload={preload}
           poster={poster}
           webkit-playsinline="true"
@@ -370,7 +370,7 @@ const VideoLazy = React.memo(({
         </video>
       )}
 
-      {/* Video autoplay without any visible controls */}
+      {/* Video autoplay without any visible controls - all controls removed */}
 
       {/* Loading indicator */}
       {isLoading && (
