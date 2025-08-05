@@ -14,13 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads_nivela: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          ip_address: unknown | null
+          nome: string
+          origem: string | null
+          status: string | null
+          telefone: string
+          tipo_estabelecimento: string
+          updated_at: string | null
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          ip_address?: unknown | null
+          nome: string
+          origem?: string | null
+          status?: string | null
+          telefone: string
+          tipo_estabelecimento: string
+          updated_at?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          ip_address?: unknown | null
+          nome?: string
+          origem?: string | null
+          status?: string | null
+          telefone?: string
+          tipo_estabelecimento?: string
+          updated_at?: string | null
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_leads_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          total_leads: number
+          leads_hoje: number
+          leads_semana: number
+          leads_mes: number
+          por_tipo: Json
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
