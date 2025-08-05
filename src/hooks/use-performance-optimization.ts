@@ -1,188 +1,192 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useState } from 'react';
+import { logger } from '@/utils/logger';
 
-interface PerformanceConfig {
-  enableLazyLoading?: boolean;
+interface PerformanceBudget {
+  maxImageSize: number;
+  maxBundleSize: number;
+  maxRenderTime: number;
+}
+
+interface UsePerformanceOptimizationOptions {
   enableImageOptimization?: boolean;
-  enableCodeSplitting?: boolean;
-  enableCaching?: boolean;
-  performanceBudget?: {
-    maxImageSize: number;
-    maxBundleSize: number;
-    maxRenderTime: number;
-  };
+  enableLazyLoading?: boolean;
+  performanceBudget?: PerformanceBudget;
 }
 
-interface PerformanceMetrics {
-  renderTime: number;
-  imageLoadTime: number;
-  bundleSize: number;
-  cacheHitRate: number;
-}
-
-export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
-  const metricsRef = useRef<PerformanceMetrics>({
-    renderTime: 0,
-    imageLoadTime: 0,
-    bundleSize: 0,
-    cacheHitRate: 0
-  });
-
-  const renderStartRef = useRef<number>(0);
-  const imageLoadStartRef = useRef<number>(0);
-
-  // Start render timing
-  const startRenderTiming = useCallback(() => {
-    renderStartRef.current = performance.now();
-  }, []);
-
-  // End render timing
-  const endRenderTiming = useCallback(() => {
-    if (renderStartRef.current > 0) {
-      const renderTime = performance.now() - renderStartRef.current;
-      metricsRef.current.renderTime = renderTime;
-      
-      // Performance budget check - handled silently in production
-      
-      renderStartRef.current = 0;
+export const usePerformanceOptimization = (options: UsePerformanceOptimizationOptions = {}) => {
+  const {
+    enableImageOptimization = true,
+    enableLazyLoading = true,
+    performanceBudget = {
+      maxImageSize: 500 * 1024,
+      maxBundleSize: 2 * 1024 * 1024,
+      maxRenderTime: 200
     }
-  }, [config.performanceBudget?.maxRenderTime]);
+  } = options;
 
-  // Image load timing
-  const trackImageLoad = useCallback((src: string, loadTime: number) => {
-    metricsRef.current.imageLoadTime = loadTime;
+  const [renderStartTime, setRenderStartTime] = useState<number>(0);
+
+  // Detecta conexão lenta
+  const isSlowConnection = useCallback(() => {
+    const connection = (navigator as any).connection;
+    if (!connection) return false;
     
-    if (config.performanceBudget?.maxImageSize) {
-      // Check image size if possible
-      fetch(src, { method: 'HEAD' })
-        .then(response => {
-          const contentLength = response.headers.get('content-length');
-          if (contentLength) {
-            const size = parseInt(contentLength, 10);
-            // Image size budget check - handled silently in production
-          }
-        })
-        .catch(() => {
-          // Silently fail for HEAD requests
-        });
-    }
-  }, [config.performanceBudget?.maxImageSize]);
-
-  // Monitor Core Web Vitals
-  const monitorWebVitals = useCallback(() => {
-    if ('web-vitals' in window) {
-      return;
-    }
-
-    // Monitor LCP (Largest Contentful Paint)
-    new PerformanceObserver((entryList) => {
-      for (const entry of entryList.getEntries()) {
-        const lcp = entry.startTime;
-        // LCP performance check - handled silently in production
-      }
-    }).observe({ entryTypes: ['largest-contentful-paint'] });
-
-    // Monitor FID (First Input Delay)
-    new PerformanceObserver((entryList) => {
-      for (const entry of entryList.getEntries()) {
-        const fid = (entry as any).processingStart - entry.startTime;
-        // FID performance check - handled silently in production
-      }
-    }).observe({ entryTypes: ['first-input'] });
-
-    // Monitor CLS (Cumulative Layout Shift)
-    let clsValue = 0;
-    new PerformanceObserver((entryList) => {
-      for (const entry of entryList.getEntries()) {
-        if (!(entry as any).hadRecentInput) {
-          clsValue += (entry as any).value;
-        }
-      }
-      // CLS performance check - handled silently in production
-    }).observe({ entryTypes: ['layout-shift'] });
+    return (
+      connection.effectiveType === 'slow-2g' ||
+      connection.effectiveType === '2g' ||
+      connection.saveData === true
+    );
   }, []);
 
-  // Optimize images
-  const optimizeImage = useCallback((src: string, options: {
-    width?: number;
-    height?: number;
-    quality?: number;
-    format?: 'webp' | 'avif' | 'original';
-  } = {}) => {
-    if (!config.enableImageOptimization) return src;
-
-    // For Supabase images, apply transformations
-    if (src.includes('supabase.co/storage/v1/object/public/')) {
-      const url = new URL(src);
-      const params = new URLSearchParams();
-      
-      if (options.width) params.set('width', options.width.toString());
-      if (options.height) params.set('height', options.height.toString());
-      if (options.quality) params.set('quality', options.quality.toString());
-      if (options.format && options.format !== 'original') {
-        params.set('format', options.format);
-      }
-      
-      if (params.toString()) {
-        url.search = params.toString();
-        return url.toString();
-      }
+  // Otimiza imagens baseado na conexão
+  const getOptimizedImageSrc = useCallback((src: string, width?: number) => {
+    if (!enableImageOptimization) return src;
+    
+    if (isSlowConnection()) {
+      // Para conexões lentas, usar versões menores
+      return src.replace(/\.(jpg|jpeg|png)$/, '_thumb.$1');
     }
-
     return src;
-  }, [config.enableImageOptimization]);
+  }, [isSlowConnection, enableImageOptimization]);
 
-  // Preload critical resources
-  const preloadCriticalResources = useCallback((resources: string[]) => {
-    resources.forEach(resource => {
+  // Preload crítico de recursos
+  const preloadCriticalResources = useCallback((resources: string[] = []) => {
+    const defaultCriticalImages = [
+      '/lovable-uploads/image-hero.png',
+      '/lovable-uploads/icone-bem-beauty.png'
+    ];
+
+    const allResources = [...defaultCriticalImages, ...resources];
+
+    allResources.forEach(src => {
       const link = document.createElement('link');
       link.rel = 'preload';
-      
-      if (resource.match(/\.(jpg|jpeg|png|webp|avif)$/i)) {
-        link.as = 'image';
-      } else if (resource.match(/\.(woff|woff2|ttf)$/i)) {
-        link.as = 'font';
-        link.crossOrigin = 'anonymous';
-      } else if (resource.match(/\.(css)$/i)) {
-        link.as = 'style';
-      } else if (resource.match(/\.(js)$/i)) {
-        link.as = 'script';
-      }
-      
-      link.href = resource;
+      link.as = 'image';
+      link.href = src;
       document.head.appendChild(link);
     });
   }, []);
 
-  // Initialize performance monitoring
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    monitorWebVitals();
-
-    // Report performance metrics
-    const reportMetrics = () => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      if (navigation) {
-        const pageLoadTime = navigation.loadEventEnd - navigation.fetchStart;
-        // Page load performance metrics - handled silently in production
-      }
+  // Observer para lazy loading
+  const createLazyObserver = useCallback((callback: (entries: IntersectionObserverEntry[]) => void) => {
+    if (!enableLazyLoading) return null;
+    
+    const options = {
+      root: null,
+      rootMargin: isSlowConnection() ? '50px' : '100px',
+      threshold: 0.1
     };
 
-    // Report metrics after page load
-    if (document.readyState === 'complete') {
-      reportMetrics();
-    } else {
-      window.addEventListener('load', reportMetrics);
-      return () => window.removeEventListener('load', reportMetrics);
+    return new IntersectionObserver(callback, options);
+  }, [isSlowConnection, enableLazyLoading]);
+
+  // Cleanup de recursos não utilizados
+  const cleanupUnusedResources = useCallback(() => {
+    // Remove listeners de scroll desnecessários
+    const unusedListeners = document.querySelectorAll('[data-scroll-listener]');
+    unusedListeners.forEach(el => {
+      el.removeAttribute('data-scroll-listener');
+    });
+
+    // Limpa cache de imagens antigas
+    if ('caches' in window) {
+      caches.open('nivela-images-v1').then(cache => {
+        cache.keys().then(keys => {
+          const oldKeys = keys.filter(key => {
+            const url = new URL(key.url);
+            return url.pathname.includes('old-') || url.pathname.includes('backup-');
+          });
+          
+          oldKeys.forEach(key => cache.delete(key));
+        });
+      });
     }
-  }, [monitorWebVitals]);
+  }, []);
+
+  // Timing utilities
+  const startRenderTiming = useCallback(() => {
+    setRenderStartTime(performance.now());
+  }, []);
+
+  const endRenderTiming = useCallback(() => {
+    if (renderStartTime > 0) {
+      const renderTime = performance.now() - renderStartTime;
+      
+      if (renderTime > performanceBudget.maxRenderTime) {
+        logger.warn('Render time exceeded budget', {
+          renderTime,
+          budget: performanceBudget.maxRenderTime,
+          timestamp: Date.now()
+        });
+      }
+      
+      setRenderStartTime(0);
+    }
+  }, [renderStartTime, performanceBudget.maxRenderTime]);
+
+  // Monitora performance em tempo real
+  useEffect(() => {
+    let performanceObserver: PerformanceObserver;
+
+    if ('PerformanceObserver' in window) {
+      performanceObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        
+        entries.forEach(entry => {
+          if (entry.entryType === 'largest-contentful-paint') {
+            const lcp = entry.startTime;
+            
+            if (lcp > 4000) {
+              logger.warn('LCP muito alto detectado', {
+                lcp,
+                timestamp: Date.now(),
+                url: window.location.pathname
+              });
+              
+              // Ação corretiva automática
+              document.documentElement.style.setProperty('--animation-duration', '0.1s');
+            }
+          }
+
+          if (entry.entryType === 'layout-shift') {
+            const cls = (entry as any).value;
+            
+            if (cls > 0.1) {
+              logger.warn('Layout shift detectado', {
+                cls,
+                element: (entry as any).sources?.[0]?.node,
+                timestamp: Date.now()
+              });
+            }
+          }
+        });
+      });
+
+      try {
+        performanceObserver.observe({ 
+          entryTypes: ['largest-contentful-paint', 'layout-shift', 'first-input']
+        });
+      } catch (error) {
+        logger.warn('Performance Observer não suportado', { error });
+      }
+    }
+
+    // Cleanup em intervalos
+    const cleanupInterval = setInterval(cleanupUnusedResources, 30000);
+
+    return () => {
+      performanceObserver?.disconnect();
+      clearInterval(cleanupInterval);
+    };
+  }, [cleanupUnusedResources]);
 
   return {
-    startRenderTiming,
-    endRenderTiming,
-    trackImageLoad,
-    optimizeImage,
+    isSlowConnection: isSlowConnection(),
+    getOptimizedImageSrc,
     preloadCriticalResources,
-    metrics: metricsRef.current
+    createLazyObserver,
+    cleanupUnusedResources,
+    startRenderTiming,
+    endRenderTiming
   };
 };

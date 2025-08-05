@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Card } from "@/components/ui/card";
-import { AnimatedSection } from "@/components/ui/animated-section";
+import { SectionOptimized } from "@/components/ui/section-optimized";
 import { StaggerContainer } from "@/components/ui/stagger-container";
 import { cn } from "@/lib/utils";
 
@@ -37,17 +37,19 @@ const amazonIngredients = [
 
 const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) => {
   return (
-    <section 
+    <SectionOptimized 
       id={id}
       className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-muted/30 via-background to-background"
+      loadingVariant="card"
+      enableLazyLoad={true}
     >
       <div className="container mx-auto px-4">
         {/* Header */}
-        <AnimatedSection animation="fade" className="text-center mb-8 lg:mb-10">
+        <div className="text-center mb-8 lg:mb-10">
           <h2 className="text-2xl lg:text-3xl font-bold font-montserrat text-primary">
             Ativos da Amazônia
           </h2>
-        </AnimatedSection>
+        </div>
 
         {/* Ingredients Cards */}
         <StaggerContainer staggerDelay={0.1} childAnimation="slide-up" className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -77,7 +79,7 @@ const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) =>
           ))}
         </StaggerContainer>
       </div>
-    </section>
+    </SectionOptimized>
   );
 });
 

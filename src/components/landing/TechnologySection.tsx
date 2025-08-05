@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { VideoLazy } from "@/components/ui/video-lazy";
+import { SectionOptimized } from "@/components/ui/section-optimized";
 import { logger } from "@/utils/logger";
 
 interface TechnologySectionProps {
@@ -41,7 +42,12 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
   };
 
   return (
-    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+    <SectionOptimized 
+      id={id} 
+      className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle"
+      loadingVariant="card"
+      enableLazyLoad={true}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
@@ -129,7 +135,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           </div>
         </div>
       </div>
-    </section>
+    </SectionOptimized>
   );
 });
 

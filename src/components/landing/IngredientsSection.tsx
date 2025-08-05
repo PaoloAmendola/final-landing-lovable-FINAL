@@ -1,5 +1,6 @@
 import { memo } from 'react';
-import { LazyImage } from "@/components/ui/image-lazy";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { SectionOptimized } from "@/components/ui/section-optimized";
 
 interface IngredientsSectionProps {
   id?: string;
@@ -34,7 +35,12 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
   ];
 
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+    <SectionOptimized 
+      id={id} 
+      className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle"
+      loadingVariant="hero"
+      enableLazyLoad={true}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
@@ -55,13 +61,14 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
           <div className="w-full lg:w-1/2 flex-shrink-0 lg:h-fit">
             <div className="relative group h-full">
               <div className="relative overflow-hidden rounded-3xl shadow-card hover:shadow-card-hover transition-elegant duration-500 h-full lg:min-h-[750px] flex items-center">
-                <LazyImage
+                <OptimizedImage
                   src="/lovable-uploads/53c7ab29-5be3-441c-9618-051a8cdec3b3.png"
                   alt="Ativos naturais da Amazônia - Ingredientes premium do NIVELA"
                   className="w-full h-full lg:min-h-[750px] object-cover"
                   width={600}
                   height={750}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority={false}
+                  objectFit="cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/30 to-transparent"></div>
               </div>
@@ -104,7 +111,7 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
           </div>
         </div>
       </div>
-    </section>
+    </SectionOptimized>
   );
 });
 

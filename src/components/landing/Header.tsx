@@ -16,7 +16,7 @@ interface HeaderProps {
 
 const Header = memo(({ id }: HeaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { startRenderTiming, endRenderTiming, optimizeImage } = usePerformanceOptimization({
+  const { startRenderTiming, endRenderTiming, getOptimizedImageSrc } = usePerformanceOptimization({
     enableImageOptimization: true,
     performanceBudget: {
       maxImageSize: 500 * 1024, // 500KB
@@ -42,12 +42,7 @@ const Header = memo(({ id }: HeaderProps) => {
       {/* Navigation */}
       <nav className="w-full px-4 md:px-8 lg:px-12 py-8 flex justify-center items-center relative z-10">
         <OptimizedImage 
-          src={optimizeImage("/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png", { 
-            width: 200, 
-            height: 50, 
-            quality: 90,
-            format: 'webp'
-          })}
+          src={getOptimizedImageSrc("/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png", 200)}
           alt="Bem Beauty Professional - Logo da marca"
           className="h-8 md:h-10 w-auto"
           width={160}
@@ -116,12 +111,7 @@ const Header = memo(({ id }: HeaderProps) => {
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
                 <OptimizedImage 
-                  src={optimizeImage("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero%20(1).webp", {
-                    width: 640,
-                    height: 640,
-                    quality: 85,
-                    format: 'webp'
-                  })}
+                  src={getOptimizedImageSrc("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero%20(1).webp", 640)}
                   alt="NIVELA® - Retexturizador hidro nutritivo de 1kg sendo apresentado por mãos profissionais"
                   className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto drop-shadow-2xl"
                   width={640}
