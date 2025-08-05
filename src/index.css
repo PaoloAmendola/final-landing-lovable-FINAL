@@ -165,196 +165,64 @@ All colors MUST be HSL.
 }
 
 @layer base {
-  /* ============================== */
-  /* SISTEMA TIPOGRÁFICO REFINADO - MOBILE FIRST */
-  /* ============================== */
-
-  /* Headings - Playfair Display para títulos elegantes */
-  .heading-1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(32px, 4.5vw, 56px);
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    max-width: 20ch; /* ~50-60 caracteres */
+  /* Typography Premium Classes - Optimized for responsiveness */
+  .titulo-premium-h1 {
+    @apply font-montserrat font-bold text-primary leading-[0.95] tracking-tight;
+    font-size: clamp(2rem, 6vw, 4.5rem);
   }
 
-  .heading-2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    font-size: clamp(28px, 3.5vw, 40px);
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    max-width: 25ch; /* ~60-65 caracteres */
-  }
-
-  .heading-3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 600;
-    font-size: clamp(22px, 2.5vw, 28px);
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    max-width: 30ch; /* ~65-70 caracteres */
-  }
-
-  .heading-4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.35;
-    max-width: 35ch;
-  }
-
-  /* Body Text - Montserrat otimizado para leitura */
-  .body-lg {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: clamp(16px, 1.1vw + 12px, 18px);
-    line-height: 1.65;
-    max-width: 65ch; /* ~70-75 caracteres */
-  }
-
-  .body-base {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: clamp(15px, 1vw + 12px, 17px);
-    line-height: 1.7;
-    max-width: 70ch;
-  }
-
-  .body-sm {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: clamp(14px, 0.9vw + 12px, 16px);
-    line-height: 1.75;
-    max-width: 75ch;
-  }
-
-  .body-xs {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: clamp(13px, 0.8vw + 11px, 15px);
-    line-height: 1.6;
-  }
-
-  /* ============================== */
-  /* ESPAÇAMENTO MODULAR REFINADO */
-  /* ============================== */
-
-  .space-refined-sm { gap: 12px; }
-  .space-refined-base { gap: 16px; }
-  .space-refined-md { gap: 20px; }
-  .space-refined-lg { gap: 24px; }
-
-  .padding-refined-sm { padding: 12px; }
-  .padding-refined-base { padding: 16px; }
-  .padding-refined-md { padding: 20px; }
-  .padding-refined-lg { padding: 24px; }
-
-  /* ============================== */
-  /* MICROINTERAÇÕES ELEGANTES */
-  /* ============================== */
-
-  .micro-hover {
-    transition: all 0.3s ease-out;
-  }
-
-  .micro-hover:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
-  }
-
-  .micro-scale {
-    transition: all 0.3s ease-out;
-  }
-
-  .micro-scale:hover {
-    transform: scale(1.02);
-  }
-
-  /* ============================== */
-  /* BOTÕES REFINADOS */
-  /* ============================== */
-
-  .btn-primary {
-    @apply bg-gradient-accent hover:scale-[1.02] active:scale-[0.98] text-brand-black font-montserrat font-medium focus-visible-enhanced touch-target border border-brand-caramel/20;
-    min-height: 48px;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-size: clamp(15px, 1vw + 13px, 17px);
-    line-height: 1.4;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    box-shadow: 0 2px 8px hsl(var(--brand-caramel) / 0.2);
-    transition: all 0.3s ease-out;
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 4px 16px hsl(var(--brand-caramel) / 0.3);
-  }
-
-  /* ============================== */
-  /* ACESSIBILIDADE APRIMORADA */
-  /* ============================== */
-
-  .focus-enhanced {
-    transition: all 0.3s ease-out;
-  }
-
-  .focus-enhanced:focus-visible {
-    outline: 2px solid hsl(var(--accent));
-    outline-offset: 2px;
-    border-radius: 8px;
-  }
-
-  /* Respeitar preferências de movimento reduzido */
-  @media (prefers-reduced-motion: reduce) {
-    .micro-hover,
-    .micro-scale,
-    .btn-primary,
-    .focus-enhanced,
-    * {
-      transition: none !important;
-      transform: none !important;
-      animation: none !important;
-      animation-duration: 0.01ms !important;
-    }
-  }
-
-  /* ============================== */
-  /* OTIMIZAÇÕES DE PERFORMANCE */
-  /* ============================== */
-
-  /* Contenção de layout para prevenir CLS */
-  .hero-section {
-    contain: layout style paint;
-  }
-
-  .hero-content {
-    will-change: transform;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  /* Cache de GPU para animações */
-  .micro-hover,
-  .micro-scale {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Preload crítico de fontes */
   @media (min-width: 768px) {
-    .heading-1,
-    .heading-2 {
-      font-display: swap;
+    .titulo-premium-h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
     }
   }
-}
+
+  @media (min-width: 1024px) {
+    .titulo-premium-h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+    }
+  }
+
+  .subtitulo-premium {
+    @apply font-montserrat font-medium text-brand-cloud leading-relaxed;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .subtitulo-premium {
+      font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .subtitulo-premium {
+      font-size: clamp(1.25rem, 2.5vw, 2rem);
+    }
+  }
+
+  /* CTA Button Optimization - Better proportions */
+  .cta-primary {
+    @apply bg-gradient-accent hover:scale-105 active:scale-95 text-brand-black font-montserrat font-bold transition-elegant duration-300 shadow-premium hover:shadow-card-hover border-2 border-brand-caramel/20;
+    /* Optimized mobile-first sizing */
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .cta-primary {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cta-primary {
+      padding: 1.25rem 2.5rem;
+      font-size: 1.125rem;
+      border-radius: 1rem;
+    }
+  }
 
   /* Remove production debug tools */
   .lovable-badge,
@@ -661,7 +529,6 @@ All colors MUST be HSL.
     pointer-events: none !important;
   }
 
-  
   /* Esconde qualquer elemento fixo suspeito no canto direito inferior */
   div[style*="position: fixed"][style*="bottom: 16px"][style*="right: 16px"],
   div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"],
@@ -669,3 +536,4 @@ All colors MUST be HSL.
   .lovable-floating-badge {
     display: none !important;
   }
+}
