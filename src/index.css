@@ -297,13 +297,6 @@ All colors MUST be HSL.
   .touch-target {
     @apply min-h-[56px] min-w-[56px];
   }
-    }
-    
-    .parallax-container,
-    .motion-container {
-      transform: none !important;
-    }
-  }
 
 
   /* Loading states - Enhanced */
