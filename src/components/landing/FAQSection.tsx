@@ -44,12 +44,12 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
   ];
 
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-4 lg:space-y-6">
           <div className="space-y-3 lg:space-y-4">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1]">
+            <h2 className="titulo-h2 text-white">
               Perguntas Frequentes
             </h2>
             <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-16 lg:w-24"></div>
@@ -66,10 +66,10 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
                 className="group border border-primary/20 rounded-2xl px-6 py-1 hover:border-accent/40 hover:bg-primary/5 hover:scale-[1.01] transition-elegant duration-300 shadow-card hover:shadow-card-hover focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
-                <AccordionTrigger className="text-left font-semibold text-lg lg:text-xl text-primary group-hover:text-accent transition-elegant py-5 min-h-12 focus-visible-enhanced">
+                <AccordionTrigger className="text-left titulo-h3 group-hover:text-accent transition-all duration-200 py-5 min-h-12 focus-visible-enhanced">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base lg:text-lg leading-relaxed pb-5">
+                <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -79,14 +79,14 @@ const FAQSection = memo(({ id }: FAQSectionProps) => {
 
         {/* CTA Final */}
         <div className="mt-20 text-center space-y-8">
-          <p className="text-lg lg:text-xl xl:text-2xl text-muted-foreground font-montserrat">
+          <p className="subtitulo-premium">
             Ainda tem dúvidas? Nossa equipe especializada está pronta para ajudar.
           </p>
           <a 
             href="https://wa.me/552139500901"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center text-lg lg:text-xl px-12 py-6 rounded-2xl hover:scale-105 hover:shadow-glow focus-visible-enhanced transition-elegant bg-gradient-primary text-white font-semibold"
+            className="btn-primary inline-flex items-center justify-center"
             aria-label="Falar com especialista no WhatsApp"
           >
             FALAR COM ESPECIALISTA

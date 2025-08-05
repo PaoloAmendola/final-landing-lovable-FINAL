@@ -9,7 +9,7 @@ interface ManifestoProps {
 
 const Manifesto = ({ id }: ManifestoProps) => {
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-24 px-4 md:px-8 lg:px-12 bg-brand-black">
+    <section id={id} className="section-standard px-4 md:px-8 lg:px-12 bg-brand-black">
       <div className="max-w-6xl mx-auto">
         <div className="space-y-10 md:space-y-14 lg:space-y-18">
           {/* Citação em Destaque - Centralizada */}
@@ -21,10 +21,10 @@ const Manifesto = ({ id }: ManifestoProps) => {
                 
                 {/* Citação principal - Dividida em dois blocos */}
                 <blockquote className="relative space-y-4 lg:space-y-6">
-                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
+                  <p className="titulo-h2 font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
                     "Acreditamos que profissionais extraordinários merecem ferramentas à altura de sua expertise.
                   </p>
-                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte/80 leading-relaxed tracking-wide">
+                  <p className="titulo-h2 font-montserrat italic text-brand-latte/90 leading-relaxed tracking-wide">
                     NIVELA® representa uma nova era em retexturização capilar."
                   </p>
                 </blockquote>

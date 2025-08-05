@@ -41,12 +41,12 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
   };
 
   return (
-    <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
           <div className="space-y-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary tracking-tight leading-[1.1] px-4 sm:px-0">
+            <h2 className="titulo-h2 px-4 sm:px-0">
               Tecnologia ASTRO QUAT V3<sup className="text-lg md:text-xl lg:text-2xl">®</sup>
             </h2>
             <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
@@ -54,7 +54,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           
           {/* Descriptive Paragraph */}
           <div className="max-w-5xl mx-auto">
-            <p className="text-lg lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
+            <p className="subtitulo-premium">
               Desenvolvida por pesquisa molecular avançada, a tecnologia ASTRO QUAT V3® atua em escala nanométrica, reorganizando as ligações internas da fibra capilar com precisão e segurança, totalmente livre de formol.
             </p>
           </div>
@@ -77,7 +77,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
         </div>
 
         {/* Side by Side Layout */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+        <div className="flex flex-col lg:flex-row section-spacing items-start">
           {/* Process Steps Grid - Left Side */}
           <div className="w-full lg:w-1/2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 relative">
@@ -86,20 +86,20 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
               <div className="hidden md:block absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-accent/60 to-accent/30 transform -translate-y-1/2 z-0"></div>
               
               {processSteps.map((process, index) => (
-                <Card key={process.step} className="bg-card/40 backdrop-blur-sm border-primary/30 hover:border-accent/60 transition-elegant duration-300 group hover:shadow-card shadow-card relative z-10">
-                  <CardContent className="p-4 lg:p-6 relative">
+                <Card key={process.step} className="card-interactive group relative z-10">
+                  <CardContent className="relative">
                     {/* Number positioned half outside, half inside the card */}
-                    <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-elegant duration-300 shadow-lg z-20">
-                      <span className="font-bold text-sm text-brand-black font-montserrat">
+                    <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-lg z-20">
+                      <span className="font-medium text-sm text-brand-black font-montserrat">
                         {process.step}
                       </span>
                     </div>
                     
                     <div className="mt-4 space-y-3">
-                      <h3 className="font-bold text-primary text-lg lg:text-xl font-montserrat">
+                      <h3 className="titulo-h3">
                         {process.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
+                      <p className="text-muted-foreground leading-relaxed">
                         {process.description}
                       </p>
                       <Badge variant="secondary" className="text-xs mt-3">

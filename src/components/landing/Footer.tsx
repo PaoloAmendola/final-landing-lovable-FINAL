@@ -85,7 +85,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 2 - Navegação Interna */}
             <div className="space-y-6">
-              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
+              <h4 className="titulo-h3 text-brand-latte">
                 Navegação
               </h4>
               <nav className="space-y-3">
@@ -110,7 +110,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 3 - Contato & Atendimento */}
             <div className="space-y-6">
-              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
+              <h4 className="titulo-h3 text-brand-latte">
                 Contato & Atendimento
               </h4>
               
@@ -158,7 +158,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 4 - Redes Sociais & Newsletter */}
             <div className="space-y-6">
-              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
+              <h4 className="titulo-h3 text-brand-latte">
                 Redes Sociais
               </h4>
               

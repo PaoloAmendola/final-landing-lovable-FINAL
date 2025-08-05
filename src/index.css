@@ -59,11 +59,11 @@ All colors MUST be HSL.
     --gradient-tech-secondary: linear-gradient(135deg, hsl(var(--brand-caramel) / 0.2), hsl(var(--brand-latte) / 0.3));
     --gradient-tech-accent: linear-gradient(135deg, hsl(var(--brand-latte) / 0.2), hsl(var(--brand-cloud) / 0.3));
     
-    /* Shadows */
-    --shadow-premium: 0 25px 50px -12px hsl(var(--brand-black) / 0.8);
-    --shadow-glow: 0 0 40px hsl(var(--brand-latte) / 0.1);
-    --shadow-card: 0 8px 32px hsl(var(--brand-black) / 0.4);
-    --shadow-card-hover: 0 16px 48px hsl(var(--brand-black) / 0.6);
+    /* Shadows - Optimized for performance */
+    --shadow-premium: 0 20px 40px -10px hsl(var(--brand-black) / 0.6);
+    --shadow-glow: 0 0 30px hsl(var(--brand-latte) / 0.08);
+    --shadow-card: 0 6px 24px hsl(var(--brand-black) / 0.3);
+    --shadow-card-hover: 0 12px 36px hsl(var(--brand-black) / 0.4);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -116,11 +116,11 @@ All colors MUST be HSL.
     --gradient-brand-dark: linear-gradient(135deg, hsl(201 23% 95%), hsl(var(--brand-cloud)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--brand-light)), hsl(201 23% 95%));
     
-    /* Light shadows */
-    --shadow-premium: 0 25px 50px -12px hsl(var(--brand-black) / 0.15);
-    --shadow-glow: 0 0 40px hsl(var(--brand-caramel) / 0.1);
-    --shadow-card: 0 8px 32px hsl(var(--brand-black) / 0.08);
-    --shadow-card-hover: 0 16px 48px hsl(var(--brand-black) / 0.12);
+    /* Light shadows - Optimized */
+    --shadow-premium: 0 20px 40px -10px hsl(var(--brand-black) / 0.12);
+    --shadow-glow: 0 0 30px hsl(var(--brand-caramel) / 0.08);
+    --shadow-card: 0 6px 24px hsl(var(--brand-black) / 0.06);
+    --shadow-card-hover: 0 12px 36px hsl(var(--brand-black) / 0.1);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 198 52% 8%;
@@ -165,63 +165,64 @@ All colors MUST be HSL.
 }
 
 @layer base {
-  /* Typography Premium Classes - Optimized for responsiveness */
-  .titulo-premium-h1 {
-    @apply font-montserrat font-bold text-primary leading-[0.95] tracking-tight;
-    font-size: clamp(2rem, 6vw, 4.5rem);
+  /* Typography Premium Classes - Unified Hierarchy */
+  .titulo-h1 {
+    @apply font-montserrat font-semibold text-primary leading-[1.1] tracking-tight;
+    font-size: clamp(2.5rem, 6vw, 4rem);
   }
 
   @media (min-width: 768px) {
-    .titulo-premium-h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
+    .titulo-h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
     }
   }
 
-  @media (min-width: 1024px) {
-    .titulo-premium-h1 {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-    }
+  .titulo-h2 {
+    @apply font-montserrat font-medium text-primary leading-[1.15] tracking-tight;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  .titulo-h3 {
+    @apply font-montserrat font-medium text-primary leading-[1.2] tracking-normal;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
   }
 
   .subtitulo-premium {
-    @apply font-montserrat font-medium text-brand-cloud leading-relaxed;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    @apply font-montserrat font-normal text-muted-foreground leading-relaxed;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
   }
 
   @media (min-width: 768px) {
     .subtitulo-premium {
-      font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     }
   }
 
-  @media (min-width: 1024px) {
-    .subtitulo-premium {
-      font-size: clamp(1.25rem, 2.5vw, 2rem);
-    }
+  /* Button Standardization - Consistent across all components */
+  .btn-primary {
+    @apply min-h-[48px] px-8 py-4 rounded-xl bg-gradient-accent text-brand-black font-montserrat font-medium hover:scale-[1.02] focus:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 transition-transform duration-200 shadow-card hover:shadow-card-hover touch-manipulation;
   }
 
-  /* CTA Button Optimization - Better proportions */
-  .cta-primary {
-    @apply bg-gradient-accent hover:scale-105 active:scale-95 text-brand-black font-montserrat font-bold transition-elegant duration-300 shadow-premium hover:shadow-card-hover border-2 border-brand-caramel/20;
-    /* Optimized mobile-first sizing */
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    border-radius: 0.75rem;
+  .btn-secondary {
+    @apply min-h-[48px] px-8 py-4 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20 text-primary font-montserrat font-medium hover:scale-[1.02] hover:border-accent/40 focus:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 transition-all duration-200 shadow-card hover:shadow-card-hover touch-manipulation;
   }
 
-  @media (min-width: 640px) {
-    .cta-primary {
-      padding: 1rem 2rem;
-      font-size: 1rem;
-    }
+  /* Card Standardization */
+  .card-standard {
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-accent/40 hover:shadow-card-hover transition-all duration-200;
   }
 
-  @media (min-width: 1024px) {
-    .cta-primary {
-      padding: 1.25rem 2.5rem;
-      font-size: 1.125rem;
-      border-radius: 1rem;
-    }
+  .card-interactive {
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-6 hover:border-accent/40 hover:scale-[1.02] hover:shadow-card-hover transition-all duration-200 cursor-pointer;
+  }
+
+  /* Section Spacing Standardization */
+  .section-standard {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-spacing {
+    @apply gap-4 md:gap-6 lg:gap-8;
   }
 
   /* Remove production debug tools */

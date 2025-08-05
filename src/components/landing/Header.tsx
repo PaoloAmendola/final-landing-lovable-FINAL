@@ -35,8 +35,8 @@ const Header = memo(({ id }: HeaderProps) => {
       {/* Spotlight Effect Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-radial opacity-80"></div>
-        {/* Additional focused light spot */}
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-brand-latte/10 rounded-full blur-3xl"></div>
+        {/* Additional focused light spot - Optimized */}
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-brand-latte/8 rounded-full blur-lg"></div>
       </div>
       
       {/* Navigation */}
@@ -62,23 +62,23 @@ const Header = memo(({ id }: HeaderProps) => {
       {/* Main Content Grid */}
       <div className="flex-1 px-4 sm:px-6 md:px-8 lg:px-12 pb-12 lg:pb-20">
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-5 gap-6 lg:gap-16 items-center justify-center min-h-screen py-4 lg:py-8">
+          <div className="grid lg:grid-cols-2 section-spacing items-center justify-center min-h-screen py-4 lg:py-8">
             
-            {/* Content Section - 60% width on desktop */}
-            <div className="lg:col-span-3 order-2 lg:order-1 w-full flex justify-center">
+            {/* Content Section - Balanced layout */}
+            <div className="order-2 lg:order-1 w-full flex justify-center">
               <div className="hero-content flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:space-y-6 w-full max-w-full lg:max-w-4xl px-2 sm:px-4 lg:px-0">
                 
                 {/* Unified Brand + Title Block */}
                 <div className="space-y-3 lg:space-y-4">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-bold text-brand-light leading-[1.1] tracking-tight">
-                    <span className="block text-brand-latte font-semibold">NIVELA®</span>
+                <h1 className="titulo-h1 text-brand-light">
+                    <span className="block text-brand-latte font-medium">NIVELA®</span>
                     <span className="block">A evolução da</span>
                     <span className="block">escova progressiva</span>
                   </h1>
                 </div>
                 
                 {/* Subtitle Description */}
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-montserrat text-brand-cloud leading-relaxed max-w-full lg:max-w-4xl mt-4 lg:mt-8 px-2 sm:px-0">
+                <p className="subtitulo-premium mt-4 lg:mt-8 px-2 sm:px-0">
                   <span className="block sm:inline">Desenvolvido com tecnologia patenteada,</span>
                   <span className="block sm:inline"> sem formol, com ativos da Amazônia</span>
                   <span className="block sm:inline"> e rendimento 30% superior.</span>
@@ -101,20 +101,20 @@ const Header = memo(({ id }: HeaderProps) => {
                  </div>
 
                  {/* Primary CTA Button - Captura de Lead Premium */}
-                 <button 
-                   onClick={() => setIsModalOpen(true)}
-                   className="min-h-[56px] min-w-[280px] touch-manipulation px-6 sm:px-8 lg:px-10 rounded-xl hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-latte/50 focus:ring-offset-2 transition-elegant text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto max-w-sm bg-gradient-to-r from-brand-caramel to-brand-latte text-brand-black hover:shadow-premium active:scale-[0.98] cursor-pointer"
-                   aria-label="Solicitar acesso exclusivo ao NIVELA - Formulário de cadastro profissional"
-                   tabIndex={0}
-                 >
-                   SOLICITAR ACESSO EXCLUSIVO
-                 </button>
+                  <button 
+                    onClick={() => setIsModalOpen(true)}
+                    className="btn-primary w-full sm:w-auto max-w-sm"
+                    aria-label="Solicitar acesso exclusivo ao NIVELA - Formulário de cadastro profissional"
+                    tabIndex={0}
+                  >
+                    SOLICITAR ACESSO EXCLUSIVO
+                  </button>
                 
               </div>
             </div>
 
-            {/* Product Image Section - 40% width on desktop */}
-            <div className="lg:col-span-2 flex justify-center lg:justify-end order-1 lg:order-2 w-full px-4 sm:px-6 lg:px-0">
+            {/* Product Image Section - Balanced layout */}
+            <div className="flex justify-center lg:justify-end order-1 lg:order-2 w-full px-4 sm:px-6 lg:px-0">
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
                 <PerformanceAwareImage 
@@ -135,10 +135,9 @@ const Header = memo(({ id }: HeaderProps) => {
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
                 
-                {/* Enhanced spotlight glow effect */}
-                <div className="absolute inset-0 bg-white/15 rounded-full blur-3xl -z-10 scale-110"></div>
-                <div className="absolute inset-0 bg-brand-latte/25 rounded-full blur-2xl -z-10 scale-150"></div>
-                <div className="absolute inset-0 bg-white/8 rounded-full blur-xl -z-10 scale-200"></div>
+                {/* Optimized spotlight glow effect */}
+                <div className="absolute inset-0 bg-white/8 rounded-full blur-lg -z-10 scale-110"></div>
+                <div className="absolute inset-0 bg-brand-latte/15 rounded-full blur-xl -z-10 scale-125"></div>
               </div>
             </div>
           </div>
@@ -146,9 +145,9 @@ const Header = memo(({ id }: HeaderProps) => {
       </div>
 
 
-      {/* Background decorative elements */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-accent/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-brand-deep/10 rounded-full blur-3xl"></div>
+      {/* Background decorative elements - Optimized */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-gradient-accent/3 rounded-full blur-lg"></div>
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-brand-deep/6 rounded-full blur-lg"></div>
 
       {/* Access Form Modal */}
       <AccessFormModal 
