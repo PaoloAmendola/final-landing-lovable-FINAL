@@ -186,7 +186,7 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
                 placeholder="Ex: Ana Ribeiro Santos"
                 value={formData.nome}
                 onChange={(e) => handleInputChange('nome', e.target.value)}
-                className={`h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-target focus-visible-enhanced ${
+                className={`min-h-[56px] h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-manipulation ${
                   errors.nome ? 'border-red-500 focus:border-red-500' : 
                   formData.nome.trim().length >= 2 ? 'border-green-500' : ''
                 }`}
@@ -223,7 +223,7 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
                 placeholder="Ex: ana@studiobrhair.com"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                className={`h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-target focus-visible-enhanced ${
+                className={`min-h-[56px] h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-manipulation ${
                   errors.email ? 'border-red-500 focus:border-red-500' : 
                   formData.email.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()) ? 'border-green-500' : ''
                 }`}
@@ -260,7 +260,7 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
                 placeholder="Ex: (21) 91234-5678"
                 value={formData.telefone}
                 onChange={handleWhatsAppChange}
-                className={`h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-target focus-visible-enhanced ${
+                className={`min-h-[56px] h-12 md:h-14 bg-input/50 border-primary/20 text-primary placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-manipulation ${
                   errors.telefone ? 'border-red-500 focus:border-red-500' : 
                   formData.telefone.replace(/\D/g, '').length >= 10 ? 'border-green-500' : ''
                 }`}
@@ -299,7 +299,7 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
               >
                 <SelectTrigger 
                   id="establishment-type"
-                  className={`h-12 md:h-14 bg-input/50 border-primary/20 text-primary focus:border-accent rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-target focus-visible-enhanced ${
+                  className={`min-h-[56px] h-12 md:h-14 bg-input/50 border-primary/20 text-primary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-xl lg:rounded-2xl text-base lg:text-lg transition-elegant hover:scale-[1.01] focus:scale-[1.01] touch-manipulation ${
                     errors.tipo_estabelecimento ? 'border-red-500 focus:border-red-500' : 
                     formData.tipo_estabelecimento ? 'border-green-500' : ''
                   }`}

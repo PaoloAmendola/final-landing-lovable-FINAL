@@ -36,7 +36,7 @@ const ParallaxContainer = ({
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
       <motion.div 
-        style={{ y, position: 'relative' }}
+        style={{ y }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

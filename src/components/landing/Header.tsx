@@ -85,26 +85,27 @@ const Header = memo(({ id }: HeaderProps) => {
                 </p>
 
                 {/* Badges - Hierarchical design */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 w-full max-w-full lg:max-w-3xl mt-6 lg:mt-12 mb-8 lg:mb-14 px-4 sm:px-0">
-                  <div className="bg-brand-deep/50 border border-brand-deep hover:bg-brand-deep/70 hover:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px]">
-                    <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">LIVRE</span>
-                    <span className="text-xs md:text-sm font-normal text-brand-cloud/90">de formol</span>
-                  </div>
-                  <div className="border border-brand-latte hover:bg-brand-latte/10 hover:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px]">
-                    <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">TEXTURA</span>
-                    <span className="text-xs md:text-sm font-normal text-brand-latte/90">em gel</span>
-                  </div>
-                  <div className="sm:col-span-2 lg:col-span-1 bg-brand-caramel/20 border border-brand-caramel hover:bg-brand-caramel/30 hover:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px]">
-                    <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">TECNOLOGIA</span>
-                    <span className="text-xs md:text-sm font-normal text-brand-latte/90">ASTRO QUAT V3®</span>
-                  </div>
-                </div>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 w-full max-w-full lg:max-w-3xl mt-6 lg:mt-12 mb-8 lg:mb-14 px-4 sm:px-0">
+                   <div className="bg-brand-deep/50 border border-brand-deep hover:bg-brand-deep/70 focus-visible:bg-brand-deep/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-latte/50 hover:scale-[1.02] focus-visible:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px] touch-manipulation" tabIndex={0} role="button" aria-label="Produto livre de formol">
+                     <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">LIVRE</span>
+                     <span className="text-xs md:text-sm font-normal text-brand-cloud/90">de formol</span>
+                   </div>
+                   <div className="border border-brand-latte hover:bg-brand-latte/10 focus-visible:bg-brand-latte/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-latte/50 hover:scale-[1.02] focus-visible:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px] touch-manipulation" tabIndex={0} role="button" aria-label="Textura em gel">
+                     <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">TEXTURA</span>
+                     <span className="text-xs md:text-sm font-normal text-brand-latte/90">em gel</span>
+                   </div>
+                   <div className="sm:col-span-2 lg:col-span-1 bg-brand-caramel/20 border border-brand-caramel hover:bg-brand-caramel/30 focus-visible:bg-brand-caramel/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-latte/50 hover:scale-[1.02] focus-visible:scale-[1.02] transition-elegant px-4 py-3 lg:px-5 lg:py-4 rounded-xl flex flex-col items-center justify-center backdrop-blur-sm shadow-lg hover:shadow-xl min-h-[72px] touch-manipulation" tabIndex={0} role="button" aria-label="Tecnologia ASTRO QUAT V3">
+                     <span className="text-sm md:text-base lg:text-lg font-bold text-brand-latte">TECNOLOGIA</span>
+                     <span className="text-xs md:text-sm font-normal text-brand-latte/90">ASTRO QUAT V3®</span>
+                   </div>
+                 </div>
 
                  {/* Primary CTA Button */}
                  <button 
                    onClick={() => setIsModalOpen(true)}
-                   className="min-h-[48px] sm:min-h-[52px] lg:min-h-[56px] px-6 sm:px-8 lg:px-10 rounded-xl hover:scale-105 transition-elegant text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto max-w-sm bg-gradient-to-r from-brand-caramel to-brand-latte text-white hover:shadow-premium active:scale-[0.98] cursor-pointer"
+                   className="min-h-[56px] min-w-[280px] touch-manipulation px-6 sm:px-8 lg:px-10 rounded-xl hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-latte/50 focus:ring-offset-2 transition-elegant text-sm sm:text-base lg:text-lg font-semibold w-full sm:w-auto max-w-sm bg-gradient-to-r from-brand-caramel to-brand-latte text-white hover:shadow-premium active:scale-[0.98] cursor-pointer"
                    aria-label="Solicitar acesso exclusivo ao NIVELA"
+                   tabIndex={0}
                  >
                    SOLICITAR ACESSO EXCLUSIVO
                  </button>

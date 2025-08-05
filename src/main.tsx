@@ -7,13 +7,15 @@ import "./index.css";
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      // Enhanced check for existing registrations
+      // Enhanced check for existing registrations and active service workers
       const existingRegistrations = await navigator.serviceWorker.getRegistrations();
       const hasActiveRegistration = existingRegistrations.some(reg => 
         reg.active && reg.scope === window.location.origin + '/'
       );
       
-      if (hasActiveRegistration || navigator.serviceWorker.controller) {
+      // Prevent duplicate registrations more aggressively
+      if (hasActiveRegistration || navigator.serviceWorker.controller || 
+          window.location.pathname.includes('sw-advanced.js')) {
         return;
       }
       

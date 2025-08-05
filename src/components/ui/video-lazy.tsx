@@ -346,18 +346,19 @@ const VideoLazy = React.memo(({
         <video
           ref={videoRef}
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-300",
+            "w-full h-full object-cover transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50",
             isLoaded ? "opacity-100" : "opacity-0"
           )}
           muted={muted}
           loop={loop}
           playsInline
-          controls={controls}
+          controls={controls || autoPlay}
           preload={preload}
           poster={poster}
           webkit-playsinline="true"
-          aria-label={ariaLabel}
-          title={title}
+          aria-label={ariaLabel || "Vídeo demonstrativo da tecnologia"}
+          title={title || "Demonstração da tecnologia NIVELA"}
+          tabIndex={0}
           onPlay={handleVideoPlay}
           onPause={handleVideoPause}
           onError={handleVideoError}
