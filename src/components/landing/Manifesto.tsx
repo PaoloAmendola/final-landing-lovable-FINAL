@@ -54,10 +54,7 @@ const Manifesto = ({ id }: ManifestoProps) => {
                         error: error.message,
                         url: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4'
                       });
-                      console.error('Manifesto video failed to load:', error);
                     }}
-                    onPlay={() => console.log('✅ Manifesto video playing')}
-                    onPause={() => console.log('⏸️ Manifesto video paused')}
                   />
                   
                   {/* Fallback for video load issues */}
