@@ -230,7 +230,6 @@ const Index = memo(() => {
           <Footer id="contato" />
         </EnhancedErrorBoundary>
       </main>
-      <InstallPrompt />
       <A11yControls />
       <PerformanceMonitor reportingEnabled={!import.meta.env.DEV} />
 

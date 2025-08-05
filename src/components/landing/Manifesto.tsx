@@ -21,10 +21,10 @@ const Manifesto = ({ id }: ManifestoProps) => {
                 
                 {/* Citação principal - Dividida em dois blocos */}
                 <blockquote className="relative space-y-4 lg:space-y-6">
-                  <p className="titulo-h2 font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
                     "Acreditamos que profissionais extraordinários merecem ferramentas à altura de sua expertise.
                   </p>
-                  <p className="titulo-h2 font-montserrat italic text-brand-latte/90 leading-relaxed tracking-wide">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-montserrat italic text-brand-latte/90 leading-relaxed tracking-wide">
                     NIVELA® representa uma nova era em retexturização capilar."
                   </p>
                 </blockquote>

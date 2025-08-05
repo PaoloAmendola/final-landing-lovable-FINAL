@@ -54,12 +54,12 @@ const Footer = ({ id }: FooterProps) => {
             <div className="space-y-6">
               <div className="space-y-4">
                 <img 
-                  src="/lovable-uploads/7cd79495-18bc-415a-84a9-8098c2165eb4.png" 
+                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/favicon/web-app-manifest-192x192.png" 
                   alt="Bem Beauty Professional" 
                   className="h-14 object-contain"
                   loading="lazy"
-                  width="200"
-                  height="56"
+                  width="192"
+                  height="192"
                 />
                 <p className="text-base font-montserrat text-brand-latte leading-relaxed">
                   Cosméticos capilares de alta performance para profissionais do setor da beleza.
