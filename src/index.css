@@ -449,7 +449,7 @@ All colors MUST be HSL.
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* Performance Critical Animations - GPU Optimized */
+  /* Memory-efficient animations */
   @keyframes fade-in-optimized {
     from { 
       opacity: 0; 
@@ -458,17 +458,6 @@ All colors MUST be HSL.
     to { 
       opacity: 1; 
       transform: translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes scale-in-optimized {
-    from { 
-      opacity: 0; 
-      transform: scale3d(0.95, 0.95, 1);
-    }
-    to { 
-      opacity: 1; 
-      transform: scale3d(1, 1, 1);
     }
   }
 
