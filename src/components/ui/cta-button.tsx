@@ -63,23 +63,26 @@ const CTAButton = memo(({
       return;
     }
 
-    // Check if this is a Nuvemshop link
-    if (href && href.includes('nuvemshop.com.br')) {
-      // Track Nuvemshop conversion
+    // Check if this is an official store link
+    if (href && (href.includes('bembeauty.com.br') || href.includes('nuvemshop.com.br'))) {
+      // Track official store conversion
       if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'nuvemshop_redirect', {
+        (window as any).gtag('event', 'cta_acessar_loja', {
           event_category: 'conversion',
-          event_label: 'product_purchase_intent',
+          event_label: 'acesso_loja_oficial',
           value: 1
         });
       }
 
-      // GTM tracking for Nuvemshop
+      // GTM tracking for official store
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
         (window as any).dataLayer.push({
-          event: 'nuvemshop_conversion',
-          conversion_type: 'product_access',
-          product: 'NIVELA'
+          event: 'cta_acessar_loja',
+          conversion_type: 'loja_oficial_access',
+          product: 'NIVELA',
+          utm_source: 'landing',
+          utm_medium: 'botao',
+          utm_campaign: 'acesso_loja'
         });
       }
       
@@ -220,9 +223,18 @@ const CTAStrategies = {
   // Nuvemshop CTA
   nuvemshop: {
     variant: 'primary' as const,
-    text: 'Comprar na Nuvemshop',
+    text: 'ACESSAR LOJA OFICIAL',
     size: 'lg' as const,
     urgency: true
+  },
+  
+  // Official Store CTA with tracking
+  official: {
+    variant: 'primary' as const,
+    text: 'ACESSAR LOJA OFICIAL',
+    size: 'lg' as const,
+    urgency: false,
+    href: 'https://bembeauty.com.br?utm_source=landing&utm_medium=botao&utm_campaign=acesso_loja'
   }
 } as const;
 
