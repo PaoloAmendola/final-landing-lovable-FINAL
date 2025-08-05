@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+// Removed Supabase import - using placeholder
 import { toast } from "sonner";
 import { 
   Store, 
@@ -42,41 +42,12 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
     setIsLoading(true);
     
     try {
-      // Coleta de dados do navegador e UTM
-      const userAgent = navigator.userAgent;
-      const urlParams = new URLSearchParams(window.location.search);
-      const utm_source = urlParams.get('utm_source');
-      const utm_medium = urlParams.get('utm_medium');
-      const utm_campaign = urlParams.get('utm_campaign');
-
-      // Inserção no Supabase
-      const { error } = await supabase
-        .from('distribuidores')
-        .insert({
-          nome: formData.nome,
-          email: formData.email,
-          telefone: formData.telefone,
-          cidade: formData.cidade,
-          ja_distribui: formData.ja_distribui,
-          empresa: formData.empresa || null,
-          apresentacao: formData.apresentacao || null,
-          user_agent: userAgent,
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          origem: 'landing_page'
-        });
-
-      if (error) {
-        console.error('Erro ao inserir distribuidor:', error);
-        toast.error('Erro ao enviar solicitação. Tente novamente.');
-        return;
-      }
+      // Placeholder: Database integration will be configured later
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
       
       setIsSubmitted(true);
       toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
-      console.error('Erro inesperado:', error);
       toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);
@@ -163,27 +134,27 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
   ];
 
   return (
-    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-muted/30">
+    <section id={id} className="py-12 md:py-16 lg:py-20 xl:py-24 px-4 md:px-6 lg:px-12 bg-muted/30">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection className="text-center space-y-4 md:space-y-6 mb-12 md:mb-16">
           <Badge variant="secondary" className="mx-auto bg-primary/10 border-primary/20 text-primary/80 text-xs md:text-sm">
             OPORTUNIDADE EXCLUSIVA
           </Badge>
-          <h2 className="titulo-h2 text-white px-2">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-montserrat text-white tracking-tight leading-[1.1] px-2">
             Seja um Distribuidor
             <span className="block text-brand-caramel">Bem Beauty Professional</span>
           </h2>
           <div className="h-0.5 lg:h-1 bg-gradient-accent mx-auto w-12 md:w-16 lg:w-24"></div>
-          <p className="subtitulo-premium max-w-3xl mx-auto px-4">
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-montserrat max-w-3xl mx-auto px-4">
             Junte-se à revolução da beleza profissional. Distribua produtos premium com tecnologia patenteada e suporte completo para o seu sucesso.
           </p>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 section-spacing items-start">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Benefits Section */}
           <AnimatedSection animation="slide-right" className="space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="space-y-4 md:space-y-6">
-              <h3 className="titulo-h3 px-2">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary font-montserrat px-2">
                 Por que ser nosso distribuidor?
               </h3>
               
@@ -194,7 +165,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="card-standard"
+                    className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-card/50 border border-border/50"
                   >
                     <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <benefit.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
@@ -219,9 +190,9 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
             <Card className="p-4 md:p-6 lg:p-8 bg-card/80 backdrop-blur-sm border-border/50">
               <div className="space-y-4 md:space-y-6">
                 <div className="text-center space-y-2">
-                    <h3 className="titulo-h3">
-                      Quero conhecer o modelo
-                    </h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-primary font-montserrat">
+                    Quero conhecer o modelo
+                  </h3>
                   <p className="text-muted-foreground text-sm md:text-base">
                     Preencha seus dados e receba informações detalhadas
                   </p>
@@ -344,9 +315,11 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                     />
                   </div>
 
-                  <button 
+                  <Button 
                     type="submit" 
-                    className="btn-primary w-full"
+                    variant="premium"
+                    size="lg"
+                    className="w-full font-bold h-12 md:h-14 text-sm md:text-base"
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -357,7 +330,7 @@ const DistributorSection = ({ id }: DistributorSectionProps) => {
                     ) : (
                       "QUERO SER DISTRIBUIDOR"
                     )}
-                  </button>
+                  </Button>
 
                   <p className="text-xs text-muted-foreground text-center leading-relaxed">
                     Ao enviar, você concorda em receber informações sobre nossa oportunidade de distribuição.

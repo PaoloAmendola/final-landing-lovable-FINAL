@@ -54,12 +54,12 @@ const Footer = ({ id }: FooterProps) => {
             <div className="space-y-6">
               <div className="space-y-4">
                 <img 
-                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens//logo-bembeauty-transparente.png" 
+                  src="/lovable-uploads/7cd79495-18bc-415a-84a9-8098c2165eb4.png" 
                   alt="Bem Beauty Professional" 
-                  className="h-12 w-auto object-contain"
+                  className="h-14 object-contain"
                   loading="lazy"
-                  width="150"
-                  height="48"
+                  width="200"
+                  height="56"
                 />
                 <p className="text-base font-montserrat text-brand-latte leading-relaxed">
                   Cosméticos capilares de alta performance para profissionais do setor da beleza.
@@ -85,7 +85,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 2 - Navegação Interna */}
             <div className="space-y-6">
-              <h4 className="titulo-h3 text-brand-latte">
+              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
                 Navegação
               </h4>
               <nav className="space-y-3">
@@ -110,7 +110,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 3 - Contato & Atendimento */}
             <div className="space-y-6">
-              <h4 className="titulo-h3 text-brand-latte">
+              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
                 Contato & Atendimento
               </h4>
               
@@ -158,7 +158,7 @@ const Footer = ({ id }: FooterProps) => {
 
             {/* Coluna 4 - Redes Sociais & Newsletter */}
             <div className="space-y-6">
-              <h4 className="titulo-h3 text-brand-latte">
+              <h4 className="text-xl font-montserrat font-semibold text-brand-latte">
                 Redes Sociais
               </h4>
               

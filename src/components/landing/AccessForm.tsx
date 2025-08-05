@@ -1,14 +1,9 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { LoadingState } from "@/components/ui/loading-state";
-import { FormProgressIndicator } from "@/components/ui/form-progress-indicator";
-import { NetworkStatus } from "@/components/ui/network-status";
-import { useFormProgress } from "@/hooks/use-form-progress";
-import { useFacebookPixel } from "@/hooks/use-facebook-pixel";
-import { useAnalytics } from "@/hooks/use-analytics";
 // Removed Supabase import - using placeholder
 import { toast } from "sonner";
 
@@ -19,7 +14,6 @@ interface AccessFormProps {
 const AccessForm = memo(({ id }: AccessFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [networkError, setNetworkError] = useState(false);
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -32,43 +26,6 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
     telefone: "",
     tipo_estabelecimento: ""
   });
-
-  // Initialize analytics and tracking
-  const { trackConversion, trackInteraction } = useAnalytics();
-  const { trackLead, trackViewContent } = useFacebookPixel({
-    pixelId: 'YOUR_FACEBOOK_PIXEL_ID', // Replace with actual pixel ID
-    enabled: process.env.NODE_ENV === 'production'
-  });
-
-  // Form progress tracking
-  const formFields = [
-    { name: 'nome', required: true, validator: (value: string) => /^[a-zA-ZÀ-ÿ\s]{2,}$/.test(value?.trim() || '') },
-    { name: 'email', required: true, validator: (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value?.trim() || '') },
-    { name: 'telefone', required: true, validator: (value: string) => {
-      const digits = value?.replace(/\D/g, '') || '';
-      return digits.length >= 10 && digits.length <= 11;
-    }},
-    { name: 'tipo_estabelecimento', required: true, validator: (value: string) => !!value?.trim() }
-  ];
-
-  const { progress, markFieldVisited } = useFormProgress({
-    fields: formFields,
-    values: formData
-  });
-
-  // Track form view on mount
-  useEffect(() => {
-    trackConversion({
-      type: 'form_view',
-      section: 'access_form',
-      metadata: { form_id: id || 'acesso' }
-    });
-
-    trackViewContent({
-      content_name: 'access_form',
-      content_category: 'lead_generation'
-    });
-  }, [trackConversion, trackViewContent, id]);
 
   const validateForm = () => {
     const newErrors = { nome: "", email: "", telefone: "", tipo_estabelecimento: "" };
@@ -123,62 +80,15 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
     if (!validateForm()) return;
     
     setIsLoading(true);
-    setNetworkError(false);
     
     try {
-      // Track form submission attempt
-      trackConversion({
-        type: 'form_interaction',
-        section: 'access_form',
-        value: 'submit_attempt',
-        metadata: formData
-      });
-
       // Placeholder: Database integration will be configured later
       await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
       
-      // Track successful submission
-      trackConversion({
-        type: 'form_submit',
-        section: 'access_form',
-        value: 1,
-        metadata: {
-          establishment_type: formData.tipo_estabelecimento,
-          completion_time: Date.now()
-        }
-      });
-
-      // Track Facebook Pixel lead
-      trackLead({
-        content_name: 'nivela_access_form',
-        content_category: 'professional_registration',
-        value: 1
-      });
-
       setIsSubmitted(true);
-      toast.success('Solicitação enviada com sucesso!', {
-        description: 'Nossa equipe entrará em contato em até 24 horas.'
-      });
-
+      toast.success('Solicitação enviada com sucesso!');
     } catch (error) {
-      setNetworkError(true);
-      
-      trackConversion({
-        type: 'error',
-        section: 'access_form',
-        metadata: {
-          error_type: 'submission_failed',
-          error_message: error instanceof Error ? error.message : 'Unknown error'
-        }
-      });
-
-      toast.error('Erro de conexão', {
-        description: 'Verifique sua internet e tente novamente.',
-        action: {
-          label: 'Tentar novamente',
-          onClick: () => handleSubmit(e)
-        }
-      });
+      toast.error('Erro inesperado. Tente novamente.');
     } finally {
       setIsLoading(false);
     }
@@ -186,10 +96,6 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    markFieldVisited(field);
-    
-    // Track field interactions
-    trackInteraction('form_field', 'input', field);
     
     // Real-time validation
     if (field === 'nome' && value.trim().length >= 2) {
@@ -200,11 +106,6 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
       setErrors(prev => ({ ...prev, telefone: "" }));
     } else if (field === 'tipo_estabelecimento' && value.trim()) {
       setErrors(prev => ({ ...prev, tipo_estabelecimento: "" }));
-    }
-
-    // Clear network error when user starts typing
-    if (networkError) {
-      setNetworkError(false);
     }
   };
 
@@ -257,29 +158,6 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
             Preencha apenas 4 campos essenciais para validação profissional.
           </p>
         </div>
-
-        {/* Form Progress */}
-        <div className="mb-6">
-          <FormProgressIndicator 
-            progress={progress}
-            variant="detailed"
-            showDetails={true}
-            className="bg-card/30 backdrop-blur-sm rounded-xl p-4 border border-primary/10"
-          />
-        </div>
-
-        {/* Network Status */}
-        {networkError && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-            <NetworkStatus 
-              showToasts={false}
-              showIndicator={true}
-            />
-            <p className="text-red-400 text-sm mt-2">
-              Problema de conexão detectado. Verifique sua internet e tente novamente.
-            </p>
-          </div>
-        )}
 
         {/* Form */}
         <LoadingState 

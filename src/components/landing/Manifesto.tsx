@@ -9,7 +9,7 @@ interface ManifestoProps {
 
 const Manifesto = ({ id }: ManifestoProps) => {
   return (
-    <section id={id} className="section-standard px-4 md:px-8 lg:px-12 bg-brand-black">
+    <section id={id} className="py-12 md:py-16 lg:py-24 px-4 md:px-8 lg:px-12 bg-brand-black">
       <div className="max-w-6xl mx-auto">
         <div className="space-y-10 md:space-y-14 lg:space-y-18">
           {/* Citação em Destaque - Centralizada */}
@@ -21,10 +21,10 @@ const Manifesto = ({ id }: ManifestoProps) => {
                 
                 {/* Citação principal - Dividida em dois blocos */}
                 <blockquote className="relative space-y-4 lg:space-y-6">
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
+                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte leading-relaxed tracking-wide">
                     "Acreditamos que profissionais extraordinários merecem ferramentas à altura de sua expertise.
                   </p>
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-montserrat italic text-brand-latte/90 leading-relaxed tracking-wide">
+                  <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-montserrat italic text-brand-latte/80 leading-relaxed tracking-wide">
                     NIVELA® representa uma nova era em retexturização capilar."
                   </p>
                 </blockquote>
@@ -38,29 +38,19 @@ const Manifesto = ({ id }: ManifestoProps) => {
               <div className="relative group max-w-3xl lg:max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-lg">
                   <VideoLazy
-                    src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4"
-                    className="aspect-video w-full"
+                    src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//video-manifesto-oficial-compactado.mp4"
+                    className="aspect-video"
                     autoPlay={true}
                     muted={true}
                     loop={true}
-                    controls={true}
+                    controls={false}
                     preload="metadata"
-                    threshold={0.1}
-                    rootMargin="50px"
+                    threshold={0.3}
+                    rootMargin="150px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
-                    onError={(error) => {
-                      logger.error('Erro ao carregar vídeo do manifesto', { 
-                        error: error.message,
-                        url: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4'
-                      });
-                    }}
+                    onError={(error) => logger.error('Erro ao carregar vídeo do manifesto', { error: error.message })}
                   />
-                  
-                  {/* Fallback for video load issues */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-muted/50 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <p className="text-sm text-muted-foreground">Carregando vídeo...</p>
-                  </div>
                 </div>
               </div>
             </AnimatedSection>

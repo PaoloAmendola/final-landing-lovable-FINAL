@@ -1,6 +1,7 @@
-import React, { memo, useCallback } from 'react';
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { memo } from "react";
+import { Card } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { StaggerContainer } from "@/components/ui/stagger-container";
 import { cn } from "@/lib/utils";
 
 interface AmazonIngredientsSectionProps {
@@ -38,46 +39,43 @@ const AmazonIngredientsSection = memo(({ id }: AmazonIngredientsSectionProps) =>
   return (
     <section 
       id={id}
-      className="section-standard bg-gradient-subtle"
+      className="relative py-12 md:py-16 lg:py-20 bg-gradient-to-br from-muted/30 via-background to-background"
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-12">
+      <div className="container mx-auto px-4">
         {/* Header */}
-        <AnimatedSection animation="fade" className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
-          <div className="space-y-4">
-            <h2 className="titulo-h2">
-              Ativos da Amazônia
-            </h2>
-            <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
-          </div>
+        <AnimatedSection animation="fade" className="text-center mb-8 lg:mb-10">
+          <h2 className="text-2xl lg:text-3xl font-bold font-montserrat text-primary">
+            Ativos da Amazônia
+          </h2>
         </AnimatedSection>
 
         {/* Ingredients Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+        <StaggerContainer staggerDelay={0.1} childAnimation="slide-up" className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {amazonIngredients.map((ingredient, index) => (
-            <div 
+            <Card 
               key={ingredient.name}
               className={cn(
-                "card-interactive p-6 h-full",
-                `bg-gradient-to-br ${ingredient.bgGradient}`
+                "relative p-4 transition-elegant duration-300 hover:border-accent/40 hover:scale-[1.02] hover:-translate-y-1 shadow-card hover:shadow-card-hover",
+                `bg-gradient-to-br ${ingredient.bgGradient} border-primary/20`
               )}
             >
-              <div className="relative z-10 space-y-4">
-                <h3 className="titulo-h3 uppercase">
+              <div className="relative z-10">
+                <h3 className="text-lg font-bold text-foreground mb-2 uppercase">
                   {ingredient.name}
                 </h3>
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm text-muted-foreground italic mb-3">
                   {ingredient.scientificName}
                 </p>
-                <p className="text-muted-foreground leading-relaxed text-base">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   {ingredient.description}
                 </p>
-                <div className={cn("inline-flex items-center text-sm font-medium", ingredient.originColor)}>
+                <div className={cn("inline-flex items-center text-xs font-medium", ingredient.originColor)}>
                   • {ingredient.origin}
                 </div>
               </div>
-            </div>
+            </Card>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

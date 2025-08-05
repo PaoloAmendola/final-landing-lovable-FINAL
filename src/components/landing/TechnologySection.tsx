@@ -41,12 +41,12 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
   };
 
   return (
-    <section id={id} className="section-standard px-4 md:px-6 lg:px-12 bg-gradient-subtle">
+    <section id={id} className="py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-gradient-subtle">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20 space-y-6 lg:space-y-8">
           <div className="space-y-4">
-            <h2 className="titulo-h2 px-4 sm:px-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary tracking-tight leading-[1.1] px-4 sm:px-0">
               Tecnologia ASTRO QUAT V3<sup className="text-lg md:text-xl lg:text-2xl">®</sup>
             </h2>
             <div className="h-1 bg-gradient-accent mx-auto w-24"></div>
@@ -54,7 +54,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           
           {/* Descriptive Paragraph */}
           <div className="max-w-5xl mx-auto">
-            <p className="subtitulo-premium">
+            <p className="text-lg lg:text-xl xl:text-2xl text-muted-foreground leading-relaxed">
               Desenvolvida por pesquisa molecular avançada, a tecnologia ASTRO QUAT V3® atua em escala nanométrica, reorganizando as ligações internas da fibra capilar com precisão e segurança, totalmente livre de formol.
             </p>
           </div>
@@ -64,7 +64,7 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
         <div className="block lg:hidden mb-12 flex justify-center">
           <div className="relative w-full max-w-lg">
             <VideoLazy
-              src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4"
+              src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
               className="w-full aspect-[4/3] object-cover rounded-lg"
               autoPlay={false}
               muted={true}
@@ -77,45 +77,34 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
         </div>
 
         {/* Side by Side Layout */}
-        <div className="flex flex-col lg:flex-row section-spacing items-start lg:items-stretch">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
           {/* Process Steps Grid - Left Side */}
           <div className="w-full lg:w-1/2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 relative h-full min-h-[600px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 relative">
               {/* Flow indicators for desktop 2x2 grid */}
               <div className="hidden md:block absolute top-1/4 left-1/2 w-0.5 h-1/2 bg-gradient-to-b from-accent/60 to-accent/30 transform -translate-x-1/2 z-0"></div>
               <div className="hidden md:block absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-accent/60 to-accent/30 transform -translate-y-1/2 z-0"></div>
               
               {processSteps.map((process, index) => (
-                <Card key={process.step} className="card-interactive group relative z-10 h-full min-h-[280px] lg:min-h-[320px]">
-                  <CardContent className="relative h-full flex flex-col p-6 lg:p-8">
+                <Card key={process.step} className="bg-card/40 backdrop-blur-sm border-primary/30 hover:border-accent/60 transition-elegant duration-300 group hover:shadow-card shadow-card relative z-10">
+                  <CardContent className="p-4 lg:p-6 relative">
                     {/* Number positioned half outside, half inside the card */}
-                    <div className="absolute -top-4 -left-4 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-accent rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-xl z-20">
-                      <span className="font-bold text-base lg:text-lg text-brand-black font-montserrat">
+                    <div className="absolute -top-3 -left-3 w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-elegant duration-300 shadow-lg z-20">
+                      <span className="font-bold text-sm text-brand-black font-montserrat">
                         {process.step}
                       </span>
                     </div>
                     
-                    {/* Main content area with better spacing */}
-                    <div className="flex-1 flex flex-col justify-between pt-6 space-y-6">
-                      {/* Title and description section */}
-                      <div className="space-y-4">
-                        <h3 className="titulo-h3 text-xl lg:text-2xl leading-tight">
-                          {process.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed text-base lg:text-lg flex-grow">
-                          {process.description}
-                        </p>
-                      </div>
-                      
-                      {/* Footer section */}
-                      <div className="flex items-center justify-between pt-4 mt-auto">
-                        <Badge variant="secondary" className="text-xs lg:text-sm px-3 py-2 font-medium">
-                          {process.badge}
-                        </Badge>
-                        <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-accent/20 flex items-center justify-center group-hover:bg-gradient-accent/30 transition-colors duration-200 flex-shrink-0">
-                          <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-gradient-accent"></div>
-                        </div>
-                      </div>
+                    <div className="mt-4 space-y-3">
+                      <h3 className="font-bold text-primary text-lg lg:text-xl font-montserrat">
+                        {process.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
+                        {process.description}
+                      </p>
+                      <Badge variant="secondary" className="text-xs mt-3">
+                        {process.badge}
+                      </Badge>
                     </div>
                   </CardContent>
                 </Card>
@@ -124,11 +113,11 @@ const TechnologySection = memo(({ id }: TechnologySectionProps) => {
           </div>
 
           {/* Video Player - Desktop Only (right side) */}
-          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end lg:pl-8">
-            <div className="relative w-full max-w-lg h-full">
+          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-end">
+            <div className="relative w-full max-w-lg">
               <VideoLazy
-                src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4"
-                className="w-full h-full min-h-[600px] object-cover rounded-lg"
+                src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4"
+                className="w-full aspect-[4/3] object-cover rounded-lg"
                 autoPlay={true}
                 muted={true}
                 loop={true}

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { OptimizedImage } from "@/components/ui/optimized-image";
+import { LazyImage } from "@/components/ui/image-lazy";
 
 interface IngredientsSectionProps {
   id?: string;
@@ -11,18 +11,24 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
       name: "MURUMURU",
       scientificName: "Astrocaryum murumuru",
       description: "Manteiga preciosa que restaura e sela as cutículas dos fios, proporcionando proteção duradoura e brilho natural intenso.",
+      image: "/lovable-uploads/d6d587a3-e356-459e-b667-0abd987f7e21.png",
+      altText: "Frutos de Murumuru, ingrediente natural da Amazônia",
       origin: "Floresta Amazônica",
     },
     {
       name: "CUPUAÇU",
       scientificName: "Theobroma grandiflorum",
       description: "Hidratação profunda e prolongada, criando uma barreira protetora contra ressecamento e agressões externas.",
+      image: "/lovable-uploads/53c52afb-b182-46c2-b230-93a48b753bc3.png",
+      altText: "Fruto de Cupuaçu cortado, ingrediente natural da Amazônia",
       origin: "Floresta Amazônica",
     },
     {
       name: "ROMÃ",
       scientificName: "Punica granatum",
       description: "Antioxidante potente que combate os radicais livres, preservando a cor e vitalidade dos cabelos.",
+      image: "/lovable-uploads/2fc5c7fd-9740-405d-bd1d-50855bc94459.png",
+      altText: "Romã cortada, ingrediente rico em antioxidantes",
       origin: "Nativa da Ásia",
     },
   ];
@@ -49,14 +55,13 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
           <div className="w-full lg:w-1/2 flex-shrink-0 lg:h-fit">
             <div className="relative group h-full">
               <div className="relative overflow-hidden rounded-3xl shadow-card hover:shadow-card-hover transition-elegant duration-500 h-full lg:min-h-[750px] flex items-center">
-                <OptimizedImage
+                <LazyImage
                   src="/lovable-uploads/53c7ab29-5be3-441c-9618-051a8cdec3b3.png"
                   alt="Ativos naturais da Amazônia - Ingredientes premium do NIVELA"
                   className="w-full h-full lg:min-h-[750px] object-cover"
                   width={600}
                   height={750}
-                  priority={false}
-                  objectFit="cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/30 to-transparent"></div>
               </div>
@@ -71,6 +76,7 @@ const IngredientsSection = memo(({ id }: IngredientsSectionProps) => {
               <div 
                 key={index}
                 className="group bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 rounded-2xl p-4 lg:p-6 backdrop-blur-sm hover:bg-primary/15 hover:border-accent/30 hover:scale-[1.02] hover:-translate-y-1 transition-elegant duration-300 shadow-card hover:shadow-card-hover"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="space-y-3">
                   <div className="space-y-2">

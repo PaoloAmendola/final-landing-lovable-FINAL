@@ -30,7 +30,7 @@ const CRITICAL_SECTIONS: SectionPreloadMap = {
     priority: 'high'
   },
   'produto': {
-    images: ['https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp'],
+    images: ['https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-destaque.webp'],
     videos: [],
     scripts: [],
     styles: [],
@@ -38,16 +38,16 @@ const CRITICAL_SECTIONS: SectionPreloadMap = {
   },
   'tecnologia': {
     images: [],
-    videos: ['https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4'],
+    videos: ['https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//tecnologia-oficial-compactado.mp4'],
     scripts: [],
     styles: [],
     priority: 'medium'
   },
   'ingredientes': {
     images: [
-      'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/capsaicina-amazonia.webp',
-      'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/andiroba-amazonia.webp',
-      'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/jambu-amazonia.webp'
+      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//capsaicina-amazonia.webp',
+      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//andiroba-amazonia.webp',
+      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//jambu-amazonia.webp'
     ],
     videos: [],
     scripts: [],
@@ -107,7 +107,7 @@ class ResourcePreloader {
       as: 'image'
     });
 
-    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero%20(1).webp', {
+    this.preloadResource('https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp', {
       priority: 'high',
       as: 'image'
     });

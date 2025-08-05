@@ -1,21 +1,7 @@
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://nivela.lovable.app/sitemap.xml
-
-# Performance optimization
-User-agent: *
-Crawl-delay: 1
-
-# Allow all major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
 Allow: /
 
 User-agent: Twitterbot
@@ -24,15 +10,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# Allow images and assets
 User-agent: *
-Allow: /lovable-uploads/
-Allow: /assets/
-Allow: *.css
-Allow: *.js
-Allow: *.png
-Allow: *.jpg
-Allow: *.jpeg
-Allow: *.gif
-Allow: *.svg
-Allow: *.webp
+Allow: /

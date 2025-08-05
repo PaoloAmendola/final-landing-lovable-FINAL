@@ -60,7 +60,7 @@ const useAnalytics = () => {
     }
   }, []);
 
-// Track conversion events
+  // Track conversion events
   const trackConversion = useCallback((event: ConversionEvent) => {
     const analyticsEvent: AnalyticsEvent = {
       name: `conversion_${event.type}`,
@@ -89,44 +89,14 @@ const useAnalytics = () => {
     
     localStorage.setItem('user_journey', JSON.stringify(journey));
 
-    // Track high-value conversions with Facebook Pixel
+    // Track high-value conversions
     if (['form_submit', 'cta_click'].includes(event.type)) {
-      // Google Analytics
       if (typeof window.gtag !== 'undefined') {
         window.gtag('event', 'conversion', {
           send_to: 'AW-CONVERSION_ID', // Replace with actual conversion ID
           event_category: 'engagement',
           event_label: event.type,
           value: event.value || 1
-        });
-      }
-
-      // Facebook Pixel
-      if (typeof window.fbq !== 'undefined') {
-        if (event.type === 'form_submit') {
-          window.fbq('track', 'Lead', {
-            content_category: 'form_submission',
-            content_name: event.section || 'unknown',
-            value: event.value || 1
-          });
-        } else if (event.type === 'cta_click') {
-          window.fbq('track', 'InitiateCheckout', {
-            content_category: 'cta_interaction',
-            content_name: event.section || 'unknown',
-            value: event.value || 1
-          });
-        }
-      }
-
-      // Remarketing pixel for Google Ads
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'page_view', {
-          send_to: 'AW-REMARKETING_ID', // Replace with actual remarketing ID
-          custom_parameters: {
-            ecomm_pagetype: event.type === 'form_submit' ? 'lead' : 'product',
-            ecomm_category: 'beauty_professional',
-            ecomm_prodid: 'nivela_system'
-          }
         });
       }
     }

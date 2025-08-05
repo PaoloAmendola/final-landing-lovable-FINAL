@@ -14,66 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      distribuidores: {
-        Row: {
-          apresentacao: string | null
-          cidade: string
-          created_at: string
-          email: string
-          empresa: string | null
-          id: string
-          ip_address: unknown | null
-          ja_distribui: string
-          nome: string
-          origem: string | null
-          status: string
-          telefone: string
-          updated_at: string
-          user_agent: string | null
-          utm_campaign: string | null
-          utm_medium: string | null
-          utm_source: string | null
-        }
-        Insert: {
-          apresentacao?: string | null
-          cidade: string
-          created_at?: string
-          email: string
-          empresa?: string | null
-          id?: string
-          ip_address?: unknown | null
-          ja_distribui: string
-          nome: string
-          origem?: string | null
-          status?: string
-          telefone: string
-          updated_at?: string
-          user_agent?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-        }
-        Update: {
-          apresentacao?: string | null
-          cidade?: string
-          created_at?: string
-          email?: string
-          empresa?: string | null
-          id?: string
-          ip_address?: unknown | null
-          ja_distribui?: string
-          nome?: string
-          origem?: string | null
-          status?: string
-          telefone?: string
-          updated_at?: string
-          user_agent?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-        }
-        Relationships: []
-      }
       leads_nivela: {
         Row: {
           created_at: string | null
