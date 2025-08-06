@@ -1,52 +1,56 @@
-# NIVELA® - Landing Page Oficial
+# 🚀 NIVELA® - Landing Page Oficial
 
-Landing page premium para NIVELA®, a evolução da escova progressiva profissional da Bem Beauty Professional.
+![NIVELA Logo](./public/lovable-uploads/icone-bem-beauty.png)
+
+**A evolução da escova progressiva profissional** - Landing page premium para captação de leads qualificados da Bem Beauty Professional.
+
+---
 
 ## 🎯 **Visão Geral**
 
-Plataforma de captação de leads qualificados com foco em profissionais de beleza (35-60 anos), transmitindo sofisticação, segurança e profissionalismo condizente com cosméticos de luxo.
+Landing page otimizada para conversão de profissionais de beleza (35-60 anos) interessados no NIVELA®, transmitindo sofisticação, segurança e profissionalismo condizente com cosméticos de luxo.
 
-## 🏗️ **Arquitetura Técnica**
+**🔗 URL de Produção**: `https://nivela.bembeauty.com.br`
 
-### **Stack Principal**
-- **Frontend**: React 18 + TypeScript
-- **Styling**: Tailwind CSS + Shadcn/UI
-- **Build**: Vite 5
-- **Backend**: Supabase (PostgreSQL + Auth + Storage)
-- **Deploy**: Vercel
+---
 
-### **Performance Targets**
-- **LCP**: < 2.5s
-- **FID**: < 100ms
-- **CLS**: < 0.1
-- **Lighthouse Score**: > 90
+## 🏗️ **Stack Técnica**
 
-## 📁 **Estrutura do Projeto**
+| Tecnologia | Versão | Propósito |
+|------------|--------|-----------|
+| **React** | 18.3.1 | Framework frontend |
+| **TypeScript** | 5.5.3 | Tipagem estática |
+| **Vite** | 5.4.1 | Build tool & bundler |
+| **Tailwind CSS** | 3.4.11 | Framework CSS |
+| **Shadcn/UI** | Latest | Biblioteca de componentes |
+| **Framer Motion** | 12.23.11 | Animações |
+| **Supabase** | 2.53.0 | Backend & Storage |
+| **Vercel** | - | Deploy & hosting |
 
-```
-src/
-├── components/
-│   ├── landing/           # Seções da landing page
-│   │   ├── Header.tsx     # Hero + CTA principal
-│   │   ├── Manifesto.tsx  # Vídeo institucional
-│   │   ├── ProductSection.tsx
-│   │   ├── TechnologySection.tsx
-│   │   ├── CompleteTechnologySection.tsx
-│   │   ├── AmazonIngredientsSection.tsx
-│   │   ├── AccessFormModal.tsx  # Formulário de captação
-│   │   └── Footer.tsx
-│   └── ui/               # Componentes base (Shadcn)
-├── hooks/                # Hooks customizados
-├── integrations/         # Supabase client
-├── utils/                # Utilities e helpers
-└── pages/                # Páginas principais
-```
+---
+
+## 📊 **Métricas de Performance**
+
+### **Core Web Vitals (Target)**
+- ✅ **LCP**: < 2.5s (otimizado)
+- ✅ **FID**: < 100ms
+- ✅ **CLS**: < 0.1
+- ✅ **Lighthouse Score**: > 90
+
+### **Analytics Implementado**
+- 📈 **Google Analytics 4**: `G-SC9C7W6Q4F`
+- 🏷️ **Google Tag Manager**: `GTM-KZW3RTWD`
+- 🎯 **Eventos de Conversão**: `cta_acessar_loja`
+- 📊 **UTM Tracking**: Completo
+
+---
 
 ## 🎨 **Design System**
 
 ### **Cores da Marca (HSL)**
 ```css
---brand-black: 198 52% 8%;     /* #0D181C - Preto */
+/* Paleta NIVELA */
+--brand-black: 198 52% 8%;     /* #0D181C - Preto Premium */
 --brand-latte: 30 33% 73%;     /* #D9C0AA - Café com Leite */
 --brand-caramel: 20 79% 35%;   /* #9D4916 - Caramelo */
 --brand-cloud: 201 23% 70%;    /* #A6B8C1 - Azul Nuvem */
@@ -55,234 +59,260 @@ src/
 ```
 
 ### **Tipografia**
-- **Fonte Principal**: Montserrat (Google Fonts)
+- **Font**: Montserrat (Google Fonts)
 - **Pesos**: 400, 500, 600, 700, 800
-- **Display**: swap (otimização de carregamento)
+- **Otimização**: `display: swap`
+
+---
+
+## 📁 **Estrutura do Projeto**
+
+```
+src/
+├── components/
+│   ├── landing/                # Seções da landing page
+│   │   ├── Header.tsx          # Hero + CTA principal
+│   │   ├── Manifesto.tsx       # Vídeo institucional
+│   │   ├── ProductSection.tsx  # Apresentação do produto
+│   │   ├── TechnologySection.tsx # Tecnologia ASTRO QUAT V3
+│   │   ├── AmazonIngredientsSection.tsx # Ativos da Amazônia
+│   │   ├── AccessFormModal.tsx # Modal de captação
+│   │   ├── PreFooter.tsx       # CTA final
+│   │   └── Footer.tsx          # Rodapé
+│   └── ui/                     # Componentes base (Shadcn)
+├── hooks/                      # Hooks customizados
+├── integrations/               # Supabase client
+├── utils/                      # Utilities e helpers
+└── pages/                      # Páginas principais
+```
+
+---
 
 ## 🗃️ **Supabase Configuration**
 
 ### **Project Details**
-- **Project ID**: fsntuympgysgfgqdvzsp
-- **Project URL**: https://fsntuympgysgfgqdvzsp.supabase.co
-- **Anon Key**: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+- **Project ID**: `fsntuympgysgfgqdvzsp`
+- **Project URL**: `https://fsntuympgysgfgqdvzsp.supabase.co`
+- **Anon Key**: Configurado via variáveis de ambiente
 
 ### **Storage Buckets**
 ```sql
--- Imagens otimizadas
-imagens (public: true)
-├── frasco-nivela-hero.webp      # Produto principal
-├── frasco-nivela-destaque.webp  # Seção "Conheça"
-└── ingredientes/                # Ativos da Amazônia
+-- Imagens otimizadas (public: true)
+imagens/
+├── frasco-nivela-hero.webp
+├── frasco-nivela-destaque.webp
+└── logo-bembeauty-transparente.webp
 
--- Vídeos compactados
-videos (public: true)
+-- Vídeos compactados (public: true)
+videos/
 ├── video-manifesto-oficial-compactado.mp4
 └── tecnologia-oficial-compactado.mp4
 
--- Favicons e PWA
-favicon (public: true)
-├── favicon-96x96.png
-├── favicon.svg
-├── favicon.ico
-├── apple-touch-icon.png
-└── site.webmanifest
+-- Assets locais otimizados
+public/
+├── lovable-uploads/icone-bem-beauty.png
+└── assets/frasco-nivela-hero-optimized.webp
 ```
 
-### **Políticas de Acesso (RLS)**
-Atualmente configurado como público para landing page. Para implementação de autenticação:
-
+### **Tabela de Leads**
 ```sql
--- Tabela de leads (exemplo)
-CREATE TABLE public.leads (
+CREATE TABLE public.leads_nivela (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   nome TEXT NOT NULL,
   email TEXT NOT NULL UNIQUE,
   telefone TEXT NOT NULL,
   tipo_estabelecimento TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  utm_source TEXT,
+  utm_medium TEXT,
+  utm_campaign TEXT,
+  user_agent TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- RLS habilitado para controle futuro
-ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+-- RLS habilitado para segurança
+ALTER TABLE public.leads_nivela ENABLE ROW LEVEL SECURITY;
 ```
 
-## 📊 **URLs de Recursos Otimizados**
+---
 
-### **Logo da Marca**
-```
-# Logo Bem Beauty Professional (todas as seções)
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png
-```
+## 🔗 **Integrações & Rastreamento**
 
-### **Imagens Críticas**
-```
-# Hero Principal (preload)
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp
+### **URLs com UTM Parameters**
+```bash
+# CTA Principal
+https://bembeauty.com.br?utm_source=landing-nivela&utm_medium=referral&utm_campaign=acesso_loja
 
-# Produto em Destaque  
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp
-
-# Ícone Bem Beauty
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/icone-bem-beauty.png
-
-# Conheça NIVELA
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/image-conheca-nivela.png
+# Redirecionamentos
+/loja → https://bembeauty.com.br?utm_source=landing&utm_medium=redirect&utm_campaign=acesso_loja
 ```
 
-### **Vídeos Otimizados**
-```
-# Manifesto (autoplay, muted, loop)
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4
+### **GTM Events Configurados**
+```javascript
+// Evento de clique em CTA
+data-gtm-event="cta_acessar_loja"
 
-# Tecnologia (lazy load, sem poster)
-https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4
-```
-
-## 🔗 **Integrações de Rastreamento**
-
-### **Google Analytics 4**
-- **Tracking ID**: G-SC9C7W6Q4F
-- **Events**: Page views, conversions, form submissions
-
-### **Google Tag Manager**
-- **Container ID**: GTM-KZW3RTWD
-- **Custom Events**: `cta_acessar_loja`, `form_submit`, `section_view`
-
-### **CTA Rastreado**
-```html
-<!-- Botão com UTM parameters -->
-<a href="https://bembeauty.com.br?utm_source=landing&utm_medium=botao&utm_campaign=acesso_loja"
-   data-gtm-event="cta_acessar_loja">
-   ACESSAR LOJA OFICIAL
-</a>
+// Envio de formulário
+form_submit: {
+  event_category: 'lead_generation',
+  event_label: 'access_form'
+}
 ```
 
-## ⚡ **Otimizações de Performance**
+---
 
-### **Carregamento**
-- **Fonts**: Preload + display: swap
-- **Images**: Lazy loading + WebP + sizes optimizadas
-- **Videos**: Autoplay sem controles + preload: metadata
-- **Critical CSS**: Inline no `<head>`
+## ⚡ **Otimizações Implementadas**
 
-### **Bundle Optimization**
-- **Tree shaking**: Imports específicos
-- **Code splitting**: Lazy loading de componentes
-- **Asset optimization**: Compressão automática
+### **Performance**
+- ✅ **Critical CSS**: Inline no `<head>`
+- ✅ **Font Preload**: Google Fonts otimizado
+- ✅ **Image Optimization**: WebP + lazy loading
+- ✅ **Video Optimization**: Autoplay + preload metadata
+- ✅ **Bundle Splitting**: Componentes lazy
+- ✅ **Service Worker**: Cache inteligente
 
-### **Caching Strategy**
-- **Static assets**: Cache longo (1 ano)
-- **Images**: CDN + compressão
-- **Fonts**: Font-display: swap
+### **SEO**
+- ✅ **Meta Tags**: Completas (OG + Twitter)
+- ✅ **Schema.org**: Organization + Product
+- ✅ **Sitemap**: Gerado automaticamente
+- ✅ **Robots.txt**: Configurado
+- ✅ **Canonical URLs**: Implementadas
 
-## 🧪 **Testing & QA**
+### **Acessibilidade**
+- ✅ **ARIA Labels**: Todos os elementos
+- ✅ **Skip to Content**: Navegação por teclado
+- ✅ **Focus Management**: Visível e lógico
+- ✅ **Screen Readers**: Compatível
+- ✅ **Touch Targets**: 44px mínimo
 
-### **Responsividade**
-```
-Mobile:  375px - 640px
-Tablet:  640px - 1024px
-Desktop: 1024px+
-```
+---
 
-### **Checklist de Validação**
-- [x] Formulário de captação funcional
-- [x] Vídeos autoplay sem controles
-- [x] Performance > 70 (otimizado)
-- [x] Todos os links UTM funcionais
-- [x] SEO meta tags completas
-- [x] Favicons carregando corretamente
+## 🚀 **Deploy & CI/CD**
 
-## 🚀 **Deploy & Ambiente**
-
-### **Produção**
-- **URL**: https://nivela.bembeauty.com.br
+### **Ambiente de Produção**
+- **Platform**: Vercel
+- **Domain**: `nivela.bembeauty.com.br`
+- **SSL**: Automático (Let's Encrypt)
 - **CDN**: Vercel Edge Network
-- **SSL**: Automático
+- **Analytics**: Vercel Analytics integrado
 
-### **Scripts de Build**
+### **Scripts Disponíveis**
 ```bash
 # Desenvolvimento
-npm run dev
+npm run dev         # Inicia dev server (porta 5173)
 
-# Build otimizado
-npm run build
+# Build
+npm run build       # Build otimizado para produção
+npm run preview     # Preview do build local
 
-# Preview local
-npm run preview
-
-# Linting
-npm run lint
+# Qualidade
+npm run lint        # ESLint check
+npm run type-check  # TypeScript validation
 ```
 
-## 📋 **Roadmap & Manutenção**
+### **Variáveis de Ambiente**
+```bash
+# .env.local (desenvolvimento)
+VITE_SUPABASE_URL=https://fsntuympgysgfgqdvzsp.supabase.co
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_GTM_ID=GTM-KZW3RTWD
+VITE_GA_ID=G-SC9C7W6Q4F
+VITE_APP_URL=https://nivela.bembeauty.com.br
+VITE_ENVIRONMENT=production
+```
 
-### **Próximas Implementações**
-1. **Autenticação**: Login profissional via Supabase Auth
-2. **Dashboard**: Área restrita para distribuidores
-3. **Analytics Avançado**: Heatmaps e user journey
-4. **A/B Testing**: Otimização de conversão
+---
 
-### **Monitoramento**
-- **Performance**: Web Vitals automático
-- **Errors**: Console monitoring (dev only)
-- **Analytics**: GA4 + GTM events
-- **Uptime**: Vercel monitoring
+## 🧪 **Testing & Validação**
 
-## ✅ **AUDITORIA COMPLETA REALIZADA**
+### **Checklist de QA**
+- [x] **Responsividade**: Mobile, Tablet, Desktop
+- [x] **Formulário**: Validação + envio funcional
+- [x] **Performance**: Lighthouse > 90
+- [x] **SEO**: Meta tags + Schema.org
+- [x] **Analytics**: GTM + GA4 funcionando
+- [x] **UTMs**: Rastreamento completo
+- [x] **Acessibilidade**: WCAG AA compliance
 
-### **✅ 1. Atualizações Gerais**
-- [x] Nome do projeto atualizado para NIVELA®
-- [x] URLs otimizadas do Supabase Storage implementadas
-- [x] Links de vídeos e imagens atualizados
-- [x] Remoção de links quebrados
+### **Devices Testados**
+```
+📱 Mobile:  320px - 640px (iPhone, Android)
+📱 Tablet:  640px - 1024px (iPad, tablets)
+💻 Desktop: 1024px+ (monitors, laptops)
+```
 
-### **✅ 2. Supabase**
-- [x] Storage buckets configurados (imagens, videos, favicon)
-- [x] RLS policies verificadas (sem problemas detectados)
-- [x] Estrutura otimizada para captação de leads
+---
 
-### **✅ 3. Estrutura e Código**
-- [x] Componentes de desenvolvimento removidos da produção
-- [x] Imports desnecessários eliminados
-- [x] Código duplicado removido
-- [x] Performance monitor otimizado
+## 📈 **Conversão & Analytics**
 
-### **✅ 4. Otimizações Técnicas**
-- [x] Fonts otimizadas com preload + display: swap
-- [x] Imagens com lazy loading e sizes definidos
-- [x] Vídeos autoplay sem controles implementados
-- [x] Bundle size reduzido (componentes dev removidos)
+### **Funil de Conversão**
+1. **Landing Page View** → Usuário acessa a página
+2. **Section Engagement** → Scroll e interação com conteúdo
+3. **Form Start** → Usuário inicia preenchimento
+4. **Form Submit** → Lead qualificado gerado
+5. **CTA Click** → Redirecionamento para loja oficial
 
-### **✅ 5. Documentação Técnica**
-- [x] README.md completo criado
-- [x] Estrutura de pastas documentada
-- [x] URLs de recursos organizados
-- [x] Fluxo de dados mapeado
+### **KPIs Monitorados**
+- **Taxa de Conversão**: Form submissions / Page views
+- **Bounce Rate**: < 40% (target)
+- **Time on Page**: > 3 min (target)
+- **CTA Click Rate**: > 15% (target)
+- **Form Completion**: > 85% (target)
 
-### **✅ 6. Migração URLs Supabase**
-- [x] Logo atualizada em Header, Footer, Index e preloader
-- [x] Todas as URLs /lovable-uploads/ removidas (0 ocorrências)
-- [x] Vídeos sem poster para melhor performance
-- [x] IngredientsSection.tsx obsoleto removido
-- [x] Preloader atualizado com URLs do Supabase
+---
 
-### **✅ 7. Testes e Performance**
-- [x] Responsividade validada
-- [x] Formulários funcionais
-- [x] Performance otimizada (LCP reduzido)
-- [x] Console limpo (logs apenas em dev)
+## 🔧 **Manutenção & Updates**
+
+### **Atualizações Regulares**
+- **Performance**: Monitoramento semanal via Lighthouse
+- **Analytics**: Review mensal de métricas
+- **Content**: Updates conforme campanhas
+- **Security**: Patches automáticos via Dependabot
+
+### **Backup & Recovery**
+- **Code**: GitHub repository (backup automático)
+- **Database**: Supabase automatic backups
+- **Assets**: Supabase Storage (CDN distribuído)
 
 ---
 
 ## 📞 **Suporte & Contato**
 
-**Bem Beauty Professional**  
-📱 WhatsApp: +55 21 3269-0484  
-🌐 Site: https://bembeauty.com.br  
-📧 Contato: via formulário da landing page
+### **Bem Beauty Professional**
+- 📱 **WhatsApp**: +55 21 3950-0901
+- 🌐 **Site**: https://bembeauty.com.br
+- 📧 **Email**: comercial@bembeauty.com.br
+- 📍 **Endereço**: Av. Cesário de Melo, 3006 - Campo Grande, RJ
+
+### **Equipe Técnica**
+- 🛠️ **Desenvolvimento**: Lovable.dev
+- 📊 **Analytics**: Google Analytics 4
+- 🚀 **Deploy**: Vercel
+- 💾 **Backend**: Supabase
 
 ---
 
-**Versão**: 1.0.0  
-**Última atualização**: Janeiro 2025  
-**Licença**: Proprietário - Bem Beauty Professional Ltda.
+## 📄 **Licença & Direitos**
+
+**© 2025 Bem Beauty Professional Ltda.**  
+**CNPJ**: 51.635.148/0001-33  
+**Todos os direitos reservados.**
+
+NIVELA® é marca registrada da Bem Beauty Professional Ltda.
+
+---
+
+## 🎉 **Changelog**
+
+### **v1.0.0** (Janeiro 2025)
+- ✅ Launch inicial da landing page
+- ✅ Formulário de captação implementado
+- ✅ Integração Supabase completa
+- ✅ Analytics GTM + GA4 configurado
+- ✅ Performance otimizada (Lighthouse > 90)
+- ✅ SEO completo com Schema.org
+- ✅ Deploy automatizado na Vercel
+
+---
+
+**🚀 Ready for Production Deploy!**

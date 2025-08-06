@@ -12,23 +12,23 @@
   "lang": "pt-BR",
   "screenshots": [
     {
-      "src": "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp",
-      "sizes": "1200x630",
+      "src": "/assets/frasco-nivela-hero-optimized.webp",
+      "sizes": "512x512",
       "type": "image/webp",
       "form_factor": "wide"
     }
   ],
   "icons": [
     {
-      "src": "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/bem-beauty-logo.svg",
+      "src": "/lovable-uploads/icone-bem-beauty.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/bem-beauty-logo.svg",
+      "src": "/lovable-uploads/icone-bem-beauty.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

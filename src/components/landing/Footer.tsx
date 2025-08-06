@@ -54,7 +54,7 @@ const Footer = ({ id }: FooterProps) => {
             <div className="space-y-6">
               <div className="space-y-4">
                 <img 
-                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.webp" 
+                  src="/lovable-uploads/icone-bem-beauty.png" 
                   alt="Bem Beauty Professional" 
                   className="h-14 object-contain"
                   loading="lazy"
@@ -233,26 +233,26 @@ const Footer = ({ id }: FooterProps) => {
                  CNPJ: 51.635.148/0001-33
                </p>
              </div>
-            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
-              <a
-                href="/privacidade"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant inline-flex items-center space-x-1"
-              >
-                <span>Política de Privacidade</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-              <a
-                href="/termos"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant inline-flex items-center space-x-1"
-              >
-                <span>Termos de Uso</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </div>
+             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
+               <a
+                 href="https://bembeauty.com.br/politica-de-privacidade"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-sm font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant inline-flex items-center space-x-1"
+               >
+                 <span>Política de Privacidade</span>
+                 <ExternalLink className="h-3 w-3" />
+               </a>
+               <a
+                 href="https://bembeauty.com.br/termos-de-uso"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-sm font-montserrat text-brand-cloud hover:text-brand-latte transition-elegant inline-flex items-center space-x-1"
+               >
+                 <span>Termos de Uso</span>
+                 <ExternalLink className="h-3 w-3" />
+               </a>
+             </div>
           </div>
         </div>
       </div>

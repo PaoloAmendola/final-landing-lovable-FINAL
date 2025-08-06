@@ -383,10 +383,12 @@ const AccessForm = memo(({ id }: AccessFormProps) => {
             </p>
           </div>
           <a
-            href="https://www.bembeauty.com.br/collections/nivela"
+            href="https://bembeauty.com.br?utm_source=landing-nivela&utm_medium=referral&utm_campaign=acesso_loja"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-semibold text-base text-brand-black bg-gradient-accent hover:scale-105 active:scale-95 transition-elegant duration-300 shadow-lg hover:shadow-xl border border-accent/20"
+            data-gtm-event="cta_acessar_loja"
+            aria-label="Acessar loja oficial Bem Beauty - NIVELA"
           >
             ACESSAR LOJA OFICIAL
           </a>
