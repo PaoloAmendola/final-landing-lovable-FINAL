@@ -23,6 +23,7 @@ import { usePWA } from "@/hooks/use-pwa";
 import { usePerformance } from "@/hooks/use-performance";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { usePerformanceOptimization } from "@/hooks/use-performance-optimization";
+import { performanceMonitor } from '@/utils/performance-monitor';
 import { useEnhancedSEO, generateProductSchema, generateOrganizationSchema } from "@/components/ui/enhanced-seo";
 import { useAccessibilityEnhancements, announceToScreenReader } from "@/components/ui/enhanced-accessibility";
 import { SkipToContent } from "@/components/ui/skip-to-content";
@@ -142,6 +143,16 @@ const Index = memo(() => {
         });
       }
     }
+    
+    // Performance monitoring
+    setTimeout(() => {
+      const score = performanceMonitor.getPerformanceScore();
+      console.log('🎯 Performance Score:', score);
+      
+      if (score < 70) {
+        console.warn('⚠️ Performance below target. Check suggestions above.');
+      }
+    }, 5000);
   }, [metrics, trackPerformance, trackConversion]);
 
   // Track section views with Intersection Observer - Optimized

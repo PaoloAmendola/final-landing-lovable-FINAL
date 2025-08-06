@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
+      treeshake: true,
       output: {
         manualChunks: {
           // Vendor chunk for React ecosystem
@@ -43,12 +44,23 @@ export default defineConfig(({ mode }) => ({
           
           // Form handling chunk
           forms: ['react-hook-form', '@hookform/resolvers', 'zod']
-        }
+        },
+        
+        // Optimize chunk naming for better caching
+        chunkFileNames: (chunkInfo) => {
+          const name = chunkInfo.name;
+          if (name === 'vendor') return '[name].[hash].js';
+          if (name === 'ui') return '[name].[hash].js';
+          return '[name]-[hash].js';
+        },
+        
+        // Optimize asset naming
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
     
     // Optimize bundle size
-    target: 'esnext',
+    target: 'es2020',
     minify: 'esbuild',
     
     // CSS optimization
@@ -60,7 +72,7 @@ export default defineConfig(({ mode }) => ({
     // Optimize chunk size warnings
     chunkSizeWarningLimit: 1000,
     
-    // Asset optimization
+    // Asset optimization - inline smaller assets
     assetsInlineLimit: 4096
   },
   
