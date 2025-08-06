@@ -34,7 +34,7 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
             <AnimatedSection animation="slide-right" delay={0.4}>
               <div className="relative group">
                 <LazyImage 
-                  src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-destaque.webp" 
+                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp" 
                   alt="NIVELA® Retexturizador Hidro Nutritivo 1kg - Produto em destaque com textura gel inovadora"
                   className="w-full max-w-sm md:max-w-md lg:max-w-lg object-contain drop-shadow-2xl group-hover:scale-105 transition-elegant duration-500"
                   width={600}

@@ -54,7 +54,7 @@ const Index = memo(() => {
       'astro quat', 'amazônia', 'bem beauty', 'progressive brush'
     ],
     canonical: window.location.href,
-    ogImage: 'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp',
+    ogImage: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
     ogType: 'product',
     locale: 'pt_BR',
     alternateLocales: ['en_US', 'es_ES'],
@@ -62,7 +62,7 @@ const Index = memo(() => {
       name: 'NIVELA® - Retexturizador Hidro Nutritivo',
       description: 'Produto revolucionário com tecnologia BemTech e ingredientes da Amazônia',
       brand: 'Bem Beauty Professional',
-      image: 'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens//frasco-nivela-hero.webp',
+      image: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
       url: window.location.href,
       availability: 'PreOrder'
     })
@@ -90,8 +90,8 @@ const Index = memo(() => {
     
     // Start preloading critical resources
     preloadOptimized([
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
-      'https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp'
+      'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
+      'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp'
     ]);
     
     // Complete optimization after initial render
