@@ -38,15 +38,15 @@ const Manifesto = ({ id }: ManifestoProps) => {
               <div className="relative group max-w-3xl lg:max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-lg">
                   <VideoLazy
-                    src="https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos//video-manifesto-oficial-compactado.mp4"
+                    src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4"
                     className="aspect-video"
                     autoPlay={true}
                     muted={true}
                     loop={true}
                     controls={false}
                     preload="metadata"
-                    threshold={0.3}
-                    rootMargin="150px"
+                    threshold={0.1}
+                    rootMargin="100px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
                     onError={(error) => logger.error('Erro ao carregar vídeo do manifesto', { error: error.message })}
