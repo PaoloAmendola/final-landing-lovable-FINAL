@@ -42,7 +42,7 @@ const Header = memo(({ id }: HeaderProps) => {
       {/* Navigation */}
       <nav className="w-full px-4 md:px-8 lg:px-12 py-8 flex justify-center items-center relative z-10">
         <PerformanceAwareImage 
-          src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.webp"
+          src="/lovable-uploads/icone-bem-beauty.png"
           alt="Bem Beauty Professional - Logo da marca"
           className="h-8 md:h-10 w-auto object-contain"
           width={160}
@@ -113,11 +113,11 @@ const Header = memo(({ id }: HeaderProps) => {
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
                 <PerformanceAwareImage 
-                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp"
+                  src="/assets/frasco-nivela-hero-optimized.webp"
                   alt="NIVELA® - Retexturizador hidro nutritivo de 1kg sendo apresentado por mãos profissionais"
                   className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto object-contain drop-shadow-2xl"
-                  width={640}
-                  height={640}
+                  width={512}
+                  height={512}
                   sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1024px) 416px, (max-width: 1280px) 480px, 576px"
                   priority={true}
                   loading="eager"
