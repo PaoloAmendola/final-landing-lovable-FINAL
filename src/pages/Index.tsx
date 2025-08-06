@@ -73,7 +73,7 @@ const Index = memo(() => {
       generateOrganizationSchema({
         name: 'Bem Beauty Professional',
         url: window.location.origin,
-        logo: '/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png'
+        logo: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png'
       })
     ]
   });

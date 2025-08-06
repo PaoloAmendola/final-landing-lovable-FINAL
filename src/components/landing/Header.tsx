@@ -42,12 +42,7 @@ const Header = memo(({ id }: HeaderProps) => {
       {/* Navigation */}
       <nav className="w-full px-4 md:px-8 lg:px-12 py-8 flex justify-center items-center relative z-10">
         <PerformanceAwareImage 
-          src={optimizeImage("/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png", { 
-            width: 200, 
-            height: 50, 
-            quality: 90,
-            format: 'webp'
-          })}
+          src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png"
           alt="Bem Beauty Professional - Logo da marca"
           className="h-8 md:h-10 w-auto object-contain"
           width={160}

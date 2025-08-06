@@ -102,7 +102,7 @@ class ResourcePreloader {
    */
   private preloadCriticalResources() {
     // Critical images for hero section
-    this.preloadResource('/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png', {
+    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png', {
       priority: 'high',
       as: 'image'
     });

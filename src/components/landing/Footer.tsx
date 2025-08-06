@@ -54,7 +54,7 @@ const Footer = ({ id }: FooterProps) => {
             <div className="space-y-6">
               <div className="space-y-4">
                 <img 
-                  src="/lovable-uploads/7cd79495-18bc-415a-84a9-8098c2165eb4.png" 
+                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png" 
                   alt="Bem Beauty Professional" 
                   className="h-14 object-contain"
                   loading="lazy"
