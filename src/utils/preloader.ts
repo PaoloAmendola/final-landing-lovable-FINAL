@@ -102,12 +102,12 @@ class ResourcePreloader {
    */
   private preloadCriticalResources() {
     // Critical images for hero section
-    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png', {
+    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.webp', {
       priority: 'high',
       as: 'image'
     });
 
-    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero%20(1).webp', {
+    this.preloadResource('https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp', {
       priority: 'high',
       as: 'image'
     });

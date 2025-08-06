@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { StaggerContainer } from "@/components/ui/stagger-container";
 import { ParallaxContainer } from "@/components/ui/parallax-container";
-import { LazyImage } from "@/components/ui/image-lazy";
+import { PerformanceAwareImage } from "@/components/ui/performance-aware-image";
 
 interface ProductSectionProps {
   id?: string;
@@ -33,15 +33,16 @@ const ProductSection = memo(({ id }: ProductSectionProps) => {
           <ParallaxContainer speed="slow" className="relative flex items-center justify-center order-1 lg:order-1">
             <AnimatedSection animation="slide-right" delay={0.4}>
               <div className="relative group">
-                <LazyImage 
+                <PerformanceAwareImage 
                   src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp" 
                   alt="NIVELA® Retexturizador Hidro Nutritivo 1kg - Produto em destaque com textura gel inovadora"
                   className="w-full max-w-sm md:max-w-md lg:max-w-lg object-contain drop-shadow-2xl group-hover:scale-105 transition-elegant duration-500"
                   width={600}
                   height={600}
                   sizes="(max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={true}
-                  fallback="/placeholder.svg"
+                  priority={false}
+                  loading="lazy"
+                  placeholder="skeleton"
                 />
                 {/* Enhanced product glow effect */}
                 <div className="absolute inset-0 bg-gradient-accent/20 rounded-full blur-3xl -z-10 scale-75 group-hover:scale-90 transition-elegant duration-500"></div>
