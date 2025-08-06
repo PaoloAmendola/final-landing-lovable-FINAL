@@ -144,15 +144,21 @@ const Index = memo(() => {
       }
     }
     
-    // Performance monitoring
-    setTimeout(() => {
+    // Performance monitoring - single check after 5s
+    const performanceTimer = setTimeout(() => {
       const score = performanceMonitor.getPerformanceScore();
-      console.log('🎯 Performance Score:', score);
+      console.log('🎯 Final Performance Score:', score);
       
       if (score < 70) {
-        console.warn('⚠️ Performance below target. Check suggestions above.');
+        console.warn('⚠️ Performance optimization needed');
+      } else if (score >= 90) {
+        console.log('🎉 Excellent performance achieved!');
       }
     }, 5000);
+    
+    return () => {
+      clearTimeout(performanceTimer);
+    };
   }, [metrics, trackPerformance, trackConversion]);
 
   // Track section views with Intersection Observer - Optimized

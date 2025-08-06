@@ -19,6 +19,7 @@ interface ResourceTiming {
 }
 
 class PerformanceMonitor {
+  private hasAlerted = false;
   private metrics: PerformanceMetrics = {
     lcp: null,
     fcp: null,
@@ -63,10 +64,11 @@ class PerformanceMonitor {
         const lastEntry = entries[entries.length - 1] as any;
         this.metrics.lcp = lastEntry.startTime;
         
-        // Alert if LCP is critical
-        if (this.metrics.lcp > 4000) {
+        // Alert if LCP is critical (throttled)
+        if (this.metrics.lcp > 4000 && !this.hasAlerted) {
           console.warn('🚨 Critical LCP detected:', this.metrics.lcp + 'ms');
           this.suggestLCPOptimizations();
+          this.hasAlerted = true;
         }
       }
     });
@@ -155,8 +157,8 @@ class PerformanceMonitor {
         
         this.resourceTimings.push(resourceTiming);
         
-        // Alert for slow resources
-        if (resourceTiming.duration > 1000) {
+        // Alert for slow resources (throttled)
+        if (resourceTiming.duration > 2000 && this.resourceTimings.length < 5) {
           console.warn('🐌 Slow resource detected:', resourceTiming);
         }
       });
