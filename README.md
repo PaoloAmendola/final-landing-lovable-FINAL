@@ -31,7 +31,8 @@ src/
 │   │   ├── Manifesto.tsx  # Vídeo institucional
 │   │   ├── ProductSection.tsx
 │   │   ├── TechnologySection.tsx
-│   │   ├── IngredientsSection.tsx
+│   │   ├── CompleteTechnologySection.tsx
+│   │   ├── AmazonIngredientsSection.tsx
 │   │   ├── AccessFormModal.tsx  # Formulário de captação
 │   │   └── Footer.tsx
 │   └── ui/               # Componentes base (Shadcn)
@@ -107,22 +108,34 @@ ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 
 ## 📊 **URLs de Recursos Otimizados**
 
+### **Logo da Marca**
+```
+# Logo Bem Beauty Professional (todas as seções)
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/logo-bembeauty-transparente.png
+```
+
 ### **Imagens Críticas**
 ```
 # Hero Principal (preload)
-https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp
 
-# Produto em Destaque
-https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp
+# Produto em Destaque  
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-destaque.webp
+
+# Ícone Bem Beauty
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/icone-bem-beauty.png
+
+# Conheça NIVELA
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/image-conheca-nivela.png
 ```
 
 ### **Vídeos Otimizados**
 ```
 # Manifesto (autoplay, muted, loop)
-https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/video-manifesto-oficial-compactado.mp4
 
-# Tecnologia (lazy load)
-https://xnexfhgtqlryfkyuvihq.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4
+# Tecnologia (lazy load, sem poster)
+https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/videos/tecnologia-oficial-compactado.mp4
 ```
 
 ## 🔗 **Integrações de Rastreamento**
@@ -246,7 +259,14 @@ npm run lint
 - [x] URLs de recursos organizados
 - [x] Fluxo de dados mapeado
 
-### **✅ 6. Testes e Performance**
+### **✅ 6. Migração URLs Supabase**
+- [x] Logo atualizada em Header, Footer, Index e preloader
+- [x] Todas as URLs /lovable-uploads/ removidas (0 ocorrências)
+- [x] Vídeos sem poster para melhor performance
+- [x] IngredientsSection.tsx obsoleto removido
+- [x] Preloader atualizado com URLs do Supabase
+
+### **✅ 7. Testes e Performance**
 - [x] Responsividade validada
 - [x] Formulários funcionais
 - [x] Performance otimizada (LCP reduzido)
