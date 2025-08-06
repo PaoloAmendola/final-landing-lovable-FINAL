@@ -118,12 +118,7 @@ const Header = memo(({ id }: HeaderProps) => {
               <div className="relative w-full flex justify-center lg:justify-end max-w-lg lg:max-w-none">
                 {/* Product Image */}
                 <PerformanceAwareImage 
-                  src={optimizeImage("https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp", {
-                    width: 640,
-                    height: 640,
-                    quality: 85,
-                    format: 'webp'
-                  })}
+                  src="https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp"
                   alt="NIVELA® - Retexturizador hidro nutritivo de 1kg sendo apresentado por mãos profissionais"
                   className="w-80 sm:w-96 md:w-[26rem] lg:w-[30rem] xl:w-[36rem] 2xl:w-[40rem] h-auto object-contain drop-shadow-2xl"
                   width={640}
@@ -131,8 +126,7 @@ const Header = memo(({ id }: HeaderProps) => {
                   sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1024px) 416px, (max-width: 1280px) 480px, 576px"
                   priority={true}
                   loading="eager"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                  placeholder="skeleton"
                 />
                 
                 {/* Enhanced spotlight glow effect */}

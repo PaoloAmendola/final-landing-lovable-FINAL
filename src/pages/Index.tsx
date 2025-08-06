@@ -45,27 +45,37 @@ const Index = memo(() => {
     }
   });
 
-  // Enhanced SEO - Otimizado
+  // Enhanced SEO - Completo e Otimizado
   useEnhancedSEO({
     title: 'NIVELA® - Revolução Beauty Tech | Escova Progressiva Sem Formol',
-    description: 'NIVELA® - Escova progressiva revolucionária com tecnologia ASTRO QUAT V3®. Sem formol, com ativos da Amazônia e 30% mais rendimento.',
+    description: 'NIVELA® - Escova progressiva revolucionária com tecnologia ASTRO QUAT V3®. Sem formol, com ativos da Amazônia e 30% mais rendimento. Transforme cabelos com tecnologia patenteada.',
     keywords: [
       'nivela', 'escova progressiva', 'sem formol', 'tecnologia capilar', 
-      'astro quat', 'amazônia', 'bem beauty', 'progressive brush'
+      'astro quat v3', 'amazônia', 'bem beauty', 'progressive brush',
+      'tratamento capilar', 'alisamento', 'hidratação', 'nutrição',
+      'cabelo liso', 'salon professional', 'beauty tech', 'inovação',
+      'retexturizador', 'hidro nutritivo', 'textura gel'
     ],
     canonical: window.location.href,
     ogImage: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
     ogType: 'product',
     locale: 'pt_BR',
     alternateLocales: ['en_US', 'es_ES'],
-    structuredData: generateProductSchema({
-      name: 'NIVELA® - Retexturizador Hidro Nutritivo',
-      description: 'Produto revolucionário com tecnologia BemTech e ingredientes da Amazônia',
-      brand: 'Bem Beauty Professional',
-      image: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
-      url: window.location.href,
-      availability: 'PreOrder'
-    })
+    structuredData: [
+      generateProductSchema({
+        name: 'NIVELA® - Retexturizador Hidro Nutritivo 1kg',
+        description: 'Produto revolucionário com tecnologia ASTRO QUAT V3® e ingredientes da Amazônia. Escova progressiva sem formol com textura gel inovadora.',
+        brand: 'Bem Beauty Professional',
+        image: 'https://fsntuympgysgfgqdvzsp.supabase.co/storage/v1/object/public/imagens/frasco-nivela-hero.webp',
+        url: window.location.href,
+        availability: 'PreOrder'
+      }),
+      generateOrganizationSchema({
+        name: 'Bem Beauty Professional',
+        url: window.location.origin,
+        logo: '/lovable-uploads/f576ae9a-1852-4645-bbb2-d9b8594bef91.png'
+      })
+    ]
   });
 
   // Enhanced accessibility
