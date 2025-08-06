@@ -23,27 +23,49 @@ export default defineConfig(({ mode }) => ({
       treeshake: true,
       output: {
         manualChunks: {
-          // Vendor chunk for React ecosystem
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // Core framework - critical path
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           
-          // UI components chunk
-          ui: [
-            '@radix-ui/react-accordion',
+          // Query and state management
+          'vendor-query': ['@tanstack/react-query'],
+          
+          // Essential UI framework (consolidated to reduce chunks)
+          'vendor-ui-core': [
+            '@radix-ui/react-slot',
+            '@radix-ui/react-tooltip',
             '@radix-ui/react-dialog',
             '@radix-ui/react-dropdown-menu',
             '@radix-ui/react-popover',
-            '@radix-ui/react-select',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
+            '@radix-ui/react-scroll-area',
             '@radix-ui/react-label',
-            '@radix-ui/react-slot'
+            '@radix-ui/react-select'
           ],
           
-          // Animation and utilities chunk
-          utils: ['framer-motion', 'lucide-react', 'clsx', 'tailwind-merge'],
+          // Secondary UI components (consolidated)
+          'vendor-ui-extended': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-checkbox',
+            '@radix-ui/react-radio-group',
+            '@radix-ui/react-switch',
+            '@radix-ui/react-navigation-menu',
+            '@radix-ui/react-collapsible',
+            '@radix-ui/react-toast'
+          ],
           
-          // Form handling chunk
-          forms: ['react-hook-form', '@hookform/resolvers', 'zod']
+          // Animation and interactions
+          'vendor-animation': ['framer-motion'],
+          
+          // Utilities (consolidated)
+          'vendor-utils': ['clsx', 'tailwind-merge', 'class-variance-authority', 'lucide-react'],
+          
+          // Specialized features (lazy-loaded)
+          'vendor-forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
+          'vendor-charts': ['recharts'],
+          'vendor-misc': ['sonner', 'vaul', 'cmdk', 'date-fns', 'input-otp', 'embla-carousel-react', 'react-day-picker', 'next-themes', 'react-resizable-panels'],
+          
+          // Backend
+          'vendor-supabase': ['@supabase/supabase-js']
         },
         
         // Optimize chunk naming for better caching

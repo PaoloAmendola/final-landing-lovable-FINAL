@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { logger } from '@/utils/logger';
+import productionLogger from '@/utils/production-logger';
 
 // Global analytics interface
 declare global {
@@ -46,17 +46,18 @@ const useAnalytics = () => {
       }
     };
 
-    logger.info('Analytics: Page View', event);
-    
-    // In production, send to analytics service
+    // In production, send to analytics service with reduced logging
     if (process.env.NODE_ENV === 'production') {
-      // Integration with Google Analytics, Mixpanel, etc.
+      productionLogger.info('page_view', { path });
+      
       if (typeof window.gtag !== 'undefined') {
         window.gtag('event', 'page_view', {
           page_path: path,
           custom_map: { dimension1: 'bem_beauty_nivela' }
         });
       }
+    } else {
+      productionLogger.debug('page_view', event);
     }
   }, []);
 
@@ -72,9 +73,13 @@ const useAnalytics = () => {
       }
     };
 
-    logger.info('Analytics: Conversion Event', analyticsEvent);
+    if (process.env.NODE_ENV === 'production') {
+      productionLogger.info('conversion', { type: event.type, section: event.section });
+    } else {
+      productionLogger.debug('conversion', analyticsEvent);
+    }
 
-    // Store user journey
+    // Store simplified user journey
     const journey = JSON.parse(localStorage.getItem('user_journey') || '[]');
     journey.push({
       event: event.type,
@@ -82,8 +87,8 @@ const useAnalytics = () => {
       section: event.section
     });
     
-    // Keep only last 20 events
-    if (journey.length > 20) {
+    // Keep only last 10 events (reduced from 20)
+    if (journey.length > 10) {
       journey.shift();
     }
     
@@ -114,15 +119,17 @@ const useAnalytics = () => {
       }
     };
 
-    logger.info('Analytics: Performance Metrics', event);
+    if (process.env.NODE_ENV === 'production') {
+      productionLogger.warn('performance_slow', { page_load_time: metrics.page_load_time });
+    } else {
+      productionLogger.debug('performance_metrics', event);
+    }
 
-    // Track performance issues
-    if (metrics.page_load_time && metrics.page_load_time > 3000) {
-      trackConversion({
-        type: 'section_view',
-        section: 'performance_issue',
-        value: metrics.page_load_time,
-        metadata: { type: 'slow_page_load' }
+    // Track performance issues with reduced frequency (only critical cases)
+    if (metrics.page_load_time && metrics.page_load_time > 5000) {
+      productionLogger.error('critical_performance', {
+        page_load_time: metrics.page_load_time,
+        connection: (navigator as any).connection?.effectiveType || 'unknown'
       });
     }
   }, []);
@@ -140,7 +147,9 @@ const useAnalytics = () => {
       }
     };
 
-    logger.info('Analytics: User Interaction', event);
+    if (process.env.NODE_ENV === 'development') {
+      productionLogger.debug('user_interaction', event);
+    }
   }, []);
 
   // Track errors
@@ -157,7 +166,7 @@ const useAnalytics = () => {
       }
     };
 
-    logger.error('Analytics: Error Event', event);
+    productionLogger.error('app_error', { message: error.message, context });
 
     if (typeof window.gtag !== 'undefined') {
       window.gtag('event', 'exception', {
@@ -186,7 +195,9 @@ const useAnalytics = () => {
         interactions: parseInt(sessionStorage.getItem('interactions') || '0')
       };
 
-      logger.info('Analytics: Session End', sessionData);
+      if (process.env.NODE_ENV === 'development') {
+        productionLogger.debug('session_end', sessionData);
+      }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);

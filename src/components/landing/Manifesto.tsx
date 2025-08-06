@@ -1,7 +1,7 @@
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { ParallaxContainer } from "@/components/ui/parallax-container";
 import { VideoLazy } from "@/components/ui/video-lazy";
-import { logger } from "@/utils/logger";
+import productionLogger from "@/utils/production-logger";
 
 interface ManifestoProps {
   id?: string;
@@ -49,7 +49,7 @@ const Manifesto = ({ id }: ManifestoProps) => {
                     rootMargin="100px"
                     aria-label="Vídeo institucional NIVELA - Manifesto da marca"
                     title="NIVELA - Nova era em retexturização capilar"
-                    onError={(error) => logger.error('Erro ao carregar vídeo do manifesto', { error: error.message })}
+                    onError={(error) => productionLogger.error('video_load_error', { error: error.message, src: 'video-manifesto-oficial-compactado.mp4' })}
                   />
                 </div>
               </div>
