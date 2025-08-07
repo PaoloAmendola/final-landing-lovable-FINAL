@@ -17,11 +17,10 @@ const PreFooter = ({ id }: PreFooterProps) => {
         
         <div className="flex justify-center">
           <a
-            href="https://bembeauty.com.br?utm_source=landing-nivela&utm_medium=referral&utm_campaign=acesso_loja"
+            href="https://bembeauty.com.br"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-lg text-brand-black bg-gradient-accent hover:scale-105 active:scale-95 transition-elegant duration-300 shadow-premium hover:shadow-card-hover border-2 border-brand-caramel/20"
-            data-gtm-event="cta_acessar_loja"
             aria-label="Acessar loja oficial Bem Beauty - NIVELA"
           >
             ACESSAR LOJA OFICIAL

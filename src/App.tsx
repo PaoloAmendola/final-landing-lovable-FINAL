@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useAnalytics } from "@/hooks/use-analytics";
+
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -27,16 +27,10 @@ const queryClient = new QueryClient({
 });
 
 const AppContent = () => {
-  const { trackError } = useAnalytics();
-
-  const handleError = (error: Error, errorInfo: React.ErrorInfo) => {
-    trackError(error, errorInfo.componentStack);
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <ErrorBoundary onError={handleError}>
+        <ErrorBoundary>
           <TooltipProvider delayDuration={200} skipDelayDuration={300}>
             <Toaster />
             <Sonner />

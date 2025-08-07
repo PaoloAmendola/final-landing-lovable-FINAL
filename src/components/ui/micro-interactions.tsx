@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { useAnalytics } from '@/hooks/use-analytics';
+
 
 interface MicroInteractionProps {
   children: ReactNode;
@@ -20,7 +20,6 @@ const MicroInteraction = memo(({
   eventName
 }: MicroInteractionProps) => {
   const elementRef = useRef<HTMLDivElement>(null);
-  const { trackInteraction } = useAnalytics();
 
   useEffect(() => {
     if (disabled || type !== 'magnetic') return;
@@ -61,9 +60,7 @@ const MicroInteraction = memo(({
   }, [disabled, type]);
 
   const handleInteraction = (action: string) => {
-    if (trackEvent && eventName) {
-      trackInteraction(eventName, action);
-    }
+    // Analytics removed
   };
 
   const getInteractionClasses = () => {

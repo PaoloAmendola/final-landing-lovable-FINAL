@@ -21,19 +21,16 @@ const PreFooter = lazy(() => import("@/components/landing/PreFooter"));
 
 import { usePWA } from "@/hooks/use-pwa";
 import { usePerformance } from "@/hooks/use-performance";
-import { useAnalytics } from "@/hooks/use-analytics";
 import { usePerformanceOptimization } from "@/hooks/use-performance-optimization";
 import { performanceMonitor } from '@/utils/performance-monitor';
-import { useEnhancedSEO, generateProductSchema, generateOrganizationSchema } from "@/components/ui/enhanced-seo";
 import { useAccessibilityEnhancements, announceToScreenReader } from "@/components/ui/enhanced-accessibility";
 import { SkipToContent } from "@/components/ui/skip-to-content";
-import { PerformanceMonitor } from "@/components/ui/performance-monitor";
+
 import { preloadCriticalResources } from "@/utils/preloader";
 
 const Index = memo(() => {
   const { isOffline } = usePWA();
   const { performanceScore, metrics } = usePerformance();
-  const { trackPageView, trackPerformance, trackConversion } = useAnalytics();
 
   // Initialize performance optimization
   const { preloadCriticalResources: preloadOptimized, startRenderTiming, endRenderTiming } = usePerformanceOptimization({
@@ -46,38 +43,6 @@ const Index = memo(() => {
     }
   });
 
-  // Enhanced SEO - Completo e Otimizado
-  useEnhancedSEO({
-    title: 'NIVELA® - Revolução Beauty Tech | Escova Progressiva Sem Formol',
-    description: 'NIVELA® - Escova progressiva revolucionária com tecnologia ASTRO QUAT V3®. Sem formol, com ativos da Amazônia e 30% mais rendimento. Transforme cabelos com tecnologia patenteada.',
-    keywords: [
-      'nivela', 'escova progressiva', 'sem formol', 'tecnologia capilar', 
-      'astro quat v3', 'amazônia', 'bem beauty', 'progressive brush',
-      'tratamento capilar', 'alisamento', 'hidratação', 'nutrição',
-      'cabelo liso', 'salon professional', 'beauty tech', 'inovação',
-      'retexturizador', 'hidro nutritivo', 'textura gel'
-    ],
-    canonical: window.location.href,
-    ogImage: '/assets/frasco-nivela-hero-optimized.webp',
-    ogType: 'product',
-    locale: 'pt_BR',
-    alternateLocales: ['en_US', 'es_ES'],
-    structuredData: [
-      generateProductSchema({
-        name: 'NIVELA® - Retexturizador Hidro Nutritivo 1kg',
-        description: 'Produto revolucionário com tecnologia ASTRO QUAT V3® e ingredientes da Amazônia. Escova progressiva sem formol com textura gel inovadora.',
-        brand: 'Bem Beauty Professional',
-        image: '/assets/frasco-nivela-hero-optimized.webp',
-        url: window.location.href,
-        availability: 'PreOrder'
-      }),
-      generateOrganizationSchema({
-        name: 'Bem Beauty Professional',
-        url: window.location.origin,
-        logo: '/lovable-uploads/icone-bem-beauty.png'
-      })
-    ]
-  });
 
   // Enhanced accessibility
   const { reducedMotion } = useAccessibilityEnhancements({
@@ -113,38 +78,8 @@ const Index = memo(() => {
     // Run accessibility audit only in development (removed for production)
   }, [startRenderTiming, endRenderTiming, preloadOptimized]);
 
-  // Enhanced performance tracking with Web Vitals
+  // Performance monitoring
   useEffect(() => {
-    if (metrics) {
-      const performanceData = {
-        page_load_time: performance.now(),
-        first_contentful_paint: metrics.fcp || 0,
-        largest_contentful_paint: metrics.lcp || 0,
-        cumulative_layout_shift: metrics.cls || 0,
-        first_input_delay: metrics.fid || 0
-      };
-      
-      trackPerformance(performanceData);
-      
-      // Track performance issues
-      if (metrics.lcp && metrics.lcp > 2500) {
-        trackConversion({
-          type: 'error',
-          section: 'lcp_warning',
-          metadata: { lcp: metrics.lcp }
-        });
-      }
-      
-      if (metrics.cls && metrics.cls > 0.1) {
-        trackConversion({
-          type: 'error',
-          section: 'cls_warning', 
-          metadata: { cls: metrics.cls }
-        });
-      }
-    }
-    
-    // Performance monitoring - single check after 5s
     const performanceTimer = setTimeout(() => {
       const score = performanceMonitor.getPerformanceScore();
       console.log('🎯 Final Performance Score:', score);
@@ -159,46 +94,8 @@ const Index = memo(() => {
     return () => {
       clearTimeout(performanceTimer);
     };
-  }, [metrics, trackPerformance, trackConversion]);
+  }, []);
 
-  // Track section views with Intersection Observer - Optimized
-  useEffect(() => {
-    const observedSections = new Set();
-    
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-          const sectionId = entry.target.id;
-          // Only track valid section IDs and avoid duplicates
-          if (sectionId && sectionId !== 'main-content' && !observedSections.has(sectionId)) {
-            observedSections.add(sectionId);
-            trackConversion({
-              type: 'section_view',
-              section: sectionId,
-              metadata: {
-                visibility_ratio: entry.intersectionRatio,
-                viewport_height: window.innerHeight
-              }
-            });
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: [0.5],
-      rootMargin: '0px 0px -20% 0px'
-    });
-
-    // Observe only valid sections with IDs
-    const validSections = document.querySelectorAll('section[id]:not([id="main-content"]), div[data-section]');
-    validSections.forEach((section) => observer.observe(section));
-
-    return () => {
-      observer.disconnect();
-      observedSections.clear();
-    };
-  }, [trackConversion]);
 
   return (
     <div className={`min-h-screen bg-background font-montserrat scroll-smooth text-optimized contain-layout ${reducedMotion ? 'reduce-motion' : ''}`}>
@@ -207,20 +104,7 @@ const Index = memo(() => {
       
       <ScrollIndicator />
       <main id="main-content" tabIndex={-1}>
-        <EnhancedErrorBoundary 
-          onError={(error, errorInfo) => {
-            // Track error for analytics
-            trackConversion({
-              type: 'error',
-              section: 'app_error',
-              metadata: {
-                error_message: error.message,
-                component_stack: errorInfo.componentStack,
-                url: window.location.href
-              }
-            });
-          }}
-        >
+        <EnhancedErrorBoundary>
           <Header id="inicio" />
           <Manifesto id="manifesto" />
           <ProductSection id="produto" />
@@ -259,7 +143,7 @@ const Index = memo(() => {
       </main>
       <InstallPrompt />
       <A11yControls />
-      <PerformanceMonitor reportingEnabled={!import.meta.env.DEV} />
+      
 
       {isOffline && (
         <div 
